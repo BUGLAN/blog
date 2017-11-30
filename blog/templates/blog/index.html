@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block body %}
+    <hr />
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    {% for post in posts %}
+                        <div class="blog-main">
+                        <div class="heading-blog">
+                            <p><a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }}</a></p>
+                        </div>
+                         <a href="singlepost.html">
+                        <img src="{{ url_for('static', filename='blog/img/1.jpg') }}" class="img-responsive img-rounded" />
+                             </a>
+                        <div class="blog-info">
+                            <span class="label label-primary">{{ post.publish_date }}</span>
+                            {% if post.tags.all() %}
+                                {% for post_tag in post.tags.all() %}
+                            <span class="label label-success">{{ post_tag.name }}</span>
+                                {% endfor %}
+                            {% endif %}
+                            <span class="label label-danger">By {{ post.user.username }}</span>
+                            <span class="label label-info">
+                                <i class="fa fa-thumbs-up"></i>+ 10
+                        <i class="fa fa-thumbs-down"></i>-3
+                            </span>
+                        </div>
+                        <div class="blog-txt">
+                            {{ post.text|truncate(200) }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                     <!--BLOG THREE END -->
+                    {#<nav>
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2 <span class="sr-only"></span></a></li>
+                            <li><a href="#">3 <span class="sr-only"></span></a></li>
+                            <li><a href="#">4 <span class="sr-only"></span></a></li>
+                            <li><a href="#">5 <span class="sr-only"></span></a></li>
+                            <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                        </ul>
+                    </nav>#}
+                     {% if pagination %}
+
+    {{ pagination_widget(pagination, 'main.index') }}
+
+    {% endif %}
+                {% if pagination_category %}
+
+    {{ pagination_widget(pagination_category, 'main.show_category', categories=category_name) }}
+
+    {% endif %}
+                {% if pagination_tag %}
+
+    {{ pagination_widget(pagination_tag, 'main.show_tag', tags=tag_name) }}
+
+    {% endif %}
+
+                     <!--PAGING  END -->
+                </div>
+                <div class="col-md-3">
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>分类</strong>
+                        </li>
+                        {% for category in categories %}
+                        <li class="list-group-item">
+                            <span class="badge">{{ category.posts.all()|length }}</span>
+                            <a href="{{ url_for('main.show_category', categories=category.name, page=1) }}">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+
+                        <li class="list-group-item">
+                            <strong>标签</strong>
+                        </li>
+                        {% for tag in tags %}
+                        <li class="list-group-item">
+                            <span class="badge">{{ tag.posts.all()|length }}</span>
+                            <a href="{{ url_for('main.show_tag', tags=tag.name, page=1) }}">{{ tag.name }}</a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                    <br />
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Advrtisements
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <img src="{{ url_for('static', filename='blog/img/1.jpg') }}" class="img-responsive" />
+                            </a>
+                            <br />
+                            <a href="#">
+                                <img src="{{ url_for('static', filename='blog/img/2.jpg') }}" class="img-responsive" />
+                            </a>
+                        </li>
+                    </ul>
+
+                    <br />
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Subscribe For Updates</h3>
+                            </div>
+                            <div class="panel-body">
+                                <input type="text" class="form-control" placeholder="Your Email" />
+                                <hr />
+                                <a href="#" class="btn btn-info btn-sm btn-block">subscribe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    <hr />
+    <div class="container">
+        <div class="row">
+            {#页脚#}
+            <div class="col-md-12 text-center set-foot">
+                &copy 2014 jhon alexan |  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </div>
+            {#页脚#}
+        </div>
+    </div>
+
+{% endblock %}

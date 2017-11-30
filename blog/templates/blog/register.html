@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-main">
+                <div class="heading-blog">
+                    <strong>注册</strong>
+                </div>
+                <div class="blog-txt">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="{{ url_for('main.register') }}" method="post" enctype="multipart/form-data" onsubmit="return check()" name="registerform">
+                                <div class="form-group">
+                                <label for="exampleInputName">Username</label>
+                                <input type="text" class="form-control"   name="username" id="username">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control"   name="email" id="email">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control"   name="password1" id="password1">
+                              </div>
+                                 <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control"  name="password2" id="password2">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputFile">Head portrait</label>
+                                <input type="file" id="exampleInputFile" >
+                                <p class="help-block">请上传您的头像</p>
+                              </div>
+                              <input type="submit" class="btn btn-default" value="Submit" >
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+    <script type="text/javascript">
+
+    function check() {
+        var username = document.getElementById('username');
+        var email =document.getElementById('email');
+        var password1 = document.getElementById('password1');
+        var password2 = document.getElementById('password2');
+
+        if (username == null || username.value == "")
+        {
+            alert("用户名不能为空");
+            username.focus();
+            return false;
+        }
+
+
+        if(email == null || email.valueOf == "") {
+           alert("Email值不能为空");
+           email.focus();
+           return false;
+       }
+
+       if(email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1) {
+           alert("邮箱格式不正确,必须包含@和.");
+           email.focus();
+           return false;
+       }
+
+        if(password1 == null || password1.value == "") {
+           alert("密码不能为空");
+          password1.focus();
+           return false;
+       }
+
+       if(password1.value.length < 6) {
+           alert("密码长度必须大于或者等于6");
+           password1.focus();
+           return false;
+       }
+
+       if(password2 == null ||password2.value != password1.value) {
+           alert("两次输入的密码不一致");
+          password2.focus();
+           return false;
+       }
+
+       return true;
+
+    }
+
+    </script>
+
+{% endblock %}

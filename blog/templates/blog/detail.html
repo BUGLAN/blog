@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <hr />
+     <section  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9" >
+                      <div class="blog-main">
+                        <div class="heading-blog">
+                            <p>{{ post.title }}</p>
+                        </div>
+                        <img src="{{ url_for('static', filename="blog/img/1.jpg") }}" class="img-responsive img-rounded" />
+                        <div class="blog-info">
+                            <span class="label label-primary">Posted on {{ post.publish_date }}</span>
+                            {% if post.tags.all() %}
+                                {% for post_tag in post.tags.all() %}
+                            <span class="label label-success">{{ post_tag.name }}</span>
+                                {% endfor %}
+                            {% endif %}
+                            <span class="label label-danger">By {{ post.user.username }}</span>
+                            <span class="label label-info">
+                                <i class="fa fa-thumbs-up"></i>+ 10
+                        <i class="fa fa-thumbs-down"></i>-3
+                            </span>
+                        </div>
+                        <div class="blog-txt">
+                             {{ post.text|safe }}
+                        </div>
+                    </div>
+                {#Comment Begin#}
+
+                <!-- UY BEGIN -->
+                <div id="uyan_frame"></div>
+                <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>
+                <!-- UY END -->
+
+                {#Comment End#}
+                     <!--BLOG MAIN SECTION END-->
+
+                    {#<h3 ><strong>Recent Comments :</strong></h3>
+                    <hr />
+                     <ul class="media-list">
+                        <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-circle"   src="assets/img/user2.png" />
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Vestibulum et eros consectetur</h4>
+          <p>
+              Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+          </p>
+            </div>
+                            </li>
+                  #}{# <!-- COMMENT SECTION - ONE END-->
+      <li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-circle"   src="{{ url_for('static', filename="blog/img/user.gif") }}" />
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">Lorem ipsum dolor sit amet</h4>
+          <p>
+              Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+          </p>
+          <!-- Nested media object -->
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-circle"   src="{{ url_for('static', filename="blog/img/user2.png") }}" />
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Nulla gravida vitae neque </h4>
+             Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+              <!-- Nested media object -->
+              <div class="media">
+                <a class="pull-left" href="#">
+                 <img class="media-object img-circle"   src="{{ url_for('static', filename="blog/img/user.gif") }}" />
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">Donec sit amet ligula enim</h4>
+                     Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Nested media object -->
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object img-circle"   src="{{ url_for('static', filename="blog/img/user2.png") }}" />
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading">Vestibulum et eros consectetur</h4>
+               Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+            </div>
+          </div>
+        </div>
+      </li>
+                      <!-- COMMENT SECTION - TWO END-->#}
+       {#<li class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object img-circle"   src="{{ url_for('static', filename="blog/img/user.gif") }}" />
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">Vestibulum et eros consectetur</h4>
+          <p>
+              Donec sit amet ligula enim. Duis vel condimentum massa.
+               Maecenas eget congue dui. Vestibulum et eros consectetur,
+               interdum nibh et, volutpat dolor.
+          </p>
+            </div>
+                            </li>#}
+                      <!-- COMMENT SECTION - THREE END-->
+    </ul>
+                     <!--COMMENTS SECTION END-->
+                    </div>
+                <div class="col-md-3">
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Categories</strong>
+                        </li>
+                        {% for category in categories %}
+                        <li class="list-group-item">
+                            <span class="badge">104</span>
+                            <a href="">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+
+                        <li class="list-group-item">
+                            <strong>Tags</strong>
+                        </li>
+                        {% for tag in tags %}
+                        <li class="list-group-item">
+                            <span class="badge">104</span>
+                            <a href="">{{ tag.name }}</a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                    <br />
+                    <div style="padding-top:30px;">
+                        <ul class="list-group">
+        <li class="list-group-item">
+   Advrtisements
+  </li>
+                             <li class="list-group-item">
+                                 <a href="#">
+   <img src="{{ url_for('static', filename="blog/img/ad1.jpg") }}" class="img-responsive" />
+                                     </a>
+                                     <br /><a href="#">
+                                     <img src="{{ url_for('static', filename="blog/img/ad2.jpg") }}" class="img-responsive" />
+                                     </a>
+  </li>
+                            </ul>
+                    </div>
+                    <br />
+                    <div style="padding-top:30px;">
+                        <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Subscribe For Updates</h3>
+  </div>
+  <div class="panel-body">
+   <input type="text" class="form-control" placeholder="Your Email" />
+      <hr />
+      <a href="#" class="btn btn-info btn-sm btn-block" >subscribe</a>
+  </div>
+</div>
+</div>
+                </div>
+
+
+
+            </div>
+</div>
+    </section>
+    <hr />
+     <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center" style="padding:20px 5px;" >
+                    &copy 2014 jhon alexan |  More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                    </div>
+                </div>
+                </div>
+
+{% endblock %}
+
+
+

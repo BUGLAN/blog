@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="a09c1703-ef87-44ed-a5b1-a6cac3e93252" name="flask_blog" url="http://47.93.102.86">
-        <fileTransfer host="47.93.102.86" port="22" rootFolder="/home/buglan/sites/blog_v3" accessType="SFTP">
+        <fileTransfer host="47.93.102.86" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

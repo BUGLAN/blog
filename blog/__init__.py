@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for
 from blog.main.admin import admin
 from blog.main.views import main_blueprint
 from config import BaseConfig
-from extensions import db, login_manager
+from extensions import db, login_manager, oauth
 
 
 def create_app():
@@ -11,6 +11,7 @@ def create_app():
     db.init_app(app)
     admin.init_app(app)
     login_manager.init_app(app)
+    oauth.init_app(app)
     app.register_blueprint(main_blueprint)
     from .main import views
 

@@ -1,7 +1,7 @@
 from blog.main import main_blueprint
-from flask import render_template, request, redirect, url_for, session, abort
+from flask import render_template, request, redirect, url_for, session, abort, jsonify
 from blog.main.models import User, Post, Category, Tag
-from extensions import db
+from extensions import db, github
 import datetime
 import markdown
 from flask_login import login_user, logout_user, login_required
@@ -104,3 +104,40 @@ def show_tag(tags, page=1):
     posts = filter_markdown(posts)
     return render_template('blog/index.html', posts=posts, pagination_tag=pagination, categories=categories, tags=tags, tag_name=tag.name)
 
+
+@main_blueprint.route('/github', methods=['GET', 'POST'])
+def github_login():
+    return github.authorize(callback=url_for('main.authorized', _external=True))
+
+
+@main_blueprint.route('/login/authorized')
+def authorized():
+    resp = github.authorized_response()
+    if resp is None or resp.get('access_token') is None:
+        return 'Access denied: reason=%s error=%s resp=%s' % (
+            request.args['error'],
+            request.args['error_description'],
+            resp
+        )
+    session['github_token'] = (resp['access_token'], '')
+    me = github.get('user')
+    user = User.query.filter_by(username=me.data.get('login')).first()
+    if not user:
+        user = User(
+            username=me.data.get('login'),
+            password="123456",
+            publish_date=datetime.datetime.now()
+        )
+        # 这里的password下次使用随机的密码
+        # 邮箱貌似获取不了
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+    else:
+        login_user(user)
+    return redirect(url_for('main.index'))
+
+
+@github.tokengetter
+def get_github_oauth_token():
+    return session.get('github_token')

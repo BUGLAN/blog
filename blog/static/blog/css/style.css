@@ -17,7 +17,7 @@ body {
 .header-section {
   background-color:#065883;
   color:#fff;
-  padding:40px 5px;
+  padding:20px 5px;
 }
     .header-section img {
         max-width:150px;
@@ -62,4 +62,10 @@ body {
 	line-height:0;
 	font-size:0;
 	overflow:hidden;
+}
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

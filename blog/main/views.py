@@ -104,7 +104,7 @@ def show_tag(tags, page=1):
     posts = filter_markdown(posts)
     return render_template('blog/index.html', posts=posts, pagination_tag=pagination, categories=categories, tags=tags, tag_name=tag.name)
 
-
+# github_login-------------------------------------
 @main_blueprint.route('/github', methods=['GET', 'POST'])
 def github_login():
     return github.authorize(callback=url_for('main.authorized', _external=True))
@@ -141,3 +141,59 @@ def authorized():
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')
+# -------------------------------------------------
+
+@main_blueprint.route('/user/<username>')
+@login_required
+def user_detail(username):
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        abort(404)
+    else:
+        posts = Post.query.filter_by(user_id=user.id).order_by(Post.publish_date.desc()).all()
+        return render_template('blog/user_detail.html', posts=posts)
+    # return render_template('blog/user_detail.html')
+
+
+@main_blueprint.route('/post/post_delete/<int:user_id>/<int:post_id>')
+@login_required
+def post_delete(user_id, post_id):
+    user = User.query.filter_by(id=user_id).first_or_404()
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    if post.user_id == user.id:
+         db.session.delete(post)
+         db.session.commit()
+         return redirect(url_for('main.user_detail', username=user.username))
+    else:
+        abort(404)
+
+
+
+# @main_blueprint.route('/post/post_change/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
+# @login_required
+# def post_change(user_id, post_id):
+#     user = User.query.filter_by(id=user_id).first_or_404()
+#     post = Post.query.filter_by(id=post_id).first_or_404()
+#     if post.user_id == user.id:
+#         if request.method == 'POST':
+#             post.title = request.form['title']
+#             post.text = request.form['text']
+#             db.session.add(post)
+#             db.session.commit()
+#             return redirect(url_for('main.user_detail', username=user.username))
+
+
+@main_blueprint.route('/post/post_edit/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def post_edit(user_id, post_id):
+    user = User.query.filter_by(id=user_id).first_or_404()
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    if request.method == 'POST':
+        if post.user_id == user.id:
+            post.title = request.form['title']
+            post.text = request.form['context']
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('main.user_detail', username=user.username))
+
+    return render_template('blog/post_edit.html', post=post)

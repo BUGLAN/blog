@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if posts != [] %}
+                <table class="table table-bordered table-hover">
+                 <tr class="info">
+                        <th><strong>名称</strong></th>
+                        <th><strong>正文</strong></th>
+                        <th><strong>发表时间</strong></th>
+                        <th><strong>操作</strong></th>
+                 </tr>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.text | truncate(50) }}</td>
+                        <td>{{ post.publish_date }}</td>
+                        <td><a href="{{ url_for('main.post_edit', user_id=post.user_id, post_id=post.id) }}">修改</a> | <a href="{{ url_for('main.post_delete', user_id=post.user_id, post_id=post.id) }}">删除</a></td>
+                    </tr>
+
+                {% endfor %}
+                </table>
+                    {% else %}
+                    <h1>您还没有发表过文章呢, 发表文章试下吧</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

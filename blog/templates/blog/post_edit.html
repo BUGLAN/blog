@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">
+    <script src="{{ url_for('static', filename='simplemde/simplemde.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                 <form method="post" action="{{ url_for('main.post_edit', user_id=post.user_id, post_id=post.id) }}">
+                  <div class="form-group">
+                      <label >Article Title</label>
+                    <input type="text" class="form-control" name="title" value="{{ post.title }}">
+                  </div>
+                  <div class="form-group">
+                      <label >Article Context</label>
+                      <textarea  id="text" name="context">{{ post.text }}</textarea>
+                  </div>
+
+                  <input  type="submit" class="btn btn-default" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("text"),
+         autoDownloadFontAwesome: false,
+        status: false
+    });
+    </script>
+{% endblock %}

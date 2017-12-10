@@ -68,6 +68,7 @@ class Category(db.Model):
     name = db.Column(db.String(128), unique=True)
     publish_date = db.Column(db.DateTime)
     modified_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     posts = db.relationship(
         'Post',
         backref='category',

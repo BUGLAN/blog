@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">
     <script src="{{ url_for('static', filename='simplemde/simplemde.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css") }}">
+    <script src="{{ url_for('static', filename="bootstrap-datetimepicker/js/bootstrap-datetimepicker.js") }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -25,12 +27,53 @@
                       <label >Article Context</label>
                       <textarea  id="text" name="context">{{ post.text }}</textarea>
                   </div>
+                  <div class="form-group">
+                      <label >Publish Date&nbsp;&nbsp;&nbsp;</label>
+                      <input  type="text" name="publish_date" id="publish_date" value="{{ post.publish_date }}">
+                  </div>
+                  <div class="form-group">
+                      <label >Modified Date</label>
+                      <input  type="text" name="modified_date" id="modified_date">
+                  </div>
+                      <div class="form-group">
+                      <lable><strong>Category</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+                      <select name="category_name" >
+                            <option >  </option>
+                          {% for category in categories %}
+                              {% if cat.name == category.name %}
+                              <option selected="True">{{ cat.name }}</option>
+                              {% else %}
+                              <option>{{ category.name }}</option>
+                              {% endif %}
+                          {% endfor %}
+                      </select>
+                      </div>
 
+                 <div class="form-group">
+                     <lable><strong>Tags</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+
+                     {% for tag in tags %}
+                         {% if tag in post.tags.all() %}
+                         <label class="checkbox-inline">
+                          <input type="checkbox" id="inlineCheckbox1" checked="checked" value="{{ tag.id }}" name="s_option">{{ tag.name }}
+                       </label>
+                         {% else %}
+                        <label class="checkbox-inline">
+                          <input type="checkbox" id="inlineCheckbox1" value="{{ tag.id }}" name="s_option">{{ tag.name }}
+                       </label>
+                         {% endif %}
+                     {% endfor %}
+                </div>
                   <input  type="submit" class="btn btn-default" value="submit">
                 </form>
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 {% endblock %}
 
 
@@ -41,5 +84,12 @@
          autoDownloadFontAwesome: false,
         status: false
     });
+    $('#publish_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker('update', new Date());
     </script>
 {% endblock %}

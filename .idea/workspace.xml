@@ -2,336 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691d11db-f416-4531-ba52-18b7cbe02edd" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/blog/templates/blog/post_edit.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/blog/templates/blog/user_detail.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/blog/static/blog/js/bootstrap-select.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/blog/main/models.py" afterPath="$PROJECT_DIR$/blog/main/models.py" />
       <change beforePath="$PROJECT_DIR$/blog/main/views.py" afterPath="$PROJECT_DIR$/blog/main/views.py" />
-      <change beforePath="$PROJECT_DIR$/blog/static/blog/css/style.css" afterPath="$PROJECT_DIR$/blog/static/blog/css/style.css" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/CHANGES.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/LICENSE.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/adapters/jquery.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/build-config.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/ckeditor.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/config.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/contents.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/af.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/az.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/bg.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/bn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/bs.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/cs.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/cy.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/da.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/de-ch.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/de.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/el.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/en-au.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/en-ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/en-gb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/en.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/eo.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/es-mx.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/es.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/et.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/eu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/fa.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/fi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/fo.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/fr-ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/fr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/gl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/gu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/he.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/hi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/hr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/hu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/id.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/is.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/it.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ja.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ka.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/km.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ko.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ku.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/lt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/lv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/mk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/mn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ms.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/nb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/nl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/no.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/oc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/pl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/pt-br.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/pt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ro.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ru.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/si.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sq.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sr-latn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/sv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/th.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/tr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/tt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/ug.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/uk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/vi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/zh-cn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/lang/zh.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/_translationstatus.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/af.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/az.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/da.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/de-ch.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/de.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/el.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/en-gb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/en.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/es-mx.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/es.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/et.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/eu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/fo.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/he.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/id.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/it.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/km.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/no.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/oc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/si.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/th.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/tt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/about/dialogs/about.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/about/dialogs/hidpi/logo_ckeditor.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/about/dialogs/logo_ckeditor.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/dialog/dialogDefinition.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/icons.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/icons_hidpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/image/dialogs/image.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/image/images/noimage.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/link/dialogs/anchor.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/link/dialogs/link.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/link/images/anchor.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/link/images/hidpi/anchor.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/magicline/images/hidpi/icon-rtl.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/magicline/images/hidpi/icon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/magicline/images/icon-rtl.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/magicline/images/icon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/pastefromword/filter/default.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/CHANGELOG.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/LICENSE.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/dialogs/dialog.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/dialogs/options.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/dialogs/toolbar.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/scayt/skins/moono-lisa/scayt.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/af.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/az.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/bg.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/cs.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/cy.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/da.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/de-ch.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/de.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/el.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/en-au.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/en-ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/en.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/eo.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/es-mx.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/es.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/et.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/eu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/fa.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/fi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/fr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/gl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/he.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/hr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/hu.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/id.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/it.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ja.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/km.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ko.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ku.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/lt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/lv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/nb.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/nl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/no.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/oc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/pl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/pt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ru.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/si.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/sk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/sl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/sq.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/sv.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/th.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/tr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/tt.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/ug.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/uk.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/vi.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/lang/zh.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/specialchar/dialogs/specialchar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/table/dialogs/table.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/tableselection/styles/tableselection.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/tabletools/dialogs/tableCell.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/LICENSE.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/dialogs/ciframe.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/dialogs/tmpFrameset.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/dialogs/wsc.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/dialogs/wsc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/dialogs/wsc_ie.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/plugins/wsc/skins/moono-lisa/wsc.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/css/samples.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/img/github-top.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/img/header-bg.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/img/header-separator.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/img/logo.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/img/navigation-tip.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/js/sample.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/js/sf.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/ajax.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/api.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/appendto.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/assets/inlineall/logo.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/assets/posteddata.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/assets/sample.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/assets/uilanguages/languages.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/datafiltering.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/dialog/assets/my_dialog.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/dialog/dialog.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/divreplace.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/enterkey/enterkey.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/htmlwriter/assets/outputforflash/outputforflash.fla" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/htmlwriter/assets/outputforflash/outputforflash.swf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/htmlwriter/outputforflash.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/htmlwriter/outputhtml.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/inlineall.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/inlinebycode.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/inlinetextarea.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/jquery.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/magicline/magicline.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/readonly.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/replacebyclass.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/replacebycode.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/sample.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/sample.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/sample_posteddata.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/tabindex.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/toolbar/toolbar.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/uicolor.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/uilanguages.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/wysiwygarea/fullpage.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/old/xhtmlstyle.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/css/fontello.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/LICENSE.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/config.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/fontello.eot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/fontello.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/fontello.ttf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/font/fontello.woff" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/dialog.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/dialog_ie.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/dialog_ie8.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/dialog_iequirks.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/editor.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/editor_gecko.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/editor_ie.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/editor_ie8.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/editor_iequirks.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/icons.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/icons_hidpi.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/arrow.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/close.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/hidpi/close.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/hidpi/lock-open.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/hidpi/lock.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/hidpi/refresh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/lock-open.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/lock.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/refresh.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/images/spinner.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/skins/moono-lisa/readme.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/ckeditor/styles.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/base.html" afterPath="$PROJECT_DIR$/blog/templates/base.html" />
+      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_edit.html" afterPath="$PROJECT_DIR$/blog/templates/blog/post_edit.html" />
       <change beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -343,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/blog_v3$run.coverage" NAME="run Coverage Results" MODIFIED="1512812058094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/blog_v3$run.coverage" NAME="run Coverage Results" MODIFIED="1512892470033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/blog_v3$manager.coverage" NAME="manager Coverage Results" MODIFIED="1512039330899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/blog$run.coverage" NAME="run Coverage Results" MODIFIED="1508076813795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/blog_v3$jiaoben.coverage" NAME="jiaoben Coverage Results" MODIFIED="1508223394216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -364,61 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/templates/blog/user_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/main/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/main/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
+            <state relative-caret-position="0">
               <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="widgets.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/main/widgets.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="46" lean-forward="false" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1002">
-              <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/templates/admin/post_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="47" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="9" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -427,8 +52,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="195" column="31" lean-forward="true" selection-start-line="195" selection-start-column="31" selection-end-line="195" selection-end-column="31" />
+            <state relative-caret-position="583">
+              <caret line="192" column="19" lean-forward="true" selection-start-line="192" selection-start-column="19" selection-end-line="192" selection-end-column="19" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -436,12 +61,93 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/templates/blog/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/templates/blog/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1315">
+              <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="post_edit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/templates/blog/post_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="25" column="56" lean-forward="false" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+            <state relative-caret-position="391">
+              <caret line="60" column="55" lean-forward="true" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+              <folding>
+                <element signature="e#1419#1425#0#HTML" expanded="true" />
+                <element signature="e#1425#1431#0#HTML" expanded="true" />
+                <element signature="e#1431#1437#0#HTML" expanded="true" />
+                <element signature="e#1888#1894#0#HTML" expanded="true" />
+                <element signature="e#1894#1900#0#HTML" expanded="true" />
+                <element signature="e#1900#1906#0#HTML" expanded="true" />
+                <element signature="e#1906#1912#0#HTML" expanded="true" />
+                <element signature="e#1912#1918#0#HTML" expanded="true" />
+                <element signature="e#1918#1924#0#HTML" expanded="true" />
+                <element signature="e#1924#1930#0#HTML" expanded="true" />
+                <element signature="e#1930#1936#0#HTML" expanded="true" />
+                <element signature="e#1936#1942#0#HTML" expanded="true" />
+                <element signature="e#2597#2603#0#HTML" expanded="true" />
+                <element signature="e#2603#2609#0#HTML" expanded="true" />
+                <element signature="e#2609#2615#0#HTML" expanded="true" />
+                <element signature="e#2615#2621#0#HTML" expanded="true" />
+                <element signature="e#2621#2627#0#HTML" expanded="true" />
+                <element signature="e#2627#2633#0#HTML" expanded="true" />
+                <element signature="e#2633#2639#0#HTML" expanded="true" />
+                <element signature="e#2639#2645#0#HTML" expanded="true" />
+                <element signature="e#2645#2651#0#HTML" expanded="true" />
+                <element signature="e#2651#2657#0#HTML" expanded="true" />
+                <element signature="e#2657#2663#0#HTML" expanded="true" />
+                <element signature="e#2663#2669#0#HTML" expanded="true" />
+                <element signature="e#2669#2675#0#HTML" expanded="true" />
+                <element signature="e#2675#2681#0#HTML" expanded="true" />
+                <element signature="e#2681#2687#0#HTML" expanded="true" />
+                <element signature="e#2687#2693#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/templates/blog/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="12" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-select.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/static/blog/js/bootstrap-select.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-390">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blog/main/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-557">
+              <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -449,7 +155,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/static/blog/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
+            <state relative-caret-position="1820">
               <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
               <folding />
             </state>
@@ -459,8 +165,8 @@
       <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="234">
+              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -508,7 +214,6 @@
         <option value="$PROJECT_DIR$/blog/static/blog/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/admin.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/blog/main/models.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/blog/main/admin.py" />
         <option value="$PROJECT_DIR$/manager.py" />
@@ -526,8 +231,9 @@
         <option value="$PROJECT_DIR$/blog/templates/base.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/user_detail.html" />
         <option value="$PROJECT_DIR$/blog/static/blog/css/style.css" />
-        <option value="$PROJECT_DIR$/blog/templates/blog/post_edit.html" />
+        <option value="$PROJECT_DIR$/blog/main/models.py" />
         <option value="$PROJECT_DIR$/blog/main/views.py" />
+        <option value="$PROJECT_DIR$/blog/templates/blog/post_edit.html" />
         <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
@@ -562,8 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -592,6 +296,13 @@
               <item name="blog_v3" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog_v3" type="462c0819:PsiDirectoryNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog_v3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog_v3" type="462c0819:PsiDirectoryNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -612,6 +323,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -628,18 +341,18 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static" />
-      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\simplemde" />
-      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\ckeditor" />
-      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\blog\js" />
-      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\templates\blog" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\PythonFile\myfalsk\blog_v3\blog\main" />
       <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static" />
       <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\ckeditor" />
       <recent name="E:\PythonFile\myfalsk\blog_v3\blog" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\blog\js" />
+      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static" />
+      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\simplemde" />
+      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\static\ckeditor" />
+      <recent name="E:\PythonFile\myfalsk\blog_v3\blog\templates\blog" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -781,9 +494,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2895981" sideWeight="0.5030912" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27966103" sideWeight="0.4969088" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27945778" sideWeight="0.4969088" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2544317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29984543" sideWeight="0.493266" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31761977" sideWeight="0.493266" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -852,13 +565,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog.py" />
     <entry file="file://$PROJECT_DIR$/blog/main.py" />
     <entry file="file://$PROJECT_DIR$/blog/templates/base.py" />
@@ -1001,49 +707,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="28" column="121" lean-forward="false" selection-start-line="28" selection-start-column="121" selection-end-line="28" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/blog/detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/register.html">
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/user_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1404">
-          <caret line="321" column="16" lean-forward="false" selection-start-line="321" selection-start-column="16" selection-end-line="321" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blog/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="8" />
+        <state relative-caret-position="286">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1056,14 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/main/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/main/widgets.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1072,17 +738,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/static/blog/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1002">
+        <state relative-caret-position="2652">
           <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding />
         </state>
@@ -1091,41 +749,128 @@
     <entry file="file://$PROJECT_DIR$/blog/templates/admin/post_edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="7" column="47" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="9" selection-end-column="62" />
+          <caret line="7" column="47" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="9" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/user_detail.html">
+    <entry file="file://$PROJECT_DIR$/blog/static/blog/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="1820">
+          <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blog/templates/blog/post_edit.html">
+    <entry file="file://$PROJECT_DIR$/blog/main/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="25" column="56" lean-forward="false" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+        <state relative-caret-position="0">
+          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/static/blog/js/bootstrap-select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-390">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="456" column="13" lean-forward="false" selection-start-line="456" selection-start-column="13" selection-end-line="456" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1315">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="195" column="31" lean-forward="true" selection-start-line="195" selection-start-column="31" selection-end-line="195" selection-end-column="31" />
+        <state relative-caret-position="583">
+          <caret line="192" column="19" lean-forward="true" selection-start-line="192" selection-start-column="19" selection-end-line="192" selection-end-column="19" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/blog/main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-557">
+          <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/post_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="60" column="55" lean-forward="true" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+          <folding>
+            <element signature="e#1419#1425#0#HTML" expanded="true" />
+            <element signature="e#1425#1431#0#HTML" expanded="true" />
+            <element signature="e#1431#1437#0#HTML" expanded="true" />
+            <element signature="e#1888#1894#0#HTML" expanded="true" />
+            <element signature="e#1894#1900#0#HTML" expanded="true" />
+            <element signature="e#1900#1906#0#HTML" expanded="true" />
+            <element signature="e#1906#1912#0#HTML" expanded="true" />
+            <element signature="e#1912#1918#0#HTML" expanded="true" />
+            <element signature="e#1918#1924#0#HTML" expanded="true" />
+            <element signature="e#1924#1930#0#HTML" expanded="true" />
+            <element signature="e#1930#1936#0#HTML" expanded="true" />
+            <element signature="e#1936#1942#0#HTML" expanded="true" />
+            <element signature="e#2597#2603#0#HTML" expanded="true" />
+            <element signature="e#2603#2609#0#HTML" expanded="true" />
+            <element signature="e#2609#2615#0#HTML" expanded="true" />
+            <element signature="e#2615#2621#0#HTML" expanded="true" />
+            <element signature="e#2621#2627#0#HTML" expanded="true" />
+            <element signature="e#2627#2633#0#HTML" expanded="true" />
+            <element signature="e#2633#2639#0#HTML" expanded="true" />
+            <element signature="e#2639#2645#0#HTML" expanded="true" />
+            <element signature="e#2645#2651#0#HTML" expanded="true" />
+            <element signature="e#2651#2657#0#HTML" expanded="true" />
+            <element signature="e#2657#2663#0#HTML" expanded="true" />
+            <element signature="e#2663#2669#0#HTML" expanded="true" />
+            <element signature="e#2669#2675#0#HTML" expanded="true" />
+            <element signature="e#2675#2681#0#HTML" expanded="true" />
+            <element signature="e#2681#2687#0#HTML" expanded="true" />
+            <element signature="e#2687#2693#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state relative-caret-position="234">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
           <folding />
         </state>
       </provider>

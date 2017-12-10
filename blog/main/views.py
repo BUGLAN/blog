@@ -168,32 +168,32 @@ def post_delete(user_id, post_id):
         abort(404)
 
 
-
-# @main_blueprint.route('/post/post_change/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
-# @login_required
-# def post_change(user_id, post_id):
-#     user = User.query.filter_by(id=user_id).first_or_404()
-#     post = Post.query.filter_by(id=post_id).first_or_404()
-#     if post.user_id == user.id:
-#         if request.method == 'POST':
-#             post.title = request.form['title']
-#             post.text = request.form['text']
-#             db.session.add(post)
-#             db.session.commit()
-#             return redirect(url_for('main.user_detail', username=user.username))
-
-
 @main_blueprint.route('/post/post_edit/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def post_edit(user_id, post_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     post = Post.query.filter_by(id=post_id).first_or_404()
+    categories = Category.query.all()
+    cat = Category.query.filter_by(id=post.category_id).first()
+    tags = Tag.query.all()
     if request.method == 'POST':
         if post.user_id == user.id:
             post.title = request.form['title']
             post.text = request.form['context']
-            db.session.add(post)
-            db.session.commit()
-            return redirect(url_for('main.user_detail', username=user.username))
+            tag_s = request.values.getlist('s_option')
+            # 得到Tag 的 id
+            if tag_s:
+                for tag_id in tag_s:
+                    t = Tag.query.filter_by(id=int(tag_id)).first()
+                    post.tags.append(t)
+            try:
+                post.category_id = Category.query.filter_by(name=request.form['category_name']).first().id
+            except:
+                # 解决方法将category_id 改为 category_name
+               pass
+            else:
+                db.session.add(post)
+                db.session.commit()
+                return redirect(url_for('main.user_detail', username=user.username))
 
-    return render_template('blog/post_edit.html', post=post)
+    return render_template('blog/post_edit.html', post=post, categories=categories, cat=cat, tags=tags)

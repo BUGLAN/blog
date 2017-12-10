@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">
+    <script src="{{ url_for('static', filename='simplemde/simplemde.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css") }}">
+    <script src="{{ url_for('static', filename="bootstrap-datetimepicker/js/bootstrap-datetimepicker.js") }}"></script>
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                 <form method="post" action="{{ url_for('main.post_write') }}">
+                  <div class="form-group">
+                      <label >Article Title</label>
+                    <input type="text" class="form-control" name="title">
+                  </div>
+                  <div class="form-group">
+                      <label >Article Context</label>
+                      <textarea  id="text" name="context"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label >Publish Date&nbsp;&nbsp;&nbsp;</label>
+                      <input  type="text" name="publish_date" id="publish_date" value="">
+                  </div>
+                  <div class="form-group">
+                      <label >Modified Date</label>
+                      <input  type="text" name="modified_date" id="modified_date">
+                  </div>
+                      <div class="form-group">
+                      <lable><strong>Category</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+                      <select name="category_name" >
+                            <option >  </option>
+                          {% for category in categories %}
+                              <option>{{ category.name }}</option>
+                          {% endfor %}
+                      </select>
+                      </div>
+
+                 <div class="form-group">
+                     <lable><strong>Tags</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+
+                     {% for tag in tags %}
+                        <label class="checkbox-inline">
+                          <input type="checkbox" id="inlineCheckbox1" value="{{ tag.id }}" name="s_option">{{ tag.name }}
+                       </label>
+                     {% endfor %}
+                </div>
+                  <input  type="submit" class="btn btn-default" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("text"),
+         autoDownloadFontAwesome: false,
+        status: false
+    });
+    $('#publish_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker('update', new Date());
+    </script>
+{% endblock %}

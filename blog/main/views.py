@@ -4,7 +4,7 @@ from blog.main.models import User, Post, Category, Tag
 from extensions import db, github
 import datetime
 import markdown
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 def sidebar_date():
@@ -197,3 +197,27 @@ def post_edit(user_id, post_id):
                 return redirect(url_for('main.user_detail', username=user.username))
 
     return render_template('blog/post_edit.html', post=post, categories=categories, cat=cat, tags=tags)
+
+
+@main_blueprint.route('/post/post_write', methods=['GET', 'POST'])
+@login_required
+def post_write():
+    if current_user.is_authenticated:
+        categories = Category.query.all()
+        tags = Tag.query.all()
+        if request.method == 'POST':
+            post = Post(
+                title=request.values.get('title'),
+                text=request.values.get('context'),
+                publish_date=request.values.get('publish_date'),
+                modified_date=request.values.get('modified_date'),
+                user_id=current_user.id,
+                # category_id=request.values.get('category_name'),
+            )
+            for tag_id in request.values.getlist('s_option'):
+                tag = Tag.query.filter_by(id=tag_id).first()
+                post.tags.append(tag)
+                db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+    return render_template('blog/post_write.html', tags=tags, categories=categories)

@@ -84,12 +84,13 @@ class Tag(db.Model):
     name = db.Column(db.String(128), unique=True)
     publish_date = db.Column(db.DateTime)
     modified_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return '<Tag {}>'.format(self.name)
 
 
 # User -> Post 一对多
-# Post -> Category 多对一
-# Post -> Tag 一对多
-# Column -> Post 一对一 专栏
+# Category -> Post 一对多
+# Post -> Tag 多对多
+# User -> Tag 一对一

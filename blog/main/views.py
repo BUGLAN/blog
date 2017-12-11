@@ -143,16 +143,17 @@ def get_github_oauth_token():
     return session.get('github_token')
 # -------------------------------------------------
 
-@main_blueprint.route('/user/<username>')
+@main_blueprint.route('/user/<username>/post_adminter')
 @login_required
-def user_detail(username):
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        abort(404)
+def post_adminter(username):
+    if current_user.username == username:
+        posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.publish_date.desc()).all()
+        categories = Category.query.filter_by(user_id=current_user.id).all()
+        tags = Tag.query.filter_by(user_id=current_user.id).all()
+        # 现在要求得到用户创建的tag 获取列表
+        return render_template('blog/post_adminter.html', posts=posts, categories=categories, tags=tags)
     else:
-        posts = Post.query.filter_by(user_id=user.id).order_by(Post.publish_date.desc()).all()
-        return render_template('blog/user_detail.html', posts=posts)
-    # return render_template('blog/user_detail.html')
+        return "您无权访问他人的主页"
 
 
 @main_blueprint.route('/post/post_delete/<int:user_id>/<int:post_id>')
@@ -173,9 +174,9 @@ def post_delete(user_id, post_id):
 def post_edit(user_id, post_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     post = Post.query.filter_by(id=post_id).first_or_404()
-    categories = Category.query.all()
+    categories = Category.query.filter_by(user_id=current_user.id).all()
     cat = Category.query.filter_by(id=post.category_id).first()
-    tags = Tag.query.all()
+    tags = Tag.query.filter_by(user_id=current_user.id).all()
     if request.method == 'POST':
         if post.user_id == user.id:
             post.title = request.form['title']
@@ -221,3 +222,10 @@ def post_write():
             db.session.commit()
             return redirect(url_for('main.index'))
     return render_template('blog/post_write.html', tags=tags, categories=categories)
+
+
+@main_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
+@login_required
+def user_detail(username):
+    if current_user.username == username:
+        return render_template('blog/user_detail.html')

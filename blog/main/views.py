@@ -214,7 +214,7 @@ def post_delete(user_id, post_id):
         abort(404)
 
 
-@main_blueprint.route('/post/<int:user_id>/<int:category_id>/categort_delete')
+@main_blueprint.route('/post/<int:user_id>/<int:category_id>/category_delete')
 @login_required
 def category_delete(user_id, category_id):
     if current_user.id == user_id:
@@ -330,7 +330,7 @@ def new_post():
                 db.session.add(post)
             db.session.commit()
             return redirect(url_for('main.post_adminter', username=current_user.username))
-    return render_template('blog/new_post.html', categories=categories,  tags=tags)
+        return render_template('blog/new_post.html', categories=categories,  tags=tags)
 
 
 @main_blueprint.route('/post/new_category', methods=['GET', 'POST'])

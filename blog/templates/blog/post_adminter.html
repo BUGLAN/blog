@@ -5,6 +5,20 @@
     <br>
     <br>
     <div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="btn btn-info btn-lg">文章</a>
+        </div>
+        <div class="col-md-1">
+            <a href="{{ url_for('main.category_adminter', username=current_user.username) }}" class="btn btn-default btn-lg">类别</a>
+        </div>
+        <div class="col-md-1">
+            <a href="{{ url_for('main.tag_adminter', username=current_user.username) }}" class="btn btn-default btn-lg">标签</a>
+        </div>
+        <div class="col-md-1">
+            <a href="#" class="btn btn-default btn-lg">归档</a>
+        </div>
+    </div>
 {#    文章管理#}
         <div class="row">
             <div class="col-md-12">
@@ -19,7 +33,7 @@
                  </tr>
                 {% for post in posts %}
                     <tr>
-                        <td>{{ post.title }}</td>
+                        <td><a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }}</a></td>
                         <td>{{ post.text | truncate(50) }}</td>
                         <td>{{ post.publish_date }}</td>
                         <td><a href="{{ url_for('main.post_edit', user_id=post.user_id, post_id=post.id) }}">修改</a> | <a href="{{ url_for('main.post_delete', user_id=post.user_id, post_id=post.id) }}">删除</a></td>
@@ -31,62 +45,11 @@
                     <h1>您还没有创建过标签呢,来<a href="#">试下</a>吧</h1>
                 {% endif %}
             </div>
+        <div class="col-md-12">
+            <a href="{{ url_for('main.new_post') }}" class="btn btn-default">新文章</a>
+        </div>
         </div>
 {#        ------------------#}
-{#        分类管理#}
-        <div class="row">
-            <div class="col-md-12">
-                {% if categories != [] %}
-                    <h3>分类管理: </h3>
-                <table class="table table-bordered table-hover">
-                 <tr class="info">
-                        <th><strong>名称</strong></th>
-                        <th><strong>创建时间</strong></th>
-                        <th><strong>文章</strong></th>
-                        <th><strong>操作</strong></th>
-                 </tr>
-                {% for category in categories %}
-                    <tr>
-                        <td>{{ category.name }}</td>
-                        <td>{{ category.publish_date  }}</td>
-                        <td>{% for p in category.posts.all() %}<a href="{{ url_for('main.post_edit', user_id=current_user.id, post_id=p.id) }}">{{ p }}</a> {% endfor %}</td>
-                        <td><a href="">修改 | 删除</a></td>
-                    </tr>
-                {% endfor %}
-                </table>
-                    {% else %}
-                    <h1>您还没有创建过标签呢,来<a href="#">试下</a>吧</h1>
-                {% endif %}
-            </div>
-        </div>
-{#        -----------------#}
-{#        标签管理#}
-        <div class="row">
-            <div class="col-md-12">
-                {% if tags != [] %}
-                    <h3>标签管理: </h3>
-                <table class="table table-bordered table-hover">
-                 <tr class="info">
-                        <th><strong>名称</strong></th>
-                        <th><strong>发表时间</strong></th>
-                        <th><strong>文章</strong></th>
-                        <th><strong>操作</strong></th>
-                 </tr>
-                {% for tag in tags %}
-                    <tr>
-                        <td>{{ tag.name }}</td>
-                        <td>{{ tag.publish_date  }}</td>
-                        <td>{% for p in tag.posts.all() %}<a href="{{ url_for('main.post_edit', user_id=current_user.id, post_id=p.id) }}"> {{ p }}</a>{% endfor %}</td>
-                        <td><a href="">修改 | 删除</a></td>
-                    </tr>
-                {% endfor %}
-                </table>
-                    {% else %}
-                    <h1>您还没有创建过标签呢,来<a href="#">试下</a>吧</h1>
-                {% endif %}
-            </div>
-        </div>
-{#        --------------#}
 
     </div>
 

@@ -1,5 +1,5 @@
 from blog.main import main_blueprint
-from flask import render_template, request, redirect, url_for, session, abort, jsonify
+from flask import render_template, request, redirect, url_for, session, abort
 from blog.main.models import User, Post, Category, Tag
 from extensions import db, github
 import datetime
@@ -21,12 +21,13 @@ def filter_markdown(posts):
         posts[i].text = posts[i].text.replace('>', '')
     return posts
 
+
 @main_blueprint.route('/')
 @main_blueprint.route('/post/<int:page>')
 def index(page=1):
     pagination = Post.query.order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
     posts = pagination.items
-    categories, tags = sidebar_date();
+    categories, tags = sidebar_date()
     posts = filter_markdown(posts)
     return render_template('blog/index.html', posts=posts, pagination=pagination, categories=categories, tags=tags)
 
@@ -48,7 +49,8 @@ def register():
 @main_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user = User.query.filter_by(username=request.form.get('username'), password=request.form.get('password')).first()
+        user = User.query.filter_by(username=request.form.get('username'),
+                                    password=request.form.get('password')).first()
         user2 = User.query.filter_by(email=request.form.get('username'), password=request.form.get('password')).first()
         if user:
             # session['username'] = user.username
@@ -74,7 +76,7 @@ def logout():
 @main_blueprint.route('/post/<int:page>/detail')
 def detail(page):
     post = Post.query.get(page)
-    categories, tags = sidebar_date();
+    categories, tags = sidebar_date()
     post.text = markdown.markdown(post.text,
                                   extensions=[
                                       'markdown.extensions.extra',
@@ -87,22 +89,32 @@ def detail(page):
 @main_blueprint.route('/category/<string:categories>/<int:page>')
 def show_category(categories, page=1):
     category = Category.query.filter_by(name=categories).first()
-    pagination = Post.query.filter_by(category_id=category.id).order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
+    pagination = Post.query.filter_by(category_id=category.id).order_by(Post.publish_date.desc()).\
+        paginate(page, 5, error_out=False)
     posts = pagination.items
-    categories, tags = sidebar_date();
+    categories, tags = sidebar_date()
     posts = filter_markdown(posts)
-    return render_template('blog/index.html', posts=posts, pagination_category=pagination, categories=categories, tags=tags, category_name=category.name)
+    return render_template('blog/index.html',
+                           posts=posts,
+                           pagination_category=pagination,
+                           categories=categories,
+                           tags=tags,
+                           category_name=category.name)
 
 
 @main_blueprint.route('/tag/<string:tags>/<int:page>')
 def show_tag(tags, page=1):
     tag = Tag.query.filter_by(name=tags).first()
-    tag_id = tag.id
     pagination =tag.posts.order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
     posts = pagination.items
-    categories, tags = sidebar_date();
+    categories, tags = sidebar_date()
     posts = filter_markdown(posts)
-    return render_template('blog/index.html', posts=posts, pagination_tag=pagination, categories=categories, tags=tags, tag_name=tag.name)
+    return render_template('blog/index.html',
+                           posts=posts,
+                           pagination_tag=pagination,
+                           categories=categories, tags=tags,
+                           tag_name=tag.name)
+
 
 # github_login-------------------------------------
 @main_blueprint.route('/github', methods=['GET', 'POST'])
@@ -141,8 +153,17 @@ def authorized():
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')
+
+
+@main_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
+@login_required
+def user_detail(username):
+    if current_user.username == username:
+        return render_template('blog/user_detail.html')
 # -------------------------------------------------
 
+
+# adminter
 @main_blueprint.route('/user/<username>/post_adminter')
 @login_required
 def post_adminter(username):
@@ -156,6 +177,30 @@ def post_adminter(username):
         return "您无权访问他人的主页"
 
 
+@main_blueprint.route('/user/<username>/category_adminter')
+@login_required
+def category_adminter(username):
+    if current_user.username == username:
+        categories = Category.query.filter_by(user_id=current_user.id).all()
+        # 现在要求得到用户创建的tag 获取列表
+        return render_template('blog/category_adminter.html', categories=categories)
+    else:
+        return "您无权访问他人的主页"
+
+
+@main_blueprint.route('/user/<username>/tag_adminter')
+@login_required
+def tag_adminter(username):
+    if current_user.username == username:
+        tags = Tag.query.filter_by(user_id=current_user.id).all()
+        # 现在要求得到用户创建的tag 获取列表
+        return render_template('blog/tag_adminter.html', tags=tags)
+    else:
+        return "您无权访问他人的主页"
+# ----------
+
+
+# delete
 @main_blueprint.route('/post/post_delete/<int:user_id>/<int:post_id>')
 @login_required
 def post_delete(user_id, post_id):
@@ -169,7 +214,33 @@ def post_delete(user_id, post_id):
         abort(404)
 
 
-@main_blueprint.route('/post/post_edit/<int:user_id>/<int:post_id>', methods=['GET', 'POST'])
+@main_blueprint.route('/post/<int:user_id>/<int:category_id>/categort_delete')
+@login_required
+def category_delete(user_id, category_id):
+    if current_user.id == user_id:
+        category = Category.query.filter_by(id=category_id).first_or_404()
+        db.session.delete(category)
+        db.session.commit()
+        return redirect(url_for('main.category_adminter', username=current_user.username))
+    else:
+        return "没有权限"
+
+
+@main_blueprint.route('/post/<int:user_id>/<int:tag_id>/tag_delete')
+@login_required
+def tag_delete(user_id, tag_id):
+    if current_user.id == user_id:
+        tag = Tag.query.filter_by(id=tag_id).first_or_404()
+        db.session.delete(tag)
+        db.session.commit()
+        return redirect(url_for('main.tag_adminter', username=current_user.username))
+    else:
+        return "没有权限"
+# -----------
+
+
+# edit
+@main_blueprint.route('/post/<int:user_id>/<int:post_id>/post_edit', methods=['GET', 'POST'])
 @login_required
 def post_edit(user_id, post_id):
     user = User.query.filter_by(id=user_id).first_or_404()
@@ -195,14 +266,53 @@ def post_edit(user_id, post_id):
             else:
                 db.session.add(post)
                 db.session.commit()
-                return redirect(url_for('main.user_detail', username=user.username))
+                return redirect(url_for('main.post_adminter', username=user.username))
 
     return render_template('blog/post_edit.html', post=post, categories=categories, cat=cat, tags=tags)
 
 
-@main_blueprint.route('/post/post_write', methods=['GET', 'POST'])
+@main_blueprint.route('/post/<int:user_id>/<int:category_id>/category_edit', methods=['GET', 'POST'])
 @login_required
-def post_write():
+def category_edit(user_id, category_id):
+    if current_user.id == user_id:
+        category = Category.query.filter_by(id=category_id).first_or_404()
+        if request.method == 'POST':
+            category.name = request.values.get('name')
+            category.publish_date = request.values.get('publish_date')
+            category.modified_date = request.values.get('modified_date')
+            category.user_id = current_user.id
+            db.session.add(category)
+            db.session.commit()
+            return redirect(url_for('main.category_adminter', username=current_user.username))
+        return render_template('blog/category_edit.html', category=category)
+
+    else:
+        return "没有权限"
+
+
+@main_blueprint.route('/post/<int:user_id>/<int:tag_id>/tag_edit', methods=['GET', 'POST'])
+@login_required
+def tag_edit(user_id, tag_id):
+    if current_user.id == user_id:
+        tag = Tag.query.filter_by(id=tag_id).first_or_404()
+        if request.method == 'POST':
+            tag.name = request.values.get('name')
+            tag.publish_date = request.values.get('publish_date')
+            tag.modified_date = request.values.get('modified_date')
+            tag.user_id = current_user.id
+            db.session.add(tag)
+            db.session.commit()
+            return redirect(url_for('main.tag_adminter', username=current_user.username))
+        return render_template('blog/tag_edit.html', tag=tag)
+    else:
+        return "没有权限"
+# ------------
+
+
+# new
+@main_blueprint.route('/post/new_post', methods=['GET', 'POST'])
+@login_required
+def new_post():
     if current_user.is_authenticated:
         categories = Category.query.all()
         tags = Tag.query.all()
@@ -220,12 +330,39 @@ def post_write():
                 post.tags.append(tag)
                 db.session.add(post)
             db.session.commit()
-            return redirect(url_for('main.index'))
-    return render_template('blog/post_write.html', tags=tags, categories=categories)
+            return redirect(url_for('main.post_adminter', username=current_user.username))
+    return render_template('blog/new_post.html', categories=categories,  tags=tags)
 
 
-@main_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
+@main_blueprint.route('/post/new_category', methods=['GET', 'POST'])
 @login_required
-def user_detail(username):
-    if current_user.username == username:
-        return render_template('blog/user_detail.html')
+def new_category():
+    if current_user.is_authenticated:
+        if request.method == 'POST':
+            category = Category()
+            category.name = request.values.get('name')
+            category.publish_date = request.values.get('publish_date')
+            category.modified_date = request.values.get('modified_date')
+            category.user_id = current_user.id
+            db.session.add(category)
+            db.session.commit()
+            return redirect(url_for('main.category_adminter', username=current_user.username))
+        return render_template('blog/new_category.html')
+
+
+@main_blueprint.route('/post/new_tag', methods=['GET', 'POST'])
+@login_required
+def new_tag():
+    if current_user.is_authenticated:
+        if request.method == 'POST':
+            tag = Tag()
+            tag.name = request.values.get('name')
+            tag.publish_date = request.values.get('publish_date')
+            tag.modified_date = request.values.get('modified_date')
+            tag.user_id = current_user.id
+            db.session.add(tag)
+            db.session.commit()
+            return redirect(url_for('main.tag_adminter', username=current_user.username))
+        return render_template('blog/new_tag.html')
+
+# ------------

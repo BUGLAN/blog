@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css") }}">
+    <script src="{{ url_for('static', filename="bootstrap-datetimepicker/js/bootstrap-datetimepicker.js") }}"></script>
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-10">
+                 <form method="post" action="{{ url_for('main.category_edit', user_id=current_user.id, category_id=category.id) }}">
+                  <div class="form-group form-inline row">
+                      <div class="col-md-2">
+                          <label >Category Name: </label>
+                      </div>
+                      <div class="col-md-2">
+                          <input type="text" class="form-control" name="name" value="{{ category.name }}">
+                      </div>
+                  </div>
+                     <br>
+                  <div class="form-group row">
+                      <div class="col-md-2">
+                          <label >Publish Date: </label>
+                      </div>
+                      <div class="col-md-2">
+                          <input  type="text" name="publish_date" id="publish_date" value="{{ category.publish_date }}">
+                      </div>
+                  </div>
+                     <br>
+                  <div class="form-group row">
+                      <div class="col-md-2">
+                          <label >Modified Date</label>
+                      </div>
+                      <div class="col-md-2">
+                          <input  type="text" name="modified_date" id="modified_date">
+                      </div>
+                  </div>
+                     <br>
+                  <input  type="submit" class="btn btn-default" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+    $('#publish_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii'
+      });
+    $('#modified_date').datetimepicker('update', new Date());
+    </script>
+{% endblock %}

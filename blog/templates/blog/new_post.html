@@ -19,7 +19,7 @@
 
             </div>
             <div class="col-md-10">
-                 <form method="post" action="{{ url_for('main.post_write') }}">
+                 <form method="post" action="{{ url_for('main.new_post') }}">
                   <div class="form-group">
                       <label >Article Title</label>
                     <input type="text" class="form-control" name="title">
@@ -28,32 +28,48 @@
                       <label >Article Context</label>
                       <textarea  id="text" name="context"></textarea>
                   </div>
-                  <div class="form-group">
-                      <label >Publish Date&nbsp;&nbsp;&nbsp;</label>
-                      <input  type="text" name="publish_date" id="publish_date" value="">
+                 <div class="form-group row">
+                      <div class="col-md-2">
+                          <label >Publish Date: </label>
+                      </div>
+                      <div class="col-md-2">
+                          <input  type="text" name="publish_date" id="publish_date" value="">
+                      </div>
                   </div>
-                  <div class="form-group">
-                      <label >Modified Date</label>
-                      <input  type="text" name="modified_date" id="modified_date">
+                  <div class="form-group row">
+                      <div class="col-md-2">
+                          <label >Modified Date</label>
+                      </div>
+                      <div class="col-md-2">
+                          <input  type="text" name="modified_date" id="modified_date">
+                      </div>
                   </div>
-                      <div class="form-group">
-                      <lable><strong>Category</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
-                      <select name="category_name" >
+                      <div class="form-group row">
+                      <div class="col-md-2">
+                          <lable><strong>Category</strong></lable>
+                      </div>
+                      <div class="col-md-10">
+                          <select name="category_name" >
                             <option >  </option>
                           {% for category in categories %}
                               <option>{{ category.name }}</option>
                           {% endfor %}
-                      </select>
+                        </select>
                       </div>
 
-                 <div class="form-group">
-                     <lable><strong>Tags</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
+                      </div>
 
-                     {% for tag in tags %}
+                 <div class="form-group row">
+                 <div class="col-md-2">
+                     <lable><strong>Tags</strong></lable>
+                 </div>
+                    <div class="col-md-10">
+                        {% for tag in tags %}
                         <label class="checkbox-inline">
                           <input type="checkbox" id="inlineCheckbox1" value="{{ tag.id }}" name="s_option">{{ tag.name }}
                        </label>
-                     {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
                   <input  type="submit" class="btn btn-default" value="submit">
                 </form>

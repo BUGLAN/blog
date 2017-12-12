@@ -258,14 +258,13 @@ def post_edit(user_id, post_id):
                 for tag_id in tag_s:
                     t = Tag.query.filter_by(id=int(tag_id)).first()
                     post.tags.append(t)
-            try:
-                post.category_id = Category.query.filter_by(name=request.form['category_name']).first().id
-            except:
-                # 解决方法将category_id 改为 category_name
-               pass
-            else:
-                db.session.add(post)
-                db.session.commit()
+                if request.form['category_name'] == '' or None:
+                    db.session.add(post)
+                    db.session.commit()
+                else:
+                    post.category_id = Category.query.filter_by(name=request.form['category_name']).first().id
+                    db.session.add(post)
+                    db.session.commit()
                 return redirect(url_for('main.post_adminter', username=user.username))
 
     return render_template('blog/post_edit.html', post=post, categories=categories, cat=cat, tags=tags)

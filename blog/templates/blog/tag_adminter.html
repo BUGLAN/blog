@@ -27,16 +27,16 @@
                     <h3>标签管理: </h3>
                 <table class="table table-bordered table-hover">
                  <tr class="info">
-                        <th><strong>名称</strong></th>
-                        <th><strong>发表时间</strong></th>
-                        <th><strong>文章</strong></th>
-                        <th><strong>操作</strong></th>
+                        <th class="col-md-2"><strong>名称</strong></th>
+                        <th class="col-md-6"><strong>文章</strong></th>
+                        <th class="col-md-2"><strong>创建时间</strong></th>
+                        <th class="col-md-2"><strong>操作</strong></th>
                  </tr>
                 {% for tag in tags %}
                     <tr>
                         <td><a href="{{ url_for('main.show_tag', tags=tag.name, page=1) }}">{{ tag.name }}</a></td>
-                        <td>{{ tag.publish_date  }}</td>
                         <td>{% for p in tag.posts.all() %}<a href="{{ url_for('main.detail', page=p.id) }}"> {{ p }}</a>{% endfor %}</td>
+                        <td>{{ tag.publish_date  }}</td>
                         <td><a href="{{ url_for('main.tag_edit', user_id=current_user.id, tag_id=tag.id) }}">修改</a> | <a href="{{ url_for('main.tag_delete', user_id=current_user.id, tag_id=tag.id) }}">删除</a></td>
                     </tr>
                 {% endfor %}

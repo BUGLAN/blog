@@ -37,6 +37,7 @@
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.new_post') }}" >写文章</a></li>
                     <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" >管理</a></li>
+                    <li><a href="{{ url_for('main.archive') }}" >归档</a></li>
                     {% endif %}
                 </ul>
                 {% if current_user.is_authenticated %}

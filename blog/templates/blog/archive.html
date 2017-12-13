@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+
+                {% for category in categories %}
+                    <h1>{{ category.name }}: </h1>
+                    {% for post in category.posts.all() %}
+                        <li class="h3">{{ post.publish_date | date }}:   <a href="{{ url_for('main.detail', page=post.id) }}" class="h2">{{ post.title }}</a></li>
+                        {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

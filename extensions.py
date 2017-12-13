@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_oauthlib.client import OAuth
+from datetime import datetime
 
 
 db = SQLAlchemy()
@@ -27,10 +28,13 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
+# '2017-12-13 16:40:48.873676'
+def date_filter(time):
+    filter_date = datetime.strftime(time, '%A %B %Y')
+    return filter_date
+
 
 @login_manager.user_loader
 def load_user(user_id):
     from blog.main.models import User
     return User.query.filter_by(id=user_id).first()
-
-

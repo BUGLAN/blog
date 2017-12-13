@@ -365,3 +365,14 @@ def new_tag():
         return render_template('blog/new_tag.html')
 
 # ------------
+# 归档
+
+
+@main_blueprint.route('/post/archive')
+@login_required
+def archive():
+    if current_user.is_authenticated:
+        categories = Category.query.filter_by(user_id=current_user.id).order_by(Category.publish_date.desc()).all()
+        return render_template('blog/archive.html', categories=categories)
+    else:
+        return '您没有权限访问'

@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(128))
     password = db.Column(db.String(128))
     publish_date = db.Column(db.DateTime)
-    head_portrait = db.Column(db.String(256))
+    head_portrait = db.Column(db.String(256), default='user/BUGLAN/:L3.png')
     posts = db.relationship(
         'Post',
         backref='user',

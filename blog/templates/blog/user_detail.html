@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 
+{% block css %}
+    <link href="{{ url_for('static', filename="blog/css/fileinput.css") }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename="blog/js/fileinput.js") }}"></script>
+{% endblock %}
+
+
 {% block body %}
     <br>
     <br>
@@ -8,48 +14,43 @@
     <div class="container">
         <div class="row col-md-12">
             <div class="col-md-2">
-
+            </div>
+            <div class="col-md-2">
+                <h1>头像: </h1>
             </div>
              <div class="col-md-2">
                  <a href="" class="thumbnail">
                       <img src="{{ url_for('static', filename=current_user.head_portrait) }}" >
                  </a>
               </div>
-            <div class="col-md-4">
-                <form class="row" method="post" action="{{ url_for('main.upload_portrait') }}" enctype="multipart/form-data">
-                    <div class="col-md-4">
+        </div>
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-6">
+                    <form class="row" method="post" action="{{ url_for('main.upload_portrait') }}" enctype="multipart/form-data">
+                    <div class="col-md-8">
                         <br>
-                        <input type="file" name="file">
+                        <input type="file" name="file" id="myfile">
                     </div>
                     <div class="col-md-4">
                         <br>
                         <input  class="btn btn-default" type="submit" value="更改头像">
                     </div>
                 </form>
-                <div class="row">
-                    <div class="col-md-4">
-                        <br>
-                        <p>我的关注: 100</p>
-                    </div>
-                    <div class="col-md-4">
-                        <br>
-                        <p>我的粉丝: 0</p>
-                    </div>
                 </div>
             </div>
-
-        </div>
         <br>
         <br>
         <div class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-            <h3>Name: </h3>
+            <h3>Name: {{ current_user.username }}</h3>
             <br>
             <h3>Great Word: </h3>
             <br>
-            <h3>People give tags: </h3>
+{#            <h3>People give tags: </h3>#}
         </div>
     </div>
         <br>
@@ -82,4 +83,10 @@
         <br>
         <br>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+    $('#myfile').fileinput();
+    </script>
 {% endblock %}

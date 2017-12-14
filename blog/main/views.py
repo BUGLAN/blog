@@ -1,10 +1,12 @@
 from blog.main import main_blueprint
-from flask import render_template, request, redirect, url_for, session, abort
+from flask import render_template, request, redirect, url_for, session, abort, current_app
 from blog.main.models import User, Post, Category, Tag
 from extensions import db, github
 import datetime
 import markdown
 from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.utils import secure_filename
+import os
 
 
 def sidebar_date():
@@ -374,5 +376,31 @@ def archive():
     if current_user.is_authenticated:
         categories = Category.query.filter_by(user_id=current_user.id).order_by(Category.publish_date.desc()).all()
         return render_template('blog/archive.html', categories=categories)
+    else:
+        return '您没有权限访问'
+
+
+def allow_file(filename):
+    ALLOWED_EXTENSIONS = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif']
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@main_blueprint.route('/user/upload_portrait', methods=['GET', 'POST'])
+@login_required
+def upload_portrait():
+    if current_user.is_authenticated:
+        if request.method == 'POST':
+            file = request.files['file']
+            if file and allow_file(file.filename):
+                filename = secure_filename(file.filename)
+                path = os.path.join(current_app.config['UPLOAD_FOLDER'], current_user.username)
+                if not os.path.exists(path):
+                    os.makedirs(path)
+                user = User.query.filter_by(username=current_user.username).first()
+                user.head_portrait = str('user' + '/' + current_user.username + '/' + filename)
+                db.session.add(user)
+                db.session.commit()
+                file.save(os.path.join(path, filename))
+                return redirect(url_for('main.user_detail', username=current_user.username))
     else:
         return '您没有权限访问'

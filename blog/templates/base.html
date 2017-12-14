@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="{{ url_for('static', filename='blog/img/head.jpg') }}" class="img-circle img-responsive">
+                    <img src="{{ url_for('static', filename=current_user.head_portrait) }}" class="img img-responsive">
                 </div>
             {% if current_user.is_authenticated %}
                 <div class="col-md-7 text-center">

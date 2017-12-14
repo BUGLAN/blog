@@ -11,21 +11,21 @@
 
             </div>
              <div class="col-md-2">
-                 <a href="#" class="thumbnail">
-                      <img src="{{ url_for('static', filename="user/BUGLAN/L3.png") }}" >
+                 <a href="" class="thumbnail">
+                      <img src="{{ url_for('static', filename=current_user.head_portrait) }}" >
                  </a>
               </div>
             <div class="col-md-4">
-                <div class="row">
+                <form class="row" method="post" action="{{ url_for('main.upload_portrait') }}" enctype="multipart/form-data">
                     <div class="col-md-4">
                         <br>
-                        <p><a href="" class="btn btn-default">更改头像</a></p>
+                        <input type="file" name="file">
                     </div>
                     <div class="col-md-4">
                         <br>
-                        <p><a href="" class="btn btn-default">上传</a></p>
+                        <input  class="btn btn-default" type="submit" value="更改头像">
                     </div>
-                </div>
+                </form>
                 <div class="row">
                     <div class="col-md-4">
                         <br>

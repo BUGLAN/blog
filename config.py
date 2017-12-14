@@ -1,3 +1,4 @@
+import os
 
 
 class BaseConfig(object):
@@ -6,5 +7,4 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BABEL_DEFAULT_LOCALE = 'zh_CN' #flask-admin internationlization
     SECRET_KEY = 'you-will-never-guess-me'
-
-    
+    UPLOAD_FOLDER = os.getcwd() + '\\blog\\static\\user'

@@ -218,9 +218,9 @@ def post_delete(user_id, post_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     post = Post.query.filter_by(id=post_id).first_or_404()
     if post.user_id == user.id:
-         db.session.delete(post)
-         db.session.commit()
-         return redirect(url_for('main.user_detail', username=user.username))
+        db.session.delete(post)
+        db.session.commit()
+        return redirect(url_for('main.post_adminter', username=user.username))
     else:
         abort(404)
 
@@ -327,13 +327,14 @@ def new_post():
         categories = Category.query.all()
         tags = Tag.query.all()
         if request.method == 'POST':
+            print(request.values.get('title'))
             post = Post(
                 title=request.values.get('title'),
                 text=request.values.get('context'),
-                publish_date=request.values.get('publish_date'),
+                publish_date=datetime.datetime.now(),
                 modified_date=request.values.get('modified_date'),
                 user_id=current_user.id,
-                # category_id=request.values.get('category_name'),
+                category_id=request.values.get('category'),
             )
             for tag_id in request.values.getlist('s_option'):
                 tag = Tag.query.filter_by(id=tag_id).first()

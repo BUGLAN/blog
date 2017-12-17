@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/amazeui.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/style.css") }}">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="{{ url_for('static', filename="blog/js/amazeui.js") }}"></script>
     {% block css %}
     {% endblock %}
     <title>demo</title>
@@ -45,9 +47,9 @@
       <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
         <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>{{ current_user.username }} <span class="am-icon-caret-down"></span></button>
         <ul class="am-dropdown-content">
-            <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-text-center"><i class="am-icon-user"></i>资料</a></li>
-            <li><a href="" class="am-text-center"><i class="am-icon-cog"></i>管理</a></li>
-            <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><i class="am-icon-power-off"></i>退出</a></li>
+            <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-text-center"><i class="am-icon-user"></i> 资料</a></li>
+            <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="am-text-center"><i class="am-icon-cog"></i> 管理</a></li>
+            <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><i class="am-icon-power-off"></i> 退出</a></li>
         </ul>
       </div>
     </div>
@@ -112,8 +114,7 @@
 </footer>
 <!--footer-->
 
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-<script src="{{ url_for('static', filename="blog/js/amazeui.js") }}"></script>
+
 {% block js %}
 {% endblock %}
 </body>

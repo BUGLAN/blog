@@ -31,7 +31,7 @@
                       <input type="file" id="doc-form-file" multiple name="file">
                     </div>
                     <div id="file-list"></div>
-                      <input type="submit" class="am-btn am-btn-primary am-btn-xs" value="保存">
+                      <input type="submit" class="am-btn am-btn-primary am-btn-xs" value="保存修改">
                   </form>
                 </div>
               </div>
@@ -82,6 +82,7 @@
               <label for="user-QQ" class="am-u-sm-3 am-form-label">QQ</label>
               <div class="am-u-sm-9">
                 <input type="text"  id="user-QQ" value="{{ current_user.qq_num | None_filter}}" name="qq_num">
+                  <small>社交账号</small>
               </div>
             </div>
 

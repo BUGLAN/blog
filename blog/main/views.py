@@ -40,10 +40,11 @@ def register():
         user = User()
         user.username = request.form.get('username')
         user.email = request.form.get('email')
-        user.password = request.form.get('password1')
+        user.password = request.form.get('password')
         user.publish_date = datetime.datetime.now()
         db.session.add(user)
         db.session.commit()
+        login_user(user)
         return redirect(url_for('main.index'))
     return render_template('blog/register.html')
 
@@ -51,16 +52,16 @@ def register():
 @main_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user = User.query.filter_by(username=request.form.get('username'),
-                                    password=request.form.get('password')).first()
-        user2 = User.query.filter_by(email=request.form.get('username'), password=request.form.get('password')).first()
+        user = User.query.filter_by(username=request.values.get('username'),
+                                    password=request.values.get('password')).first()
+        user2 = User.query.filter_by(email=request.values.get('username'), password=request.values.get('password')).first()
         if user:
             # session['username'] = user.username
-            login_user(user, remember=request.form.get('remember'))
+            login_user(user, remember=request.values.get('remember'))
             return redirect(url_for('main.index'))
         if user2:
             session['username'] = user2.username
-            login_user(user2, remember=request.form.get('remember'))
+            login_user(user2, remember=request.values.get('remember'))
             return redirect(url_for('main.index'))
         else:
             abort(404)
@@ -161,6 +162,14 @@ def get_github_oauth_token():
 @login_required
 def user_detail(username):
     if current_user.username == username:
+        if request.method == 'POST':
+            current_user.username = request.values.get('username')
+            current_user.qq_num = request.values.get('qq_num')
+            current_user.email = request.values.get('email')
+            current_user.introduction = request.values.get('introduction')
+            db.session.add(current_user)
+            db.session.commit()
+            return redirect(url_for('main.user_detail', username=current_user.username))
         return render_template('blog/user_detail.html')
 # -------------------------------------------------
 
@@ -402,5 +411,7 @@ def upload_portrait():
                 db.session.commit()
                 file.save(os.path.join(path, filename))
                 return redirect(url_for('main.user_detail', username=current_user.username))
+        else:
+            return {"error": "the way is not post or get"}
     else:
         return '您没有权限访问'

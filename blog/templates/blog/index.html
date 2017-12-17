@@ -31,7 +31,7 @@
                       <h1>还没有标签呢,快来创建吧!</h1>
                       {% else %}
                           {% for tag in tags %}
-                          <a href=""><span class="am-badge am-text-lg tag" >{{ tag.name }}</span></a>
+                          <a href="{{ url_for('main.show_tag', tags=tag.name, page=1) }}"><span class="am-badge am-text-lg tag" >{{ tag.name }}</span></a>
                           {% endfor %}
                       {% endif %}
                       </div>

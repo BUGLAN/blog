@@ -6,6 +6,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(128))
+    qq_num = db.Column(db.String(128))
+    introduction = db.Column(db.String(256))
     password = db.Column(db.String(128))
     publish_date = db.Column(db.DateTime)
     head_portrait = db.Column(db.String(256), default='user/BUGLAN/:L3.png')

@@ -47,7 +47,7 @@
         <ul class="am-dropdown-content">
             <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-text-center"><i class="am-icon-user"></i>资料</a></li>
             <li><a href="" class="am-text-center"><i class="am-icon-cog"></i>管理</a></li>
-            <li><a href="" class="am-text-center"><i class="am-icon-power-off"></i>退出</a></li>
+            <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><i class="am-icon-power-off"></i>退出</a></li>
         </ul>
       </div>
     </div>

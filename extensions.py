@@ -28,10 +28,16 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
+
 # '2017-12-13 16:40:48.873676'
 def date_filter(time):
     filter_date = datetime.strftime(time, '%A %B %Y')
     return filter_date
+
+
+def null_filter(str):
+    if not str:
+        return ""
 
 
 @login_manager.user_loader

@@ -13,12 +13,18 @@
     <br>
     <br>
 
-    <form method="post" class="am-form">
+    <form method="post" class="am-form" action="{{ url_for('main.register') }}">
+      <label for="username">用户名:</label>
+      <input type="text" name="username" id="email" value="">
+      <br>
       <label for="email">邮箱:</label>
-      <input type="email" name="" id="email" value="">
+      <input type="email" name="email" id="email" value="">
       <br>
       <label for="password">密码:</label>
-      <input type="password" name="" id="password" value="">
+      <input type="password" name="password" id="password1" value="">
+      <br>
+      <label for="password">重复密码:</label>
+      <input type="password" name="repeat_password" id="password2" value="">
       <br>
       <label for="remember-me">
         <input id="remember-me" type="checkbox">
@@ -26,8 +32,8 @@
       </label>
       <br />
       <div class="am-cf">
-        <input type="submit" name="" value="注册并登陆" class="am-btn am-btn-primary am-btn-sm am-fl">
-        <input type="submit" name="" value="已有密码, 去登陆 " class="am-btn am-btn-default am-btn-sm am-fr">
+          <input type="submit" name="" value="注册并登陆" class="am-btn am-btn-primary am-btn-sm am-fl">
+          <a type="submit" name=""  class="am-btn am-btn-default am-btn-sm am-fr">已有密码, 去登陆 </a>
       </div>
     </form>
     <hr>

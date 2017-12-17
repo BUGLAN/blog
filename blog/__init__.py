@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for
 from blog.main.admin import admin
 from blog.main.views import main_blueprint
 from config import BaseConfig
-from extensions import db, login_manager, oauth, date_filter
+from extensions import db, login_manager, oauth, date_filter, null_filter
 
 
 def create_app():
@@ -13,6 +13,7 @@ def create_app():
     login_manager.init_app(app)
     oauth.init_app(app)
     app.add_template_filter(date_filter, 'date')
+    app.add_template_filter(null_filter, 'None_filter')
     app.register_blueprint(main_blueprint)
     from .main import views
 

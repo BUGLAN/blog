@@ -2,19 +2,31 @@
 
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-
-                {% for category in categories %}
-                    <h1>{{ category.name }}: </h1>
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-12 blog-main">
+                <section class="am-panel am-panel-default">
+                    {% for category in categories %}
+                    <header class="am-panel-hd">
+                      <h1 class="am-panel-title">{{ category.name }}</h1>
+                    </header>
+                        <ul class="am-list am-panel-bd am-panel-border">
                     {% for post in category.posts.all() %}
-                        <li class="h3">{{ post.publish_date | date }}:   <a href="{{ url_for('main.detail', page=post.id) }}" class="h2">{{ post.title }}</a></li>
+                        <li class=""><i class="am-badge am-badge-primary">{{ post.publish_date }}</i><a href="" class="">{{ post.title }}</a></li>
                         {% endfor %}
+                        </ul>
                 {% endfor %}
+
+{#                  <header class="am-panel-hd">#}
+{#                    <h3 class="am-panel-title">面板标题</h3>#}
+{#                  </header>#}
+{#                  <div class="am-panel-bd">#}
+{#                    面板内容#}
+{#                  </div>#}
+                </section>
             </div>
         </div>
     </div>
 {% endblock %}
+
+

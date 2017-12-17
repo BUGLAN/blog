@@ -1,77 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <title>buglan的个人小站</title>
-    <!-- BOOTSTRAP CORE STYLE CSS -->
-    <script src="{{ url_for("static", filename="blog/js/jquery-3.2.1.min.js") }}"></script>
-    <link rel="stylesheet" href="{{ url_for("static", filename="blog/css/bootstrap.css") }}">
-    <script src="{{ url_for("static", filename="blog/js/bootstrap.js") }}"></script>
-
-    <link href="{{ url_for('static', filename='blog/css/style.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for("static", filename="highlights/github.css") }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/amazeui.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/style.css") }}">
     {% block css %}
     {% endblock %}
+    <title>demo</title>
 </head>
 <body>
-<nav class="navbar navbar-default" style="margin: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="navbar-header">
-                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                <a href="{{ url_for('main.index') }}" class="navbar-brand">buglan</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('main.index') }}" >首页</a></li>
-                    {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('main.new_post') }}" >写文章</a></li>
-                    <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" >管理</a></li>
-                    <li><a href="{{ url_for('main.archive') }}" >归档</a></li>
-                    {% endif %}
-                </ul>
-                {% if current_user.is_authenticated %}
-                <ul class="nav navbar-nav navbar-right" >
-                    <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" >{{ current_user.username }}</a></li>
-                    <li><a href="{{ url_for('main.logout') }}" >注销</a></li>
-                </ul>
-                {% else %}
-                <ul class="nav navbar-nav navbar-right" >
-                    <li><a href="{{ url_for('main.register') }}" >注册</a></li>
-                    <li><a href="{{ url_for('main.login') }}" >登录</a></li>
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-</div>
-</nav>
+<!--header-->
+<header class="am-topbar am-topbar-fixed-top">
+    <div class="am-container">
+  <h1 class="am-topbar-brand">
+    <a href="#">BUGLAN' Blog</a>
+  </h1>
 
-    <section class="header-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="{{ url_for('static', filename=current_user.head_portrait) }}" class="img-responsive" style="border: 1px">
-                </div>
-            {% if current_user.is_authenticated %}
-                <div class="col-md-7 text-center">
-                    <h3>{{ current_user.username }}</h3>
-                    <h1><strong>百日筑基,十年成仙</strong></h1>
-                </div>
-            {% endif %}
-            </div>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
+            data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+        class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav">
+      <li class="#"><a href="{{ url_for('main.index') }}">首页</a></li>
+      <li><a href="{{ url_for('main.archive') }}">分类</a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
+          其他 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li class="am-dropdown-header">标题</li>
+          <li><a href="#">1. 去月球</a></li>
+          <li class="am-active"><a href="#">2. 去火星</a></li>
+          <li><a href="#">3. 还是回地球</a></li>
+          <li class="am-disabled"><a href="#">4. 下地狱</a></li>
+          <li class="am-divider"></li>
+          <li><a href="#">About Me</a></li>
+        </ul>
+      </li>
+    </ul>
+{% if current_user.is_authenticated %}
+     <div class="am-topbar-right">
+      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>{{ current_user.username }} <span class="am-icon-caret-down"></span></button>
+        <ul class="am-dropdown-content">
+            <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-text-center"><i class="am-icon-user"></i>资料</a></li>
+            <li><a href="" class="am-text-center"><i class="am-icon-cog"></i>管理</a></li>
+            <li><a href="" class="am-text-center"><i class="am-icon-power-off"></i>退出</a></li>
+        </ul>
+      </div>
+    </div>
+    {% else %}
+    <div class="am-topbar-right">
+      <a class="am-btn am-btn-primary am-topbar-btn am-btn-sm" href="{{ url_for('main.register') }}">注册</a>
+    </div>
+
+    <div class="am-topbar-right">
+      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>登录 <span class="am-icon-caret-down"></span></button>
+        <ul class="am-dropdown-content">
+            <li><a href="{{ url_for('main.github_login') }}" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a></li>
+            <li><a href="{{ url_for('main.login') }}" class="am-text-center">本站账号</a></li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
         </div>
-    </section>
-                    {% macro pagination_widget(pagination, endpoint) %}
+</header>
+<!--header-->
+{% block body %}
+
+{% endblock %}
+
+{% macro pagination_widget(pagination, endpoint) %}
 
 <ul class="pagination">
     <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
@@ -102,11 +105,16 @@
 </ul>
 {% endmacro %}
 
-    {% block body %}
-    {% endblock %}
 
-    {% block js %}
-    {% endblock %}
+<!--footer-->
+<footer class="footer am-topbar am-topbar-fixed-bottom">
+    <p>@2017 | 赣ICP备17011282号-1</p>
+</footer>
+<!--footer-->
 
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="{{ url_for('static', filename="blog/js/amazeui.js") }}"></script>
+{% block js %}
+{% endblock %}
 </body>
 </html>

@@ -1,5 +1,10 @@
 {% extends 'admin.html' %}
 
+{% block title %}文章管理{% endblock %}
+
+{% block adminter %}
+<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-admin">
+{% endblock %}
 
 {% block body %}
 <div class="admin-content">
@@ -57,7 +62,7 @@
                 <td><a href="#">{{ post.title }}</a></td>
                 <td>{{ post.category.name }}</td>
                 <td class="am-hide-sm-only">{{ post.user.username }}</td>
-                <td class="am-hide-sm-only">{{ post.publish_date }}</td>
+                <td class="am-hide-sm-only">{{ post.modified_date }}</td>
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
@@ -71,7 +76,7 @@
               </tbody>
             </table>
             <div class="am-cf">
-               共{{ posts | length }}条记录
+               共{{ posts | length }}条文章
               <div class="am-fr">
                 <ul class="am-pagination">
                   <li class="am-disabled"><a href="#">«</a></li>

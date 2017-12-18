@@ -1,55 +1,108 @@
-{% extends 'base.html' %}
+{% extends 'admin.html' %}
 
+{% block title %}标签管理{% endblock %}
+
+{% block adminter %}
+<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-admin">
+{% endblock %}
 
 {% block body %}
-    <br>
-    <br>
-    <div class="container">
-    <div class="row">
-        <div class="col-md-1">
-            <a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="btn btn-default btn-lg">文章</a>
-        </div>
-        <div class="col-md-1">
-            <a href="{{ url_for('main.category_adminter', username=current_user.username) }}" class="btn btn-default btn-lg">类别</a>
-        </div>
-        <div class="col-md-1">
-            <a href="{{ url_for('main.tag_adminter', username=current_user.username) }}" class="btn btn-info btn-lg">标签</a>
-        </div>
-        <div class="col-md-1">
-            <a href="" class="btn btn-default btn-lg">图表</a>
-        </div>
-    </div>
+<div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">标签</strong> / <small>管理</small></div>
+      </div>
 
-{#        标签管理#}
-        <div class="row">
-            <div class="col-md-12">
-                {% if tags != [] %}
-                    <h3>标签管理: </h3>
-                <table class="table table-bordered table-hover">
-                 <tr class="info">
-                        <th class="col-md-2"><strong>名称</strong></th>
-                        <th class="col-md-6"><strong>文章</strong></th>
-                        <th class="col-md-2"><strong>创建时间</strong></th>
-                        <th class="col-md-2"><strong>操作</strong></th>
-                 </tr>
-                {% for tag in tags %}
-                    <tr>
-                        <td><a href="{{ url_for('main.show_tag', tags=tag.name, page=1) }}">{{ tag.name }}</a></td>
-                        <td>{% for p in tag.posts.all() %}<a href="{{ url_for('main.detail', page=p.id) }}"> {{ p }}</a>{% endfor %}</td>
-                        <td>{{ tag.publish_date  }}</td>
-                        <td><a href="{{ url_for('main.tag_edit', user_id=current_user.id, tag_id=tag.id) }}">修改</a> | <a href="{{ url_for('main.tag_delete', user_id=current_user.id, tag_id=tag.id) }}">删除</a></td>
-                    </tr>
-                {% endfor %}
-                </table>
-                    {% else %}
-                    <h1>您还没有创建过标签呢,来<a href="#">试下</a>吧</h1>
-                {% endif %}
+      <hr>
+
+      <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-6">
+          <div class="am-btn-toolbar">
+            <div class="am-btn-group am-btn-group-xs">
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
+              <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
             </div>
-        <div class="col-md-12">
-            <a href="{{ url_for('main.new_tag') }}" class="btn btn-default">新标签</a>
+          </div>
         </div>
+        <div class="am-u-sm-12 am-u-md-3">
+          <div class="am-form-group">
+            <select data-am-selected="{btnSize: 'sm'}">
+                {% for tag in tags %}
+                <option value="{{ tag.id }}">{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+          </div>
         </div>
-{#        --------------#}
+        <div class="am-u-sm-12 am-u-md-3">
+          <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button">搜索</button>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+                <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">名称</th><th class="table-type">文章</th><th class="table-author am-hide-sm-only">作者</th><th class="table-date am-hide-sm-only">修改日期</th><th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for tag in tags %}
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td>{{ tag.id }}</td>
+                <td><a href="">{{ tag.name }}</a></td>
+                <td>
+                    {% if tag.posts.all() %}
+                        {% for post in tag.posts.all() %}
+                            <a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }} </a>
+                        {% endfor %}
+                    {% else %}
+                        无
+                    {% endif %}
+                </td>
+                <td class="am-hide-sm-only">{{ current_user.username }}</td>
+                <td class="am-hide-sm-only">{{ tag.modified_date }}</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href=""><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href=""><span class="am-icon-trash-o"></span> 删除</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            <div class="am-cf">
+               共{{ tags | length }}条标签
+              <div class="am-fr">
+                <ul class="am-pagination">
+                  <li class="am-disabled"><a href="#">«</a></li>
+                  <li class="am-active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+          </form>
+        </div>
+
+      </div>
     </div>
 
+  </div>
 {% endblock %}

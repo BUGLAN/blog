@@ -2,6 +2,10 @@
 
 {% block title %}新文章{% endblock %}
 
+{% block new %}
+<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-post">
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">

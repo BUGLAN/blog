@@ -25,7 +25,7 @@
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
       <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
       <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
           <span class="am-icon-users"></span>{{ current_user.username }} <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
@@ -34,7 +34,7 @@
           <li><a href="#" class="am-text-center"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
-      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+      <li class="am-hide-sm-only"><a href="javascript:" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
     </ul>
   </div>
 </header>
@@ -46,8 +46,10 @@
       <ul class="am-list admin-sidebar-list">
         <li><a href="{{ url_for('main.index') }}"><span class="am-icon-home"></span> 首页</a></li>
         <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span>  个人管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-user_detail'}"><span class="am-icon-file"></span>  个人管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          {% block user_detail %}
+          <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-user_detail">
+          {% endblock %}
             <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
               <li><a href=""><span class="am-icon-th"></span> 个人相册<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
               <li><a href=""><span class="am-icon-puzzle-piece"></span> 个人简介</a></li>
@@ -55,11 +57,24 @@
             <li><a href=""><span class="am-icon-bug"></span> 404</a></li>
           </ul>
         </li>
-        <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}"><span class="am-icon-table"></span> 管理</a></li>
-           <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-post'}"><span class="am-icon-file"></span> 新建 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-post">
-            <li><a href="{{ url_for('main.new_post') }}" class="am-cf"><span class="am-icon-crop"></span> 新文章</a></li>
+
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-admin'}"><span class="am-icon-file"></span> 管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          {% block adminter %}
+          <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-admin">
+          {% endblock %}
+            <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="am-cf"><span class="am-icon-crop"></span> 文章管理</a></li>
+              <li><a href="{{ url_for('main.category_adminter', username=current_user.username) }}"><span class="am-icon-th"></span> 分类管理</a></li>
+              <li><a href="{{ url_for('main.tag_adminter', username=current_user.username) }}"><span class="am-icon-puzzle-piece"></span> 标签管理</a></li>
+          </ul>
+        </li>
+
+          <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-new'}"><span class="am-icon-file"></span> 新建 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          {% block new %}
+              <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-new">
+            {% endblock %}
+                  <li><a href="{{ url_for('main.new_post') }}" class="am-cf"><span class="am-icon-crop"></span> 新文章</a></li>
               <li><a href="{{ url_for('main.new_category') }}"><span class="am-icon-th"></span> 新分类</a></li>
               <li><a href="{{ url_for('main.new_tag') }}"><span class="am-icon-puzzle-piece"></span> 新标签</a></li>
           </ul>

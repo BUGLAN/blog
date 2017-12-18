@@ -1,5 +1,6 @@
 {% extends 'admin.html' %}
 
+{% block title %}新文章{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
@@ -35,6 +36,7 @@
                 <label  class="am-u-sm-3 am-form-label">分类: </label>
                 <div class="am-u-sm-9">
                     <select data-am-selected="{btnSize: 'sm'}" name="category">
+                    <option value="">  </option>
                     {% for category in categories %}
                     <option value="{{ category.id }}">{{ category.name }}</option>
                     {% endfor %}
@@ -51,13 +53,6 @@
 
                       {% endfor %}
                   </select>
-              </div>
-          </div>
-
-          <div class="am-form-group">
-             <label  class="am-u-sm-3 am-form-label">时间: </label>
-              <div class="am-u-sm-9">
-                  <input type="datetime-local" class="am-form-field am-input-sm" name="modified_date">
               </div>
           </div>
 

@@ -1,70 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'admin.html' %}
 
+{% block title %}编辑分类{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename="bootstrap-datetimepicker/css/bootstrap-datetimepicker.css") }}">
-    <script src="{{ url_for('static', filename="bootstrap-datetimepicker/js/bootstrap-datetimepicker.js") }}"></script>
 {% endblock %}
 
 
 {% block body %}
-    <br>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-1">
-
-            </div>
-            <div class="col-md-10">
-                 <form method="post" action="{{ url_for('main.category_edit', user_id=current_user.id, category_id=category.id) }}">
-                  <div class="form-group form-inline row">
-                      <div class="col-md-2">
-                          <label >Category Name: </label>
-                      </div>
-                      <div class="col-md-2">
-                          <input type="text" class="form-control" name="name" value="{{ category.name }}">
-                      </div>
-                  </div>
-                     <br>
-                  <div class="form-group row">
-                      <div class="col-md-2">
-                          <label >Publish Date: </label>
-                      </div>
-                      <div class="col-md-2">
-                          <input  type="text" name="publish_date" id="publish_date" value="{{ category.publish_date }}">
-                      </div>
-                  </div>
-                     <br>
-                  <div class="form-group row">
-                      <div class="col-md-2">
-                          <label >Modified Date</label>
-                      </div>
-                      <div class="col-md-2">
-                          <input  type="text" name="modified_date" id="modified_date">
-                      </div>
-                  </div>
-                     <br>
-                  <input  type="submit" class="btn btn-default" value="submit">
-                </form>
-            </div>
-        </div>
+<div class="admin-content">
+  <div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">编辑</strong> /
+        <small>Category</small>
+      </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <hr>
+      <!--content start-->
+      <div class="am-container">
+          <div class="am-g">
+              <div class="am-u-md-2">
+
+              </div>
+             <div class=" am-u-md-10">
+          <form class="am-form am-form-horizontal" method="post" action="{{ url_for('main.category_edit') }}">
+            <div class="am-form-group">
+              <label for="user-name" class="am-u-sm-3 am-form-label">名称: </label>
+              <div class="am-u-sm-9">
+                <input type="text" id="user-name" value="" name="category_name">
+              </div>
+            </div>
+
+
+            <div class="am-form-group">
+              <div class="am-u-sm-9 am-u-sm-push-3">
+                <input type="submit" class="am-btn am-btn-primary" value="保存修改">
+              </div>
+            </div>
+          </form>
+        </div>
+              <div class="am-u-md-2">
+
+              </div>
+          </div>
+      </div>
+      <!--content end-->
+  </div>
+</div>
 {% endblock %}
 
 
 {% block js %}
-    <script>
-    $('#publish_date').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii'
-      });
-    $('#modified_date').datetimepicker({
-        format: 'yyyy-mm-dd hh:ii'
-      });
-    $('#modified_date').datetimepicker('update', new Date());
-    </script>
 {% endblock %}

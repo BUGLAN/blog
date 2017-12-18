@@ -261,22 +261,24 @@ def post_edit(user_id, post_id):
     tags = Tag.query.filter_by(user_id=current_user.id).all()
     if request.method == 'POST':
         if post.user_id == user.id:
-            post.title = request.form['title']
-            post.text = request.form['context']
+            post.title = request.values.get('title')
+            post.text = request.values.get('context')
+            post.modified_date = datetime.datetime.now()
             tag_s = request.values.getlist('s_option')
             # 得到Tag 的 id
             if tag_s:
                 for tag_id in tag_s:
                     t = Tag.query.filter_by(id=int(tag_id)).first()
                     post.tags.append(t)
-                if request.form['category_name'] == '' or None:
-                    db.session.add(post)
-                    db.session.commit()
-                else:
-                    post.category_id = Category.query.filter_by(name=request.form['category_name']).first().id
-                    db.session.add(post)
-                    db.session.commit()
-                return redirect(url_for('main.post_adminter', username=user.username))
+
+            if request.values.get('category') == '' or None:
+                db.session.add(post)
+                db.session.commit()
+            else:
+                post.category_id = request.values.get('category')
+                db.session.add(post)
+                db.session.commit()
+            return redirect(url_for('main.post_adminter', username=user.username))
 
     return render_template('blog/post_edit.html', post=post, categories=categories, cat=cat, tags=tags)
 
@@ -287,9 +289,8 @@ def category_edit(user_id, category_id):
     if current_user.id == user_id:
         category = Category.query.filter_by(id=category_id).first_or_404()
         if request.method == 'POST':
-            category.name = request.values.get('name')
-            category.publish_date = request.values.get('publish_date')
-            category.modified_date = request.values.get('modified_date')
+            category.name = request.values.get('category_name')
+            category.modified_date = datetime.datetime.now()
             category.user_id = current_user.id
             db.session.add(category)
             db.session.commit()
@@ -306,9 +307,8 @@ def tag_edit(user_id, tag_id):
     if current_user.id == user_id:
         tag = Tag.query.filter_by(id=tag_id).first_or_404()
         if request.method == 'POST':
-            tag.name = request.values.get('name')
-            tag.publish_date = request.values.get('publish_date')
-            tag.modified_date = request.values.get('modified_date')
+            tag.name = request.values.get('tag_name')
+            tag.modified_date = datetime.datetime.now()
             tag.user_id = current_user.id
             db.session.add(tag)
             db.session.commit()
@@ -332,14 +332,16 @@ def new_post():
                 title=request.values.get('title'),
                 text=request.values.get('context'),
                 publish_date=datetime.datetime.now(),
-                modified_date=request.values.get('modified_date'),
+                modified_date=datetime.datetime.now(),
                 user_id=current_user.id,
-                category_id=request.values.get('category'),
             )
-            for tag_id in request.values.getlist('s_option'):
-                tag = Tag.query.filter_by(id=tag_id).first()
-                post.tags.append(tag)
-                db.session.add(post)
+            if request.values.get('category') and isinstance(request.values.get('category'), int):
+                post.category_id = request.values.get('category')
+            if request.values.getlist('s_option'):
+                for tag_id in request.values.getlist('s_option'):
+                    tag = Tag.query.filter_by(id=tag_id).first()
+                    post.tags.append(tag)
+            db.session.add(post)
             db.session.commit()
             return redirect(url_for('main.post_adminter', username=current_user.username))
         return render_template('blog/new_post.html', categories=categories,  tags=tags)
@@ -351,9 +353,9 @@ def new_category():
     if current_user.is_authenticated:
         if request.method == 'POST':
             category = Category()
-            category.name = request.values.get('name')
-            category.publish_date = request.values.get('publish_date')
-            category.modified_date = request.values.get('modified_date')
+            category.name = request.values.get('category_name')
+            category.publish_date = datetime.datetime.now()
+            category.modified_date = datetime.datetime.now()
             category.user_id = current_user.id
             db.session.add(category)
             db.session.commit()
@@ -367,9 +369,9 @@ def new_tag():
     if current_user.is_authenticated:
         if request.method == 'POST':
             tag = Tag()
-            tag.name = request.values.get('name')
-            tag.publish_date = request.values.get('publish_date')
-            tag.modified_date = request.values.get('modified_date')
+            tag.name = request.values.get('tag_name')
+            tag.publish_date = datetime.datetime.now()
+            tag.modified_date = datetime.datetime.now()
             tag.user_id = current_user.id
             db.session.add(tag)
             db.session.commit()

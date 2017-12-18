@@ -9,7 +9,7 @@
     <script src="{{ url_for('static', filename="blog/js/amazeui.js") }}"></script>
     {% block css %}
     {% endblock %}
-    <title>demo</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 <!--header-->

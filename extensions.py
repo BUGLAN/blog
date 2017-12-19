@@ -35,9 +35,11 @@ def date_filter(time):
     return filter_date
 
 
-def null_filter(str):
-    if not str:
+def null_filter(s):
+    if not s:
         return ""
+    else:
+        return s
 
 
 @login_manager.user_loader

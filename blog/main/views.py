@@ -40,6 +40,7 @@ def register():
         user.email = request.form.get('email')
         user.password = request.form.get('password')
         user.publish_date = datetime.datetime.now()
+        user.modified_date = datetime.datetime.now()
         db.session.add(user)
         db.session.commit()
         login_user(user)
@@ -50,16 +51,14 @@ def register():
 @main_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user = User.query.filter_by(username=request.values.get('username'),
-                                    password=request.values.get('password')).first()
-        user2 = User.query.filter_by(email=request.values.get('username'), password=request.values.get('password')).first()
-        if user:
-            # session['username'] = user.username
-            login_user(user, remember=request.values.get('remember'))
+        user = User.query.filter_by(username=request.values.get('username')).first()
+        user2 = User.query.filter_by(email=request.values.get('username')).first()
+        if user is not None and user.verify_password(request.values.get('password')):
+            login_user(user, remember=request.values.get('remember-me'))
             return redirect(url_for('main.index'))
-        if user2:
-            session['username'] = user2.username
-            login_user(user2, remember=request.values.get('remember'))
+
+        if user2 is not None and user2.verify_password(request.values.get('password')):
+            login_user(user2, remember=request.values.get('remember-me'))
             return redirect(url_for('main.index'))
         else:
             abort(404)
@@ -69,7 +68,6 @@ def login():
 @main_blueprint.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
-    # session.pop('username', None)
     logout_user()
     return redirect(url_for('main.index'))
 

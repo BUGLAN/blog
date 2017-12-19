@@ -15,10 +15,13 @@ def user_detail(username):
             current_user.qq_num = request.values.get('qq_num')
             current_user.email = request.values.get('email')
             current_user.introduction = request.values.get('introduction')
+            current_user.modified_date = datetime.datetime.now()
             db.session.add(current_user)
             db.session.commit()
             return redirect(url_for('my_admin.user_detail', username=current_user.username))
         return render_template('blog/user_detail.html')
+    else:
+        abort(404)
 # -------------------------------------------------
 
 
@@ -44,7 +47,7 @@ def category_adminter(username):
         # 现在要求得到用户创建的tag 获取列表
         return render_template('blog/category_adminter.html', categories=categories)
     else:
-        return "您无权访问他人的主页"
+        abort(404)
 
 
 @admin_blueprint.route('/user/<username>/tag_adminter')
@@ -55,7 +58,7 @@ def tag_adminter(username):
         # 现在要求得到用户创建的tag 获取列表
         return render_template('blog/tag_adminter.html', tags=tags)
     else:
-        return "您无权访问他人的主页"
+        abort(404)
 # ----------
 
 
@@ -82,7 +85,7 @@ def category_delete(user_id, category_id):
         db.session.commit()
         return redirect(url_for('my_admin.category_adminter', username=current_user.username))
     else:
-        return "没有权限"
+        abort(404)
 
 
 @admin_blueprint.route('/post/<int:user_id>/<int:tag_id>/tag_delete')
@@ -94,7 +97,7 @@ def tag_delete(user_id, tag_id):
         db.session.commit()
         return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
     else:
-        return "没有权限"
+        abort(404)
 # -----------
 
 
@@ -146,7 +149,7 @@ def category_edit(user_id, category_id):
         return render_template('blog/category_edit.html', category=category)
 
     else:
-        return "没有权限"
+        abort(404)
 
 
 @admin_blueprint.route('/post/<int:user_id>/<int:tag_id>/tag_edit', methods=['GET', 'POST'])
@@ -163,7 +166,7 @@ def tag_edit(user_id, tag_id):
             return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
         return render_template('blog/tag_edit.html', tag=tag)
     else:
-        return "没有权限"
+        abort(404)
 # ------------
 
 
@@ -193,6 +196,8 @@ def new_post():
             db.session.commit()
             return redirect(url_for('my_admin.post_adminter', username=current_user.username))
         return render_template('blog/new_post.html', categories=categories,  tags=tags)
+    else:
+        abort(404)
 
 
 @admin_blueprint.route('/post/new_category', methods=['GET', 'POST'])
@@ -209,6 +214,8 @@ def new_category():
             db.session.commit()
             return redirect(url_for('my_admin.category_adminter', username=current_user.username))
         return render_template('blog/new_category.html')
+    else:
+        abort(404)
 
 
 @admin_blueprint.route('/post/new_tag', methods=['GET', 'POST'])
@@ -225,9 +232,10 @@ def new_tag():
             db.session.commit()
             return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
         return render_template('blog/new_tag.html')
-
+    else:
+        abort(404)
 # ------------
-# 归档
+
 
 def allow_file(filename):
     ALLOWED_EXTENSIONS = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif']

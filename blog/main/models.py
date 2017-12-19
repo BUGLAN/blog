@@ -6,12 +6,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True)
-    email = db.Column(db.String(128))
+    email = db.Column(db.String(128), unique=True)
     qq_num = db.Column(db.String(128))
     introduction = db.Column(db.String(256))
     password = db.Column(db.String(128))
     password_hash = db.Column(db.String(128))
     publish_date = db.Column(db.DateTime)
+    modified_date = db.Column(db.DateTime)
     head_portrait = db.Column(db.String(256), default='user/BUGLAN/L3.png')
     posts = db.relationship(
         'Post',

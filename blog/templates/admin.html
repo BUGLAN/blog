@@ -31,7 +31,7 @@
         <ul class="am-dropdown-content">
           <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-text-center"><span class="am-icon-user"></span> 资料</a></li>
           <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-text-center"><span class="am-icon-cog"></span> 管理</a></li>
-          <li><a href="#" class="am-text-center"><span class="am-icon-power-off"></span> 退出</a></li>
+          <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>

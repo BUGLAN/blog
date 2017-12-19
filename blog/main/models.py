@@ -1,5 +1,6 @@
 from extensions import db
 from flask_login import AnonymousUserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -9,8 +10,9 @@ class User(db.Model):
     qq_num = db.Column(db.String(128))
     introduction = db.Column(db.String(256))
     password = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128))
     publish_date = db.Column(db.DateTime)
-    head_portrait = db.Column(db.String(256), default='user/BUGLAN/:L3.png')
+    head_portrait = db.Column(db.String(256), default='user/BUGLAN/L3.png')
     posts = db.relationship(
         'Post',
         backref='user',
@@ -38,6 +40,16 @@ class User(db.Model):
     def get_id(self):
         return str(self.id)
 
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 post_tag = db.Table(
     'post_tag',

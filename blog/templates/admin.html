@@ -29,8 +29,8 @@
           <span class="am-icon-users"></span>{{ current_user.username }} <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-text-center"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="am-text-center"><span class="am-icon-cog"></span> 管理</a></li>
+          <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-text-center"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-text-center"><span class="am-icon-cog"></span> 管理</a></li>
           <li><a href="#" class="am-text-center"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
@@ -50,7 +50,7 @@
           {% block user_detail %}
           <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-user_detail">
           {% endblock %}
-            <li><a href="{{ url_for('main.user_detail', username=current_user.username) }}" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
               <li><a href=""><span class="am-icon-th"></span> 个人相册<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
               <li><a href=""><span class="am-icon-puzzle-piece"></span> 个人简介</a></li>
             <li><a href=""><span class="am-icon-calendar"></span> 系统日志</a></li>
@@ -63,9 +63,9 @@
           {% block adminter %}
           <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-admin">
           {% endblock %}
-            <li><a href="{{ url_for('main.post_adminter', username=current_user.username) }}" class="am-cf"><span class="am-icon-crop"></span> 文章管理</a></li>
-              <li><a href="{{ url_for('main.category_adminter', username=current_user.username) }}"><span class="am-icon-th"></span> 分类管理</a></li>
-              <li><a href="{{ url_for('main.tag_adminter', username=current_user.username) }}"><span class="am-icon-puzzle-piece"></span> 标签管理</a></li>
+            <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-cf"><span class="am-icon-crop"></span> 文章管理</a></li>
+              <li><a href="{{ url_for('my_admin.category_adminter', username=current_user.username) }}"><span class="am-icon-th"></span> 分类管理</a></li>
+              <li><a href="{{ url_for('my_admin.tag_adminter', username=current_user.username) }}"><span class="am-icon-puzzle-piece"></span> 标签管理</a></li>
           </ul>
         </li>
 
@@ -74,9 +74,9 @@
           {% block new %}
               <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-new">
             {% endblock %}
-                  <li><a href="{{ url_for('main.new_post') }}" class="am-cf"><span class="am-icon-crop"></span> 新文章</a></li>
-              <li><a href="{{ url_for('main.new_category') }}"><span class="am-icon-th"></span> 新分类</a></li>
-              <li><a href="{{ url_for('main.new_tag') }}"><span class="am-icon-puzzle-piece"></span> 新标签</a></li>
+                  <li><a href="{{ url_for('my_admin.new_post') }}" class="am-cf"><span class="am-icon-crop"></span> 新文章</a></li>
+              <li><a href="{{ url_for('my_admin.new_category') }}"><span class="am-icon-th"></span> 新分类</a></li>
+              <li><a href="{{ url_for('my_admin.new_tag') }}"><span class="am-icon-puzzle-piece"></span> 新标签</a></li>
           </ul>
         </li>
         <li><a href="{{ url_for('main.logout') }}"><span class="am-icon-sign-out"></span> 注销</a></li>

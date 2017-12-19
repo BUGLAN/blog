@@ -66,8 +66,8 @@
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="{{ url_for('main.post_edit', user_id=current_user.id, post_id=post.id) }}"><span class="am-icon-pencil-square-o"></span> 编辑</a>
-                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href="{{ url_for('main.post_delete', user_id=current_user.id, post_id=post.id) }}"><span class="am-icon-trash-o"></span> 删除</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="{{ url_for('my_admin.post_edit', user_id=current_user.id, post_id=post.id) }}"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href="{{ url_for('my_admin.post_delete', user_id=current_user.id, post_id=post.id) }}"><span class="am-icon-trash-o"></span> 删除</a>
                     </div>
                   </div>
                 </td>

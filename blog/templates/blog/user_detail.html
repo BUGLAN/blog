@@ -29,7 +29,7 @@
                 </div>
                 <div class="am-u-md-8">
                   <p>使用本地上传头像。 </p>
-                  <form class="am-form" method="post" action="{{ url_for('main.upload_portrait') }}" enctype="multipart/form-data">
+                  <form class="am-form" method="post" action="{{ url_for('my_admin.upload_portrait') }}" enctype="multipart/form-data">
                     <div class="am-form-group am-form-file">
                       <button type="button" class="am-btn am-btn-default am-btn-sm">
                         <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-          <form class="am-form am-form-horizontal" method="post" action="{{ url_for('main.user_detail', username=current_user.username) }}">
+          <form class="am-form am-form-horizontal" method="post" action="{{ url_for('my_admin.user_detail', username=current_user.username) }}">
             <div class="am-form-group">
               <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
               <div class="am-u-sm-9">

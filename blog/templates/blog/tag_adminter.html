@@ -19,7 +19,7 @@
         <div class="am-u-sm-12 am-u-md-6">
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
-              <button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+              <a href="{{ url_for('my_admin.new_tag') }}" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</a>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>
               <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除</button>
@@ -74,8 +74,8 @@
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href=""><span class="am-icon-pencil-square-o"></span> 编辑</a>
-                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href=""><span class="am-icon-trash-o"></span> 删除</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="{{ url_for('my_admin.tag_edit', user_id=current_user.id, tag_id=tag.id) }}"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href="{{ url_for('my_admin.tag_delete', user_id=current_user.id, tag_id=tag.id) }}"><span class="am-icon-trash-o"></span> 删除</a>
                     </div>
                   </div>
                 </td>
@@ -105,4 +105,5 @@
     </div>
 
   </div>
+    </ul>
 {% endblock %}

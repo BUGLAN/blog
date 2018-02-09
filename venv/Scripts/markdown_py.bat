@@ -1,1 +1,1 @@
-@"e:\pythonfile\myfalsk\blog_v3\venv\scripts\python.exe" "e:\pythonfile\myfalsk\blog_v3\venv\Scripts\markdown_py" %*
+@"e:\pythonfile\myfalsk\blog\venv\scripts\python.exe" "e:\pythonfile\myfalsk\blog\venv\Scripts\markdown_py" %*

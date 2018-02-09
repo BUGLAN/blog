@@ -3,6 +3,51 @@ from flask_login import AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
+class Permission:
+    """
+    权限表
+    ADMINISTRATOR 超级管理人员 工作人员访问
+    MEETER 创建会议的用户
+    USER 普通用户
+    """
+    __tablename__ = 'permission'
+    USER = 0x01
+    POSTER = 0x02
+    ADMINISTRATOR = 0xff
+
+
+class Role(db.Model):
+    __tablename__ = 'role'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25), unique=True)
+    default = db.Column(db.Boolean, default=False, index=True)
+    permissions = db.Column(db.Integer)
+    users = db.relationship('User', backref='role', lazy='dynamic')
+
+    @staticmethod
+    def insert_roles():
+        roles = {
+            'User': (Permission.USER, True),
+            'Admin': (Permission.POSTER | Permission.USER, False),
+            'ADMINISTRATOR': (Permission.ADMINISTRATOR, False)
+        }
+        """
+        | 按位或运算符：只要对应的二个二进位有一个为1时，结果位就为1。
+        & 按位与运算符：参与运算的两个值,如果两个相应位都为1,则该位的结果为1,否则为0
+        """
+        for r in roles:
+            role = Role.query.filter_by(name=r).first()
+            if role is None:
+                role = Role(name=r)
+            role.permissions = roles[r][0]
+            role.default = roles[r][1]
+            db.session.add(role)
+        db.session.commit()
+
+    def __repr__(self):
+        return "<Role %r>" % self.name
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True)
@@ -14,15 +59,27 @@ class User(db.Model):
     publish_date = db.Column(db.DateTime)
     modified_date = db.Column(db.DateTime)
     head_portrait = db.Column(db.String(256), default='user/BUGLAN/L3.png')
-    posts = db.relationship(
-        'Post',
-        backref='user',
-        lazy='dynamic'
-    )
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
 
-    def __repr__(self):
-        return '<User {}>'.format(self.username)
+    # ---- 权限控制 ----
+    def can(self, permission):
+        return self.role is not None and (self.role.permissions & permission) == permission
 
+    def is_meeter(self):
+        """
+        判断是否为会议的创建者 permissions == 3
+        """
+        return self.can(Permission.USER | Permission.POSTER)
+
+    def is_admin(self):
+        """
+        判断是否系统管理员 permissions == 255
+        """
+        return self.can(Permission.ADMINISTRATOR)
+    # ---- 权限控制 ----
+
+    # ---- 登录相关 -----
     def is_authenticated(self):
         if isinstance(self, AnonymousUserMixin):
             return False
@@ -40,7 +97,9 @@ class User(db.Model):
 
     def get_id(self):
         return str(self.id)
+    # ---- 登录相关 -----
 
+    # ---- 密码哈希 ----
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -51,6 +110,11 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+    # ---- 密码哈希 ----
+
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
+
 
 post_tag = db.Table(
     'post_tag',
@@ -104,7 +168,6 @@ class Tag(db.Model):
 
     def __repr__(self):
         return '<Tag {}>'.format(self.name)
-
 
 # User -> Post 一对多
 # Category -> Post 一对多

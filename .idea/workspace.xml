@@ -3,28 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="691d11db-f416-4531-ba52-18b7cbe02edd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/blog/main/views.py" afterPath="$PROJECT_DIR$/blog/main/views.py" />
-      <change beforePath="$PROJECT_DIR$/blog/main/widgets.py" afterPath="$PROJECT_DIR$/blog/main/widgets.py" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/admin.html" afterPath="$PROJECT_DIR$/blog/templates/admin.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/admin/post_edit.html" afterPath="$PROJECT_DIR$/blog/templates/admin/post_edit.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/base.html" afterPath="$PROJECT_DIR$/blog/templates/base.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/archive.html" afterPath="$PROJECT_DIR$/blog/templates/blog/archive.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/category_adminter.html" afterPath="$PROJECT_DIR$/blog/templates/blog/category_adminter.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/category_edit.html" afterPath="$PROJECT_DIR$/blog/templates/blog/category_edit.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/detail.html" afterPath="$PROJECT_DIR$/blog/templates/blog/detail.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/index.html" afterPath="$PROJECT_DIR$/blog/templates/blog/index.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/login.html" afterPath="$PROJECT_DIR$/blog/templates/blog/login.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/new_category.html" afterPath="$PROJECT_DIR$/blog/templates/blog/new_category.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/new_post.html" afterPath="$PROJECT_DIR$/blog/templates/blog/new_post.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/new_tag.html" afterPath="$PROJECT_DIR$/blog/templates/blog/new_tag.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_adminter.html" afterPath="$PROJECT_DIR$/blog/templates/blog/post_adminter.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_edit.html" afterPath="$PROJECT_DIR$/blog/templates/blog/post_edit.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/register.html" afterPath="$PROJECT_DIR$/blog/templates/blog/register.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/tag_adminter.html" afterPath="$PROJECT_DIR$/blog/templates/blog/tag_adminter.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/tag_edit.html" afterPath="$PROJECT_DIR$/blog/templates/blog/tag_edit.html" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/user_detail.html" afterPath="$PROJECT_DIR$/blog/templates/blog/user_detail.html" />
-      <change beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change beforePath="$PROJECT_DIR$/extensions.py" afterPath="$PROJECT_DIR$/extensions.py" />
       <change beforePath="$PROJECT_DIR$/venv/Scripts/Activate.ps1" afterPath="$PROJECT_DIR$/venv/Scripts/Activate.ps1" />
       <change beforePath="$PROJECT_DIR$/venv/Scripts/activate.bat" afterPath="$PROJECT_DIR$/venv/Scripts/activate.bat" />
       <change beforePath="$PROJECT_DIR$/venv/Scripts/deactivate.bat" afterPath="$PROJECT_DIR$/venv/Scripts/deactivate.bat" />
@@ -150,8 +128,8 @@
       <file leaf-file-name="admin.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog/templates/admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="7" column="68" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="68" />
+            <state relative-caret-position="769">
+              <caret line="44" column="89" lean-forward="true" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -503,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518160031744</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="format">
+      <created>1518660194181</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1518660194181</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -585,7 +570,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add new function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new function" />
+    <MESSAGE value="format" />
+    <option name="LAST_COMMIT_MESSAGE" value="format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -970,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/templates/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="7" column="68" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="68" />
+        <state relative-caret-position="769">
+          <caret line="44" column="89" lean-forward="true" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
           <folding />
         </state>
       </provider>

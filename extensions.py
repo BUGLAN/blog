@@ -3,17 +3,14 @@ from flask_login import LoginManager
 from flask_oauthlib.client import OAuth
 from datetime import datetime
 
-
 db = SQLAlchemy()
 oauth = OAuth()
-
 
 login_manager = LoginManager()
 login_manager.login_view = 'main.login'
 login_manager.session_protection = 'strong'
 login_manager.login_message = 'please login to access this page'
 login_manager.login_message_category = 'info'
-
 
 # github第三方登录
 github = oauth.remote_app(

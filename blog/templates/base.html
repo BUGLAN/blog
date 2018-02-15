@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/amazeui.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/style.css") }}">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
@@ -15,61 +15,70 @@
 <!--header-->
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-container">
-  <h1 class="am-topbar-brand">
-    <a href="#">BUGLAN' Blog</a>
-  </h1>
+        <h1 class="am-topbar-brand">
+            <a href="#">BUGLAN' Blog</a>
+        </h1>
 
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
-            data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
-        class="am-icon-bars"></span></button>
+                data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                class="am-icon-bars"></span></button>
 
-  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
-    <ul class="am-nav am-nav-pills am-topbar-nav">
-      <li class="#"><a href="{{ url_for('main.index') }}">首页</a></li>
-      <li><a href="{{ url_for('main.archive') }}">分类</a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
-          其他 <span class="am-icon-caret-down"></span>
-        </a>
-        <ul class="am-dropdown-content">
-          <li class="am-dropdown-header">标题</li>
-          <li><a href="#">1. 去月球</a></li>
-          <li class="am-active"><a href="#">2. 去火星</a></li>
-          <li><a href="#">3. 还是回地球</a></li>
-          <li class="am-disabled"><a href="#">4. 下地狱</a></li>
-          <li class="am-divider"></li>
-          <li><a href="#">About Me</a></li>
-        </ul>
-      </li>
-    </ul>
-{% if current_user.is_authenticated %}
-     <div class="am-topbar-right">
-      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>{{ current_user.username }} <span class="am-icon-caret-down"></span></button>
-        <ul class="am-dropdown-content">
-            <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-text-center"><i class="am-icon-user"></i> 资料</a></li>
-            <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-text-center"><i class="am-icon-cog"></i> 管理</a></li>
-            <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><i class="am-icon-power-off"></i> 退出</a></li>
-        </ul>
-      </div>
-    </div>
-    {% else %}
-    <div class="am-topbar-right">
-      <a class="am-btn am-btn-primary am-topbar-btn am-btn-sm" href="{{ url_for('main.register') }}">注册</a>
-    </div>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li class="#"><a href="{{ url_for('main.index') }}">首页</a></li>
+                <li><a href="{{ url_for('main.archive') }}">分类</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
+                        其他 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-dropdown-header">标题</li>
+                        <li><a href="#">1. 去月球</a></li>
+                        <li class="am-active"><a href="#">2. 去火星</a></li>
+                        <li><a href="#">3. 还是回地球</a></li>
+                        <li class="am-disabled"><a href="#">4. 下地狱</a></li>
+                        <li class="am-divider"></li>
+                        <li><a href="#">About Me</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% if current_user.is_authenticated %}
+                <div class="am-topbar-right">
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle"
+                                data-am-dropdown-toggle>{{ current_user.username }} <span
+                                class="am-icon-caret-down"></span></button>
+                        <ul class="am-dropdown-content">
+                            <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}"
+                                   class="am-text-center"><i class="am-icon-user"></i> 资料</a></li>
+                            <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}"
+                                   class="am-text-center"><i class="am-icon-cog"></i> 管理</a></li>
+                            <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><i
+                                    class="am-icon-power-off"></i> 退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <div class="am-topbar-right">
+                    <a class="am-btn am-btn-primary am-topbar-btn am-btn-sm"
+                       href="{{ url_for('main.register') }}">注册</a>
+                </div>
 
-    <div class="am-topbar-right">
-      <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>登录 <span class="am-icon-caret-down"></span></button>
-        <ul class="am-dropdown-content">
-            <li><a href="{{ url_for('main.github_login') }}" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a></li>
-            <li><a href="{{ url_for('main.login') }}" class="am-text-center">本站账号</a></li>
-        </ul>
-      </div>
-    </div>
-    {% endif %}
-  </div>
+                <div class="am-topbar-right">
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle"
+                                data-am-dropdown-toggle>登录 <span class="am-icon-caret-down"></span></button>
+                        <ul class="am-dropdown-content">
+                            <li><a href="{{ url_for('main.github_login') }}"
+                                   class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i>
+                                Github</a></li>
+                            <li><a href="{{ url_for('main.login') }}" class="am-text-center">本站账号</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
         </div>
+    </div>
 </header>
 <!--header-->
 {% block body %}
@@ -78,33 +87,35 @@
 
 {% macro pagination_widget(pagination, endpoint) %}
 
-<ul class="pagination">
-    <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
-        <a href="{% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
-            «
-        </a>
-    </li>
-    {% for p in pagination.iter_pages() %}
-        {% if p %}
-            {% if p == pagination.page %}
-            <li class="active">
-                <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
-            </li>
+    <ul class="pagination">
+        <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
+            <a href="
+                    {% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
+                «
+            </a>
+        </li>
+        {% for p in pagination.iter_pages() %}
+            {% if p %}
+                {% if p == pagination.page %}
+                    <li class="active">
+                        <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
+                    </li>
+                {% endif %}
             {% else %}
-            <li>
-                <a href="{{ url_for(endpoint, page = p, **kwargs) }}">{{ p }}</a>
-            </li>
+                <li class="disabled"><a href="#">…</a></li>
             {% endif %}
-        {% else %}
-        <li class="disabled"><a href="#">…</a></li>
-        {% endif %}
-    {% endfor %}
-    <li{% if not pagination.has_next %} class="disabled"{% endif %}>
-        <a href="{% if pagination.has_next %}{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{% else %}#{% endif %}">
-            »
-        </a>
-    </li>
-</ul>
+        {% endfor %}
+        <li{% if not pagination.has_next %} class="disabled"{% endif %}>
+            <a href="
+                    {% if pagination.has_next %}{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{% else %}#{% endif %}">
+                »
+            </a>
+        </li>
+    </ul>
 {% endmacro %}
 
 

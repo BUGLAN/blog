@@ -88,7 +88,7 @@ def detail(page):
 @main_blueprint.route('/category/<string:categories>/<int:page>')
 def show_category(categories, page=1):
     category = Category.query.filter_by(name=categories).first()
-    pagination = Post.query.filter_by(category_id=category.id).order_by(Post.publish_date.desc()).\
+    pagination = Post.query.filter_by(category_id=category.id).order_by(Post.publish_date.desc()). \
         paginate(page, 5, error_out=False)
     posts = pagination.items
     categories, tags = sidebar_date()
@@ -104,7 +104,7 @@ def show_category(categories, page=1):
 @main_blueprint.route('/tag/<string:tags>/<int:page>')
 def show_tag(tags, page=1):
     tag = Tag.query.filter_by(name=tags).first()
-    pagination =tag.posts.order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
+    pagination = tag.posts.order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
     posts = pagination.items
     categories, tags = sidebar_date()
     posts = filter_markdown(posts)

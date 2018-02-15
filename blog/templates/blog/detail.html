@@ -4,57 +4,57 @@
 
 {% block body %}
     <div class="am-container">
-    <div class="am-g">
-        <div class="am-u-md-8 main">
-            <div class="am-u-sm-12 am-article">
-                <h1 class="am-article-title am-text-center"><strong>{{ post.title }}</strong></h1>
-                <p class="am-article-meta am-text-center">作者 | {{ post.publish_date }}</p>
+        <div class="am-g">
+            <div class="am-u-md-8 main">
+                <div class="am-u-sm-12 am-article">
+                    <h1 class="am-article-title am-text-center"><strong>{{ post.title }}</strong></h1>
+                    <p class="am-article-meta am-text-center">作者 | {{ post.publish_date }}</p>
+                </div>
+                <div class="blog-main">
+                    <br>
+                    {{ post.text | safe }}
+                    <hr class="am-article-divider">
+                </div>
             </div>
-            <div class="blog-main">
-                <br>
-                {{ post.text | safe }}
-                <hr class="am-article-divider">
-            </div>
-        </div>
 
-        <div class="am-u-md-4 main">
+            <div class="am-u-md-4 main">
                 <div class="am-panel am-panel-success">
                     <div class="am-panel-hd">
                         <h3 class="am-panel-title">标签云</h3>
                     </div>
-                      <div class="am-panel-bd">
-                         {% if tags == [] %}
-                      <h1>还没有标签呢,快来创建吧!</h1>
-                      {% else %}
-                          {% for tag in tags %}
-                          <a href=""><span class="am-badge am-text-lg tag" >{{ tag.name }}</span></a>
-                          {% endfor %}
-                      {% endif %}
-                      </div>
+                    <div class="am-panel-bd">
+                        {% if tags == [] %}
+                            <h1>还没有标签呢,快来创建吧!</h1>
+                        {% else %}
+                            {% for tag in tags %}
+                                <a href=""><span class="am-badge am-text-lg tag">{{ tag.name }}</span></a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
 
-                 <div class="am-panel am-panel-success">
+                <div class="am-panel am-panel-success">
                     <div class="am-panel-hd">
                         <h3 class="am-panel-title">最近文章</h3>
                     </div>
-                      <div class="am-panel-bd">
-                          <ul class="am-list  am-list-border">
-                              <li>
-                                  <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
-                              </li>
-                              <li>
-                                  <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
-                              </li>
-                              <li>
-                                  <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
-                              </li>
-                              </ul>
-                      </div>
+                    <div class="am-panel-bd">
+                        <ul class="am-list  am-list-border">
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 

@@ -8,46 +8,47 @@
 
 
 {% block body %}
-<div class="admin-content">
-  <div class="admin-content-body">
-    <div class="am-cf am-padding am-padding-bottom-0">
-      <div class="am-fl am-cf">
-        <strong class="am-text-primary am-text-lg">编辑</strong> /
-        <small>Tag</small>
-      </div>
-    </div>
-    <hr>
-      <!--content start-->
-      <div class="am-container">
-          <div class="am-g">
-              <div class="am-u-md-2">
-
-              </div>
-             <div class=" am-u-md-10">
-          <form class="am-form am-form-horizontal" method="post" action="{{ url_for('my_admin.tag_edit', user_id=current_user.id, tag_id=tag.id) }}">
-            <div class="am-form-group">
-              <label for="user-name" class="am-u-sm-3 am-form-label">名称: </label>
-              <div class="am-u-sm-9">
-                <input type="text" id="user-name" value="" name="tag_name">
-              </div>
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <div class="am-cf am-padding am-padding-bottom-0">
+                <div class="am-fl am-cf">
+                    <strong class="am-text-primary am-text-lg">编辑</strong> /
+                    <small>Tag</small>
+                </div>
             </div>
+            <hr>
+            <!--content start-->
+            <div class="am-container">
+                <div class="am-g">
+                    <div class="am-u-md-2">
+
+                    </div>
+                    <div class=" am-u-md-10">
+                        <form class="am-form am-form-horizontal" method="post"
+                              action="{{ url_for('my_admin.tag_edit', user_id=current_user.id, tag_id=tag.id) }}">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">名称: </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="user-name" value="" name="tag_name">
+                                </div>
+                            </div>
 
 
-            <div class="am-form-group">
-              <div class="am-u-sm-9 am-u-sm-push-3">
-                <input type="submit" class="am-btn am-btn-primary" value="保存修改">
-              </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <input type="submit" class="am-btn am-btn-primary" value="保存修改">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="am-u-md-2">
+
+                    </div>
+                </div>
             </div>
-          </form>
+            <!--content end-->
         </div>
-              <div class="am-u-md-2">
-
-              </div>
-          </div>
-      </div>
-      <!--content end-->
-  </div>
-</div>
+    </div>
 {% endblock %}
 
 

@@ -9,92 +9,93 @@
 {% endblock %}
 
 {% block body %}
-<div class="admin-content">
-  <div class="admin-content-body">
-    <div class="am-cf am-padding am-padding-bottom-0">
-      <div class="am-fl am-cf">
-        <strong class="am-text-primary am-text-lg">编辑</strong> /
-        <small>Post</small>
-      </div>
-    </div>
-    <hr>
-      <!--content start-->
-      <div class="am-container">
-          <div class="am-g">
-              <div class="am-u-md-2">
-
-              </div>
-             <div class=" am-u-md-10">
-          <form class="am-form am-form-horizontal" method="post" action="{{ url_for('my_admin.post_edit', user_id=current_user.id, post_id=post.id) }}">
-            <div class="am-form-group">
-              <label for="user-name" class="am-u-sm-3 am-form-label">标题: </label>
-              <div class="am-u-sm-9">
-                <input type="text" id="user-name" value="{{ post.title }}" name="title">
-              </div>
-            </div>
-            <div class="am-form-group">
-                <label  class="am-u-sm-3 am-form-label">分类: </label>
-                <div class="am-u-sm-9">
-                    <select data-am-selected="{btnSize: 'sm'}" name="category">
-                        <option value="">  </option>
-                    {% for category in categories %}
-                        {% if post.category_id == category.id %}
-                            <option value="{{ category.id }}" selected>{{ category.name }}</option>
-                        {% else %}
-                    <option value="{{ category.id }}">{{ category.name }}</option>
-                        {% endif %}
-                    {% endfor %}
-                    </select>
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <div class="am-cf am-padding am-padding-bottom-0">
+                <div class="am-fl am-cf">
+                    <strong class="am-text-primary am-text-lg">编辑</strong> /
+                    <small>Post</small>
                 </div>
             </div>
+            <hr>
+            <!--content start-->
+            <div class="am-container">
+                <div class="am-g">
+                    <div class="am-u-md-2">
 
-          <div class="am-form-group">
-             <label  class="am-u-sm-3 am-form-label">标签: </label>
-              <div class="am-u-sm-9">
-                  <select multiple data-am-selected name="s_option">
-                      {% for tag in tags %}
-                          {% if tag in post.tags.all() %}
-                             <option value="{{ tag.id }}" selected>{{ tag.name }}</option>
-                          {% else %}
-                      <option value="{{ tag.id }}">{{ tag.name }}</option>
-                            {% endif %}
-                      {% endfor %}
-                  </select>
-              </div>
-          </div>
+                    </div>
+                    <div class=" am-u-md-10">
+                        <form class="am-form am-form-horizontal" method="post"
+                              action="{{ url_for('my_admin.post_edit', user_id=current_user.id, post_id=post.id) }}">
+                            <div class="am-form-group">
+                                <label for="user-name" class="am-u-sm-3 am-form-label">标题: </label>
+                                <div class="am-u-sm-9">
+                                    <input type="text" id="user-name" value="{{ post.title }}" name="title">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-form-label">分类: </label>
+                                <div class="am-u-sm-9">
+                                    <select data-am-selected="{btnSize: 'sm'}" name="category">
+                                        <option value=""></option>
+                                        {% for category in categories %}
+                                            {% if post.category_id == category.id %}
+                                                <option value="{{ category.id }}" selected>{{ category.name }}</option>
+                                            {% else %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label class="am-u-sm-3 am-form-label">标签: </label>
+                                <div class="am-u-sm-9">
+                                    <select multiple data-am-selected name="s_option">
+                                        {% for tag in tags %}
+                                            {% if tag in post.tags.all() %}
+                                                <option value="{{ tag.id }}" selected>{{ tag.name }}</option>
+                                            {% else %}
+                                                <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
 
 
-            <div class="am-form-group">
-              <label for="user-intro" class="am-u-sm-3 am-form-label">内容: </label>
-              <div class="am-u-sm-9">
-                <textarea id="text"  name="context">{{ post.text }}</textarea>
-              </div>
+                            <div class="am-form-group">
+                                <label for="user-intro" class="am-u-sm-3 am-form-label">内容: </label>
+                                <div class="am-u-sm-9">
+                                    <textarea id="text" name="context">{{ post.text }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <div class="am-u-sm-9 am-u-sm-push-3">
+                                    <input type="submit" class="am-btn am-btn-primary" value="保存修改">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="am-u-md-2">
+
+                    </div>
+                </div>
             </div>
-
-            <div class="am-form-group">
-              <div class="am-u-sm-9 am-u-sm-push-3">
-                <input type="submit" class="am-btn am-btn-primary" value="保存修改">
-              </div>
-            </div>
-          </form>
+            <!--content end-->
         </div>
-              <div class="am-u-md-2">
-
-              </div>
-          </div>
-      </div>
-      <!--content end-->
-  </div>
-</div>
+    </div>
 {% endblock %}
 
 
 {% block js %}
     <script>
         var simplemde = new SimpleMDE({
-        element: document.getElementById("text"),
-         autoDownloadFontAwesome: false,
-        status: false
-    });
+            element: document.getElementById("text"),
+            autoDownloadFontAwesome: false,
+            status: false
+        });
     </script>
 {% endblock %}

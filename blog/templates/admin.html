@@ -13,110 +13,132 @@
     <title>{% block title %}资料{% endblock %}</title>
 </head>
 <body>
-    <header class="am-topbar am-topbar-default admin-header">
-  <div class="am-topbar-brand">
-    <strong>BUGLAN's</strong> <small>后台</small>
-  </div>
+<header class="am-topbar am-topbar-default admin-header">
+    <div class="am-topbar-brand">
+        <strong>BUGLAN's</strong>
+        <small>后台</small>
+    </div>
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
 
-  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
-    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
-          <span class="am-icon-users"></span>{{ current_user.username }} <span class="am-icon-caret-down"></span>
-        </a>
-        <ul class="am-dropdown-content">
-          <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-text-center"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-text-center"><span class="am-icon-cog"></span> 管理</a></li>
-          <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><span class="am-icon-power-off"></span> 退出</a></li>
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span
+                    class="am-badge am-badge-warning">5</span></a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
+                    <span class="am-icon-users"></span>{{ current_user.username }} <span
+                        class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}"
+                           class="am-text-center"><span class="am-icon-user"></span> 资料</a></li>
+                    <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}"
+                           class="am-text-center"><span class="am-icon-cog"></span> 管理</a></li>
+                    <li><a href="{{ url_for('main.logout') }}" class="am-text-center"><span
+                            class="am-icon-power-off"></span> 退出</a></li>
+                </ul>
+            </li>
+            <li class="am-hide-sm-only"><a href="javascript:" id="admin-fullscreen"><span
+                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
         </ul>
-      </li>
-      <li class="am-hide-sm-only"><a href="javascript:" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
-    </ul>
-  </div>
+    </div>
 </header>
 
 <div class="am-cf admin-main">
-  <!-- sidebar start -->
-  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-    <div class="am-offcanvas-bar admin-offcanvas-bar">
-      <ul class="am-list admin-sidebar-list">
-        <li><a href="{{ url_for('main.index') }}"><span class="am-icon-home"></span> 首页</a></li>
-        <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-user_detail'}"><span class="am-icon-file"></span>  个人管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          {% block user_detail %}
-          <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-user_detail">
-          {% endblock %}
-            <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}" class="am-cf"><span class="am-icon-check"></span> 个人资料<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-              <li><a href=""><span class="am-icon-th"></span> 个人相册<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-              <li><a href=""><span class="am-icon-puzzle-piece"></span> 个人简介</a></li>
-            <li><a href=""><span class="am-icon-calendar"></span> 系统日志</a></li>
-            <li><a href=""><span class="am-icon-bug"></span> 404</a></li>
-          </ul>
-        </li>
+    <!-- sidebar start -->
+    <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+        <div class="am-offcanvas-bar admin-offcanvas-bar">
+            <ul class="am-list admin-sidebar-list">
+                <li><a href="{{ url_for('main.index') }}"><span class="am-icon-home"></span> 首页</a></li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-user_detail'}"><span
+                            class="am-icon-file"></span> 个人管理 <span
+                            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    {% block user_detail %}
+                        <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-user_detail">
+                    {% endblock %}
+                    <li><a href="{{ url_for('my_admin.user_detail', username=current_user.username) }}"
+                           class="am-cf"><span class="am-icon-check"></span> 个人资料<span
+                            class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+                    <li><a href=""><span class="am-icon-th"></span> 个人相册<span
+                            class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
+                    <li><a href=""><span class="am-icon-puzzle-piece"></span> 个人简介</a></li>
+                    <li><a href=""><span class="am-icon-calendar"></span> 系统日志</a></li>
+                    <li><a href=""><span class="am-icon-bug"></span> 404</a></li>
+                    </ul>
+                </li>
 
-        <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-admin'}"><span class="am-icon-file"></span> 管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          {% block adminter %}
-          <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-admin">
-          {% endblock %}
-            <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-cf"><span class="am-icon-crop"></span> 文章管理</a></li>
-              <li><a href="{{ url_for('my_admin.category_adminter', username=current_user.username) }}"><span class="am-icon-th"></span> 分类管理</a></li>
-              <li><a href="{{ url_for('my_admin.tag_adminter', username=current_user.username) }}"><span class="am-icon-puzzle-piece"></span> 标签管理</a></li>
-          </ul>
-        </li>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-admin'}"><span class="am-icon-file"></span>
+                        管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    {% block adminter %}
+                        <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-admin">
+                    {% endblock %}
+                    <li><a href="{{ url_for('my_admin.post_adminter', username=current_user.username) }}" class="am-cf"><span
+                            class="am-icon-crop"></span> 文章管理</a></li>
+                    <li><a href="{{ url_for('my_admin.category_adminter', username=current_user.username) }}"><span
+                            class="am-icon-th"></span> 分类管理</a></li>
+                    <li><a href="{{ url_for('my_admin.tag_adminter', username=current_user.username) }}"><span
+                            class="am-icon-puzzle-piece"></span> 标签管理</a></li>
+                    </ul>
+                </li>
 
-          <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-new'}"><span class="am-icon-file"></span> 新建 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          {% block new %}
-              <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-new">
-            {% endblock %}
-                  <li><a href="{{ url_for('my_admin.new_post') }}" class="am-cf"><span class="am-icon-crop"></span> 新文章</a></li>
-              <li><a href="{{ url_for('my_admin.new_category') }}"><span class="am-icon-th"></span> 新分类</a></li>
-              <li><a href="{{ url_for('my_admin.new_tag') }}"><span class="am-icon-puzzle-piece"></span> 新标签</a></li>
-          </ul>
-        </li>
-        <li><a href="{{ url_for('main.logout') }}"><span class="am-icon-sign-out"></span> 注销</a></li>
-      </ul>
+                <li class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-new'}"><span class="am-icon-file"></span> 新建
+                        <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    {% block new %}
+                        <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-new">
+                    {% endblock %}
+                    <li><a href="{{ url_for('my_admin.new_post') }}" class="am-cf"><span class="am-icon-crop"></span>
+                        新文章</a></li>
+                    <li><a href="{{ url_for('my_admin.new_category') }}"><span class="am-icon-th"></span> 新分类</a></li>
+                    <li><a href="{{ url_for('my_admin.new_tag') }}"><span class="am-icon-puzzle-piece"></span> 新标签</a>
+                    </li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('main.logout') }}"><span class="am-icon-sign-out"></span> 注销</a></li>
+            </ul>
 
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-bookmark"></span> 公告</p>
-          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-bookmark"></span> 公告</p>
+                    <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default admin-sidebar-panel">
+                <div class="am-panel-bd">
+                    <p><span class="am-icon-tag"></span> wiki</p>
+                    <p>Welcome to the Amaze UI wiki!</p>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-tag"></span> wiki</p>
-          <p>Welcome to the Amaze UI wiki!</p>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- sidebar end -->
+    <!-- sidebar end -->
 
-  <!-- content start -->
-  {% block body %}
-  
-  {% endblock %}
-  <!-- content end -->
+    <!-- content start -->
+    {% block body %}
+
+    {% endblock %}
+    <!-- content end -->
 
 </div>
 
-<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu"
+   data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 <footer class="footer am-topbar am-topbar-fixed-bottom">
     <p>@2017 | 赣ICP备17011282号-1</p>
 </footer>
 
-    <script src="{{ url_for('static', filename='blog/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='blog/js/amazeui.js') }}"></script>
+<script src="{{ url_for('static', filename='blog/js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='blog/js/amazeui.js') }}"></script>
 
-    {% block js %}
-    {% endblock %}
+{% block js %}
+{% endblock %}
 </body>
 </html>

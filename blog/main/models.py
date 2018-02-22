@@ -1,6 +1,7 @@
 from extensions import db
 from flask_login import AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 
 class Permission:
@@ -49,6 +50,8 @@ class Role(db.Model):
 
 
 class User(db.Model):
+    __tablename__ = 'user'
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(128), unique=True)
@@ -77,6 +80,7 @@ class User(db.Model):
         判断是否系统管理员 permissions == 255
         """
         return self.can(Permission.ADMINISTRATOR)
+
     # ---- 权限控制 ----
 
     # ---- 登录相关 -----
@@ -97,12 +101,14 @@ class User(db.Model):
 
     def get_id(self):
         return str(self.id)
+
     # ---- 登录相关 -----
 
     # ---- 密码哈希 ----
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
+        # 访问实例属性时抛出异常
 
     @password.setter
     def password(self, password):
@@ -110,6 +116,7 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
     # ---- 密码哈希 ----
 
     def __repr__(self):
@@ -125,6 +132,8 @@ post_tag = db.Table(
 
 
 class Post(db.Model):
+    __tablename__ = 'post'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     text = db.Column(db.Text)
@@ -144,6 +153,8 @@ class Post(db.Model):
 
 
 class Category(db.Model):
+    __tablename__ = 'category'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     publish_date = db.Column(db.DateTime)
@@ -160,6 +171,8 @@ class Category(db.Model):
 
 
 class Tag(db.Model):
+    __tablename__ = 'tag'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     publish_date = db.Column(db.DateTime)
@@ -169,7 +182,72 @@ class Tag(db.Model):
     def __repr__(self):
         return '<Tag {}>'.format(self.name)
 
+
 # User -> Post 一对多
 # Category -> Post 一对多
 # Post -> Tag 多对多
 # User -> Tag 一对一
+
+
+class BookCase(db.Model):
+    __tablename__ = 'bookcase'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25))  # 收藏夹的名称
+    publish_date = db.Column(db.DateTime)
+    # 创建日期
+    modified_date = db.Column(db.DateTime)
+
+    # 最后更新日期
+
+    def __init__(self):
+        super(BookCase, self).__init__()
+        self.publish_date = datetime.now()
+
+    def __repr__(self):
+        return "<BookCase %r>" % self.name
+
+
+class Book(db.Model):
+    __tablename__ = 'book'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25), unique=True)
+    link = db.Column(db.String(128))
+    latest_chapter = db.Column(db.String(128))
+    status = db.Column(db.String(25))
+    # 本书状态
+    author = db.Column(db.String(128))
+    # 作者
+    publish_date = db.Column(db.DateTime)
+    # 创建日期
+    modified_date = db.Column(db.DateTime)
+    # 最后更新日期
+    chapters = db.relationship('Chapter', backref='books', lazy='dynamic')
+
+    def __init__(self):
+        super(Book, self).__init__()
+        self.publish_date = datetime.now()
+
+    def __repr__(self):
+        return "<Book %r>" % self.name
+
+
+class Chapter(db.Model):
+    __tablename__ = 'chapter'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
+    link = db.Column(db.String(128))
+    publish_date = db.Column(db.DateTime)
+    # 创建日期
+    modified_date = db.Column(db.DateTime)
+    # 最后更新日期
+    book_id = db.relationship(db.Integer, db.ForeignKey('book.id'))
+
+    def __init__(self):
+        super(Chapter, self).__init__()
+        self.publish_date = datetime.now()
+
+    def __repr__(self):
+        return "<Chapter %r>" % self.name

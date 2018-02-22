@@ -1,5 +1,5 @@
 from blog import app
-from blog.main.models import User, Category, Post, Tag, post_tag, Role
+from blog.main.models import User, Category, Post, Tag, post_tag, Role, BookCase, Book, Chapter
 from extensions import db
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Server, Manager
@@ -13,7 +13,8 @@ manager.add_command('db', MigrateCommand)
 
 @manager.shell
 def manager_shell_context():
-    return dict(app=app, db=db, User=User, Category=Category, Post=Post, Tag=Tag, post_tag=post_tag, Role=Role)
+    return dict(app=app, db=db, User=User, Category=Category, Post=Post, Tag=Tag, post_tag=post_tag, Role=Role,
+                BookCase=BookCase, Book=Book, Chapter=Chapter)
 
 
 if __name__ == '__main__':

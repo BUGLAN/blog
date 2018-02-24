@@ -39,6 +39,10 @@ def null_filter(s):
         return s
 
 
+def url_filter(s):
+    return s.split('/')[-2]
+
+
 @login_manager.user_loader
 def load_user(user_id):
     from blog.main.models import User

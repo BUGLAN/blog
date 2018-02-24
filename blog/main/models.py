@@ -189,23 +189,23 @@ class Tag(db.Model):
 # User -> Tag 一对一
 
 
-class BookCase(db.Model):
-    __tablename__ = 'bookcase'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25))  # 收藏夹的名称
-    publish_date = db.Column(db.DateTime)
-    # 创建日期
-    modified_date = db.Column(db.DateTime)
-
-    # 最后更新日期
-
-    def __init__(self):
-        super(BookCase, self).__init__()
-        self.publish_date = datetime.now()
-
-    def __repr__(self):
-        return "<BookCase %r>" % self.name
+# class BookCase(db.Model):
+#     __tablename__ = 'bookcase'
+#
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(25))  # 收藏夹的名称
+#     publish_date = db.Column(db.DateTime)
+#     # 创建日期
+#     modified_date = db.Column(db.DateTime)
+#
+#     # 最后更新日期
+#
+#     def __init__(self):
+#         super(BookCase, self).__init__()
+#         self.publish_date = datetime.now()
+#
+#     def __repr__(self):
+#         return "<BookCase %r>" % self.name
 
 
 class Book(db.Model):
@@ -223,7 +223,6 @@ class Book(db.Model):
     # 创建日期
     modified_date = db.Column(db.DateTime)
     # 最后更新日期
-    chapters = db.relationship('Chapter', backref='books', lazy='dynamic')
 
     def __init__(self):
         super(Book, self).__init__()
@@ -243,7 +242,8 @@ class Chapter(db.Model):
     # 创建日期
     modified_date = db.Column(db.DateTime)
     # 最后更新日期
-    book_id = db.relationship(db.Integer, db.ForeignKey('book.id'))
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
+    book = db.relationship('Book', backref='chapters')
 
     def __init__(self):
         super(Chapter, self).__init__()

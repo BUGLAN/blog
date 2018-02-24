@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename="blog/favicon.ico") }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/amazeui.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="blog/css/style.css") }}">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
@@ -32,10 +33,10 @@
                         其他 <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">标题</li>
-                        <li><a href="#">1. 去月球</a></li>
-                        <li class="am-active"><a href="#">2. 去火星</a></li>
-                        <li><a href="#">3. 还是回地球</a></li>
+                        <li class="am-dropdown-header">有趣的东西哦</li>
+                        <li><a href="{{ url_for('novel.search') }}">1. 搜索书籍</a></li>
+                        <li><a href="">2. 书架</a></li>
+                        <li><a href="#">3. 网盘</a></li>
                         <li class="am-disabled"><a href="#">4. 下地狱</a></li>
                         <li class="am-divider"></li>
                         <li><a href="#">About Me</a></li>
@@ -90,6 +91,8 @@
     <ul class="pagination">
         <li{% if not pagination.has_prev %} class="disabled"{% endif %}>
             <a href="
+
+
                     {% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
                 «
             </a>
@@ -111,6 +114,8 @@
         {% endfor %}
         <li{% if not pagination.has_next %} class="disabled"{% endif %}>
             <a href="
+
+
                     {% if pagination.has_next %}{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{% else %}#{% endif %}">
                 »
             </a>

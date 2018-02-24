@@ -45,7 +45,7 @@ class MyAdminIndexView(AdminIndexView):
     # 后台首页
     @expose('/')
     def index(self):
-        return self.render('admin/index.html')
+        return self.render('admin/search.html')
 
 
 admin = Admin(

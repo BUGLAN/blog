@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-12 main">
+                <div class="am-u-sm-12 am-article">
+                    <h1>{{ title | safe }}</h1>
+                    <p>{{ introduce | safe }}</p>
+                    <ul class="am-pagination am-pagination-centered">
+                        <li class="am-pagination-prev"><a>加入书架</a></li>
+
+                        <li class="am-pagination-prev"><a>移出书架</a></li>
+                    </ul>
+                    <ul>
+                        {% for chapter in chapters %}
+                            <li>
+                                <a href="{{ url_for('novel.novel_page', key_url=(chapter[0] | url_filter), key_page=(chapter[0] | page_filter) ) }}">{{ chapter[1] }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

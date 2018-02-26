@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% block title %}搜索书籍{% endblock %}
 {% block css %}
     <style>
         #search {
@@ -59,13 +61,17 @@
                                 <tbody>
                                 {% for item in items %}
                                     <tr>
-                                    <td><a href="{{ url_for('novel.novel_chapters', key_url=item[0] | url_filter) }}">{{ item[1] }}</a></td>
-                                    <td><a href="{{ item[2] }}">{{ item[3] }}</a></td>
-                                    <td>{{ item[4] }}</td>
-                                    <td>{{ item[5] }}</td>
-                                    <td>{{ item[6] }}</td>
-                                    <td>{{ item[7] }}</td>
-                                </tr>
+                                        <td>
+                                            <a href="{{ url_for('novel.novel_chapters', key_url=item[0] | url_filter) }}">{{ item[1] }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('novel.novel_page', key_url=(item[2] | url_filter), key_page=(item[2] | page_filter) ) }}">{{ item[3] }}</a>
+                                        </td>
+                                        <td>{{ item[4] }}</td>
+                                        <td>{{ item[5] }}</td>
+                                        <td>{{ item[6] }}</td>
+                                        <td>{{ item[7] }}</td>
+                                    </tr>
                                 {% endfor %}
                                 </tbody>
 

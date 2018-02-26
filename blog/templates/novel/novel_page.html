@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-12 main">
+                <div class="am-u-sm-12 am-article">
+                    <h3 class="am-article-title am-text-center">{{ title | safe }}</h3>
+                    {#                    <p class="am-article-meta am-text-center">作者 | 作者</p>#}
+                </div>
+                <div class="blog-main">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    {{ page | safe }}
+                </div>
+                <hr class="am-article-divider">
+                <ul class="am-pagination am-pagination-centered">
+                    <li class="am-pagination-prev"><a
+                            href="{{ url_for('novel.novel_page', key_url=key[0], key_page=((key[1].split('.')[0])| int - 1) | string) + '.html' }}">&laquo;
+                        上一页</a></li>
+                    <li><a href="{{ url_for('novel.novel_chapters', key_url=key[0]) }}">目录</a></li>
+                    <li class="am-pagination-next"><a
+                            href="{{ url_for('novel.novel_page', key_url=key[0], key_page=((key[1].split('.')[0])| int + 1) | string) + '.html' }}">下一页
+                        &raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

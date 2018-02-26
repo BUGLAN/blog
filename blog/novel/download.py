@@ -12,12 +12,17 @@ class DownLoad:
         """
         download html page
         """
-        if kwargs and kwargs['params']:
-            r = requests.get(url, headers=headers, params=kwargs["params"])
-        else:
-            r = requests.get(url, headers=headers)
-        r.encoding = r.apparent_encoding
-        return r.text
+        while True:
+            try:
+                if kwargs and kwargs['params']:
+                    r = requests.get(url, headers=headers, params=kwargs["params"], timeout=1.5)
+                else:
+                    r = requests.get(url, headers=headers, timeout=1.5)
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+            else:
+                r.encoding = r.apparent_encoding
+                return r.text
 
     @staticmethod
     def download_file(url):

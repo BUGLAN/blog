@@ -33,7 +33,7 @@
                             {% if cases == [] %}
                                 <h1>还没有小说呢,快来收藏吧!</h1>
                             {% else %}
-                                <p>作者: {{ case.author }} 最新: 第九百四十三章 大渊之下</p>
+                                <p>作者: {{ case.author }} 最新: {{ case.latest_chapter }}</p>
                                 <p>更新时间: {{ case.modified_date | date }}</p>
 
                             {% endif %}

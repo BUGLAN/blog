@@ -5,6 +5,7 @@ from extensions import db, github
 import datetime
 import markdown
 from flask_login import login_user, logout_user, login_required, current_user
+import sqlalchemy
 
 
 def sidebar_date():
@@ -32,19 +33,38 @@ def index(page=1):
     return render_template('blog/index.html', posts=posts, pagination=pagination, categories=categories, tags=tags)
 
 
+def register_filter(username, email, password1, password2):
+    if len(username) < 3:
+        return None
+    if (len(password1) or len(password2)) < 6:
+        return None
+    if '@' not in email:
+        return None
+    if password1 != password2:
+        return None
+    return True
+
+
 @main_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         user = User()
-        user.username = request.form.get('username')
-        user.email = request.form.get('email')
-        user.password = request.form.get('password')
-        user.publish_date = datetime.datetime.now()
-        user.modified_date = datetime.datetime.now()
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return redirect(url_for('main.index'))
+        if not register_filter(request.form.get('username'), request.form.get('email'), request.form.get('password1'),
+                               request.form.get('password2')):
+            abort(403)
+        try:
+            user.username = request.form.get('username')
+            user.email = request.form.get('email')
+            user.password = request.form.get('password')
+            user.publish_date = datetime.datetime.now()
+            user.modified_date = datetime.datetime.now()
+            db.session.add(user)
+            db.session.commit()
+        except sqlalchemy.exc.IntegrityError:
+            return "密码或用户名已被他人所占用"
+        else:
+            login_user(user)
+            return redirect(url_for('main.index'))
     return render_template('blog/register.html')
 
 

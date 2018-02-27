@@ -67,9 +67,9 @@ class User(db.Model):
 
     # ---- 权限控制 ----
     def can(self, permission):
-        return self.role is not None and (self.role.permissions & permission) == permission
+        return self.role and (self.role.permissions & permission) == permission
 
-    def is_meeter(self):
+    def is_poster(self):
         """
         判断是否为会议的创建者 permissions == 3
         """

@@ -17,9 +17,9 @@
             <br>
             <br>
 
-            <form method="post" class="am-form" action="{{ url_for('main.register') }}">
+            <form method="post" class="am-form" action="{{ url_for('main.register') }}" onsubmit="return check()">
                 <label for="username">用户名:</label>
-                <input type="text" name="username" id="email" value="">
+                <input type="text" name="username" id="username" value="">
                 <br>
                 <label for="email">邮箱:</label>
                 <input type="email" name="email" id="email" value="">
@@ -36,8 +36,8 @@
                 </label>
                 <br/>
                 <div class="am-cf">
-                    <input type="submit" name="" value="注册并登陆" class="am-btn am-btn-primary am-btn-sm am-fl">
-                    <a type="submit" name="" class="am-btn am-btn-default am-btn-sm am-fr">已有密码, 去登陆 </a>
+                    <input type="submit" value="注册并登陆" class="am-btn am-btn-primary am-btn-sm am-fl">
+                    <a href="{{ url_for('main.login') }}" class="am-btn am-btn-default am-btn-sm am-fr">已有密码, 去登陆 </a>
                 </div>
             </form>
             <hr>
@@ -51,50 +51,35 @@
     <script type="text/javascript">
 
         function check() {
-            var username = document.getElementById('username');
-            var email = document.getElementById('email');
-            var password1 = document.getElementById('password1');
-            var password2 = document.getElementById('password2');
 
-            if (username == null || username.value == "") {
-                alert("用户名不能为空");
-                username.focus();
+            var username = $('#username').val();
+            var email = $('#email').val();
+            var password1 = $('#password1').val();
+            var password2 = $('#password2').val();
+
+            console.log(username);
+            console.log(email);
+            console.log(password1);
+            console.log(password2);
+            console.log(username.length)
+            if (username.length < 3) {
+                alert("账号应大于3位");
                 return false;
             }
-
-
-            if (email == null || email.valueOf == "") {
-                alert("Email值不能为空");
-                email.focus();
+            if (email === '' || email === null) {
+                alert("邮箱为必填项");
                 return false;
             }
-
-            if (email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1) {
-                alert("邮箱格式不正确,必须包含@和.");
-                email.focus();
+            if (password1 < 6 || password2 < 6) {
+                alert("密码应大于6位");
                 return false;
             }
-
-            if (password1 == null || password1.value == "") {
-                alert("密码不能为空");
-                password1.focus();
-                return false;
-            }
-
-            if (password1.value.length < 6) {
-                alert("密码长度必须大于或者等于6");
-                password1.focus();
-                return false;
-            }
-
-            if (password2 == null || password2.value != password1.value) {
-                alert("两次输入的密码不一致");
-                password2.focus();
+            if (password1 !== password2) {
+                alert("两次密码应相同");
                 return false;
             }
 
             return true;
-
         }
 
     </script>

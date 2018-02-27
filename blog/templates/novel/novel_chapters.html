@@ -6,14 +6,14 @@
         <div class="am-g">
             <div class="am-u-md-12 main">
                 <div class="am-u-sm-12 am-article">
-                    <h1>{{ title | safe }}</h1>
+                    <div id="book_name">{{ title | safe }}</div>
                     <p>{{ introduce | safe }}</p>
                     <ul class="am-pagination am-pagination-centered">
-                        <li class="am-pagination-prev"><a>加入书架</a></li>
+                        <li class="am-pagination-prev"><a href="javascript:;" id="addToCase">加入书架</a></li>
 
-                        <li class="am-pagination-prev"><a>移出书架</a></li>
+                        <li class="am-pagination-prev"><a href="javascript:;" id="removeToCase">移出书架</a></li>
                     </ul>
-                    <ul>
+                    <ul id="chapters">
                         {% for chapter in chapters %}
                             <li>
                                 <a href="{{ url_for('novel.novel_page', key_url=(chapter[0] | url_filter), key_page=(chapter[0] | page_filter) ) }}">{{ chapter[1] }}</a>
@@ -25,5 +25,43 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $('#addToCase').click(function () {
+            var link = "http://www.biquge5200.com" + '/' + window.location.pathname.toString().split('/')[2];
+            $.post("/api/add_novel",
+                {
+                    link: link,
+                    book_name: $('#book_name').text(),
+                },
+                function (data, status) {
+                    if (status === 'success') {
+                        alert(data);
+                    }
+                    else {
+                        alert(data);
+                    }
+                });
+            return false;
+        });
+        $('#removeToCase').click(function () {
+            $.post('/api/delete_novel',
+                {
+                    book_name: $('#book_name').text(),
+                },
+                function (data, status) {
+                    if (status === 'success') {
+                        alert(data);
+                    }
+                    else {
+                        alert(data);
+                    }
+                });
+            window.location.replace("/novel/case");
+            return false;
+        });
+    </script>
 {% endblock %}
 

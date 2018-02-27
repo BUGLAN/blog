@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}我的书架{% endblock %}
+
+{% block css %}
+    <style>
+        p {
+            margin-top: 0;
+        }
+
+
+
+        .am-thumbnail img {
+            margin: 0;
+            border: 1px solid #ddd;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-8">
+                {% for case in cases %}
+                    <div class="am-panel am-panel-success">
+                        <div class="am-panel-hd">
+                            <h3 class="am-panel-title" id="book_name"><a
+                                    href="{{ url_for('novel.novel_chapters', key_url=case.link.split('/')[-1]) }}">{{ case.name }}</a>
+                            </h3>
+                        </div>
+                        <div class="am-panel-bd">
+                            {% if cases == [] %}
+                                <h1>还没有小说呢,快来收藏吧!</h1>
+                            {% else %}
+                                <p>作者: {{ case.author }} 最新: 第九百四十三章 大渊之下</p>
+                                <p>更新时间: {{ case.modified_date | date }}</p>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -35,7 +35,7 @@
                     <ul class="am-dropdown-content">
                         <li class="am-dropdown-header">有趣的东西哦</li>
                         <li><a href="{{ url_for('novel.search') }}">1. 搜索书籍</a></li>
-                        <li><a href="">2. 书架</a></li>
+                        <li><a href="{{ url_for('novel.novel_cases') }}">2. 书架</a></li>
                         <li><a href="#">3. 网盘</a></li>
                         <li class="am-disabled"><a href="#">4. 下地狱</a></li>
                         <li class="am-divider"></li>
@@ -93,6 +93,7 @@
             <a href="
 
 
+
                     {% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
                 «
             </a>
@@ -114,6 +115,7 @@
         {% endfor %}
         <li{% if not pagination.has_next %} class="disabled"{% endif %}>
             <a href="
+
 
 
                     {% if pagination.has_next %}{{ url_for(endpoint, page=pagination.next_num, **kwargs) }}{% else %}#{% endif %}">

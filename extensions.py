@@ -28,8 +28,10 @@ github = oauth.remote_app(
 
 # '2017-12-13 16:40:48.873676'
 def date_filter(time):
-    filter_date = datetime.strftime(time, '%A %B %Y')
-    return filter_date
+    if time:
+        filter_date = datetime.strftime(time, '%Y-%m-%d')
+        return filter_date
+    return None
 
 
 def null_filter(s):

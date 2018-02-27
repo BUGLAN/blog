@@ -3,9 +3,15 @@ from .download import *
 
 
 class Spider:
-
+    # 待定事项 该着spider函数使其实例记录属性 author time status
     book_name = None
-    book_chapter = None
+    chapter = None
+    intro = None
+    content = None
+    img = None
+    author = None
+    modified_date = None
+    status = None
 
     def __init__(self):
         super(Spider, self).__init__()
@@ -31,7 +37,6 @@ class Spider:
         if items:
             # 异常处理
             return items
-        print("无搜索结果")
         return None
 
     @staticmethod
@@ -59,3 +64,15 @@ class Spider:
             #     return content[0]
             return "%s 未获取到内容请联系管理员" % e
         return content, title
+
+    @staticmethod
+    def get_message(url):
+        html = DownLoad.download_page(url)
+        image = re.findall(
+            r'<div id="fmimg"><img alt="" src="(.*?)" width="120" height="150"><span class="b"></span></div>',
+            html)[0]
+        author = re.findall(r'<p style="width:200px">作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>', html)[0]
+        modified_date = re.findall(r'<p>最后更新：(.*?)</p>', html)[0]
+        status = re.findall(r'<meta property="og:novel:status" content="(.*?)"/>', html)[0]
+        # latest_chapter = re.findall(r"<dd><a href='(.*?)' >第九百四十三章 大渊之下</a></dd>", html)[0]
+        return image, author, modified_date, status

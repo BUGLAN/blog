@@ -63,7 +63,7 @@ class User(db.Model):
     modified_date = db.Column(db.DateTime)
     head_portrait = db.Column(db.String(256), default='user/BUGLAN/L3.png')
     posts = db.relationship('Post', backref='user', lazy='dynamic')
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), default=Permission.USER)
 
     # ---- 权限控制 ----
     def can(self, permission):
@@ -189,25 +189,6 @@ class Tag(db.Model):
 # User -> Tag 一对一
 
 
-# class BookCase(db.Model):
-#     __tablename__ = 'bookcase'
-#
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(25))  # 收藏夹的名称
-#     publish_date = db.Column(db.DateTime)
-#     # 创建日期
-#     modified_date = db.Column(db.DateTime)
-#
-#     # 最后更新日期
-#
-#     def __init__(self):
-#         super(BookCase, self).__init__()
-#         self.publish_date = datetime.now()
-#
-#     def __repr__(self):
-#         return "<BookCase %r>" % self.name
-
-
 class Book(db.Model):
     __tablename__ = 'book'
 
@@ -222,6 +203,7 @@ class Book(db.Model):
     publish_date = db.Column(db.DateTime)
     # 创建日期
     modified_date = db.Column(db.DateTime)
+
     # 最后更新日期
 
     def __init__(self):

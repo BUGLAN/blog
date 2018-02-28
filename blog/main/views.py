@@ -34,15 +34,18 @@ def index(page=1):
 
 
 def register_filter(username, email, password1, password2):
-    if len(username) < 3:
-        return None
-    if (len(password1) or len(password2)) < 6:
-        return None
-    if '@' not in email:
-        return None
-    if password1 != password2:
-        return None
-    return True
+    if username and email and password1 and password2:
+        if len(username) < 3:
+            return False
+        if (len(password1) or len(password2)) < 6:
+            return False
+        if '@' not in email:
+            return False
+        if password1 != password2:
+            return False
+        return True
+    else:
+        return False
 
 
 @main_blueprint.route('/register', methods=['GET', 'POST'])
@@ -55,7 +58,7 @@ def register():
         try:
             user.username = request.form.get('username')
             user.email = request.form.get('email')
-            user.password = request.form.get('password')
+            user.password = request.form.get('password1')
             user.publish_date = datetime.datetime.now()
             user.modified_date = datetime.datetime.now()
             db.session.add(user)

@@ -23,7 +23,7 @@ def poster_required(f):
 def admin_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
-        if current_user:
+        if current_user.is_active:
             if current_user.is_admin():
                 return f(*args, **kwargs)
         abort(403)

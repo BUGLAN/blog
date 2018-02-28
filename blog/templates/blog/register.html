@@ -25,10 +25,10 @@
                 <input type="email" name="email" id="email" value="">
                 <br>
                 <label for="password">密码:</label>
-                <input type="password" name="password" id="password1" value="">
+                <input type="password" name="password1" id="password1" value="">
                 <br>
                 <label for="password">重复密码:</label>
-                <input type="password" name="repeat_password" id="password2" value="">
+                <input type="password" name="password2" id="password2" value="">
                 <br>
                 <label for="remember-me">
                     <input id="remember-me" type="checkbox">
@@ -56,12 +56,6 @@
             var email = $('#email').val();
             var password1 = $('#password1').val();
             var password2 = $('#password2').val();
-
-            console.log(username);
-            console.log(email);
-            console.log(password1);
-            console.log(password2);
-            console.log(username.length)
             if (username.length < 3) {
                 alert("账号应大于3位");
                 return false;

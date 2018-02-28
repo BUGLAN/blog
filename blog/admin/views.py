@@ -2,8 +2,9 @@ from blog.admin import admin_blueprint
 from werkzeug.utils import secure_filename
 import os
 import datetime
-from blog.main.views import db,login_required, current_user, request, redirect,\
+from blog.main.views import db, login_required, current_user, request, redirect, \
     url_for, render_template, Post, User, Category, Tag, abort, current_app
+from extensions import check_file_type
 
 
 @admin_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
@@ -22,6 +23,8 @@ def user_detail(username):
         return render_template('blog/user_detail.html')
     else:
         abort(404)
+
+
 # -------------------------------------------------
 
 
@@ -59,6 +62,8 @@ def tag_adminter(username):
         return render_template('blog/tag_adminter.html', tags=tags)
     else:
         abort(404)
+
+
 # ----------
 
 
@@ -98,6 +103,8 @@ def tag_delete(user_id, tag_id):
         return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
     else:
         abort(404)
+
+
 # -----------
 
 
@@ -167,6 +174,8 @@ def tag_edit(user_id, tag_id):
         return render_template('blog/tag_edit.html', tag=tag)
     else:
         abort(404)
+
+
 # ------------
 
 
@@ -195,7 +204,7 @@ def new_post():
             db.session.add(post)
             db.session.commit()
             return redirect(url_for('my_admin.post_adminter', username=current_user.username))
-        return render_template('blog/new_post.html', categories=categories,  tags=tags)
+        return render_template('blog/new_post.html', categories=categories, tags=tags)
     else:
         abort(404)
 
@@ -234,12 +243,9 @@ def new_tag():
         return render_template('blog/new_tag.html')
     else:
         abort(404)
+
+
 # ------------
-
-
-def allow_file(filename):
-    ALLOWED_EXTENSIONS = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif']
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 @admin_blueprint.route('/user/upload_portrait', methods=['GET', 'POST'])
@@ -248,7 +254,7 @@ def upload_portrait():
     if current_user.is_authenticated:
         if request.method == 'POST':
             file = request.files['file']
-            if file and allow_file(file.filename):
+            if file and check_file_type(file.filename):
                 filename = secure_filename(file.filename)
                 path = os.path.join(current_app.config['UPLOAD_FOLDER'], current_user.username)
                 if not os.path.exists(path):
@@ -259,6 +265,7 @@ def upload_portrait():
                 db.session.commit()
                 file.save(os.path.join(path, filename))
                 return redirect(url_for('my_admin.user_detail', username=current_user.username))
+            return '文件不存在'
         else:
             return {"error": "the way is not post or get"}
     else:

@@ -26,6 +26,9 @@ def create_app():
     from blog.novel.views import novel_blueprint
     app.register_blueprint(novel_blueprint)
 
+    from blog.cloudhub.views import cloud_hub_blueprint
+    app.register_blueprint(cloud_hub_blueprint)
+
     from .main import views
 
     return app

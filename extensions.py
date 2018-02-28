@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_oauthlib.client import OAuth
 from datetime import datetime
+from flask import current_app
 
 db = SQLAlchemy()
 oauth = OAuth()
@@ -53,3 +54,7 @@ def page_filter(s):
 def load_user(user_id):
     from blog.main.models import User
     return User.query.filter_by(id=user_id).first()
+
+
+def check_file_type(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in current_app.config['ALLOWED_FILE_TYPES']

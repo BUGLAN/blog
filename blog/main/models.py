@@ -214,22 +214,19 @@ class Book(db.Model):
         return "<Book %r>" % self.name
 
 
-class Chapter(db.Model):
-    __tablename__ = 'chapter'
+class File(db.Model):
+    __tablename__ = 'file'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
-    link = db.Column(db.String(128))
+    name = db.Column(db.String(50))
+    path = db.Column(db.String(255), unique=True)
     publish_date = db.Column(db.DateTime)
-    # 创建日期
-    modified_date = db.Column(db.DateTime)
-    # 最后更新日期
-    book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
-    book = db.relationship('Book', backref='chapters')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    users = db.relationship('User', backref='files')
 
     def __init__(self):
-        super(Chapter, self).__init__()
+        super(File, self).__init__()
         self.publish_date = datetime.now()
 
     def __repr__(self):
-        return "<Chapter %r>" % self.name
+        return "<CloudHub %r>" % self.name

@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    <h1>upload</h1>
     <form action="{{ url_for('cloud_hub.cloud_hub_uploads') }}" enctype="multipart/form-data" method="post">
         <input type="file" name="file">
         <input type="submit" value="上传文件">
     </form>
+    <hr>
+    <h1>download</h1>
+    <a href="{{ url_for('cloud_hub.cloud_hub_download') }}">下载文件</a>
 {% endblock %}

@@ -1,6 +1,7 @@
+import re
+
 from . import novel_blueprint
 from flask_restful import Resource, reqparse, Api
-import re
 from flask import abort, jsonify
 import requests
 from ..main.models import Book

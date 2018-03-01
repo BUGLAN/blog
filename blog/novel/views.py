@@ -1,9 +1,10 @@
+import sqlalchemy
+
 from . import novel_blueprint
 from flask import render_template, request, redirect, url_for, abort
 from .spider import Spider
 from blog.main.models import Book
 from extensions import db
-import sqlalchemy
 from functools import wraps
 from flask_login import current_user
 

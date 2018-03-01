@@ -1,7 +1,8 @@
-from blog.admin import admin_blueprint
-from werkzeug.utils import secure_filename
 import os
 import datetime
+
+from blog.admin import admin_blueprint
+from werkzeug.utils import secure_filename
 from blog.main.views import db, login_required, current_user, request, redirect, \
     url_for, render_template, Post, User, Category, Tag, abort, current_app
 from extensions import check_file_type

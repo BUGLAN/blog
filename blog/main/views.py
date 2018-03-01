@@ -1,11 +1,12 @@
+import datetime
+import markdown
+import sqlalchemy
+
 from blog.main import main_blueprint
 from flask import render_template, request, redirect, url_for, session, abort, current_app
 from blog.main.models import User, Post, Category, Tag
 from extensions import db, github
-import datetime
-import markdown
 from flask_login import login_user, logout_user, login_required, current_user
-import sqlalchemy
 
 
 def sidebar_date():

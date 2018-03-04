@@ -50,6 +50,13 @@ def page_filter(s):
     return s.split('/')[-1]
 
 
+def isdir(name):
+    if name:
+        if len(name.split('.')) == 1:
+            return True
+    return False
+
+
 @login_manager.user_loader
 def load_user(user_id):
     from blog.main.models import User

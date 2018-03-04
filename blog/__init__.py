@@ -1,7 +1,7 @@
 from flask import Flask
 # from blog.main.admin import admin
 from config import BaseConfig
-from extensions import db, login_manager, oauth, date_filter, null_filter, url_filter, page_filter
+from extensions import db, login_manager, oauth, date_filter, null_filter, url_filter, page_filter, isdir
 
 
 def create_app():
@@ -16,6 +16,7 @@ def create_app():
     app.add_template_filter(null_filter, 'None_filter')
     app.add_template_filter(url_filter, 'url_filter')
     app.add_template_filter(page_filter, 'page_filter')
+    app.add_template_filter(isdir, 'isdir')
 
     from blog.main.views import main_blueprint
     app.register_blueprint(main_blueprint)

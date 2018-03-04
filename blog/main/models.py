@@ -218,6 +218,7 @@ class File(db.Model):
     __tablename__ = 'file'
 
     id = db.Column(db.Integer, primary_key=True)
+    # filename or dir_name
     name = db.Column(db.String(50))
     path = db.Column(db.String(255), unique=True)
     publish_date = db.Column(db.DateTime)

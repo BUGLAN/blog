@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>upload</h1>
+    <h1>我的文件</h1>
+    {% for file in files %}
+        {% if file | isdir %}
+            <li><a href="{{ url_for('cloud_hub.cloud_hub_folders', path=files[file]['abspath']) }}">{{ file }}</a></li>
+
+        {% else %}
+    <li><a href="{{ url_for('cloud_hub.cloud_hub_download', abspath=files[file]['abspath']) }}">{{ file }}</a></li>
+        {% endif %}
+    {% endfor %}
+    <button id="addFile">增加文件</button>
+    <hr>
+    <h1>上传文件</h1>
     <form action="{{ url_for('cloud_hub.cloud_hub_uploads') }}" enctype="multipart/form-data" method="post">
         <input type="file" name="file">
         <input type="submit" value="上传文件">
     </form>
     <hr>
-    <h1>download</h1>
-    <a href="{{ url_for('cloud_hub.cloud_hub_download') }}">下载文件</a>
+    <hr>
+    <h1>多文件上传</h1>
+    <form action="{{ url_for('cloud_hub.cloud_hub_multiple_uploads') }}" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" webkitdirectory>
+        <input type="submit" value="submit">
+    </form>
 {% endblock %}

@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="691d11db-f416-4531-ba52-18b7cbe02edd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/blog/__init__.py" afterPath="$PROJECT_DIR$/blog/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/blog/cloudhub/file_models.py" afterPath="$PROJECT_DIR$/blog/cloudhub/file_models.py" />
       <change beforePath="$PROJECT_DIR$/blog/cloudhub/views.py" afterPath="$PROJECT_DIR$/blog/cloudhub/views.py" />
-      <change beforePath="$PROJECT_DIR$/blog/main/models.py" afterPath="$PROJECT_DIR$/blog/main/models.py" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/14K_3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/4_4.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/52K.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/5_13.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/5_3.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/6_16.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/static/user/BUGLAN/小丑.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/cloud_hub/cloud_hub_index.html" afterPath="$PROJECT_DIR$/blog/templates/cloud_hub/cloud_hub_index.html" />
-      <change beforePath="$PROJECT_DIR$/extensions.py" afterPath="$PROJECT_DIR$/extensions.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +41,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/blog/cloudhub/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
+            <state relative-caret-position="-462">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -156,7 +142,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="275" />
     <option name="y" value="136" />
     <option name="width" value="1445" />
@@ -470,15 +456,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="275" y="136" width="1445" height="873" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28826815" sideWeight="0.5030912" order="14" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24591948" sideWeight="0.4969088" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30706522" sideWeight="0.4969088" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3242655" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38411316" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.218716" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18869936" sideWeight="0.493266" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25559565" sideWeight="0.493266" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910696" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -908,8 +895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/cloudhub/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
+        <state relative-caret-position="-462">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

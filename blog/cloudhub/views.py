@@ -36,7 +36,6 @@ def cloud_hub_folders():
     path = request.values.get('path')
     if path:
         root_dir = path
-        print(root_dir)
         file_dirs =foreach(root_dir)
         return render_template('cloud_hub/cloud_hub_index.html', files=file_dirs)
     else:
@@ -72,7 +71,6 @@ def cloud_hub_uploads():
 def cloud_hub_multiple_uploads():
     if request.method == 'POST':
         files = request.files.get('file')
-        print(files.filename)
         return 'post request'
     return 'bad request'
 
@@ -93,6 +91,5 @@ def download_file(abspath):
 @login_required
 def cloud_hub_download():
     abspath = request.values.get('abspath')
-    print(abspath)
     response = download_file(abspath)
     return response

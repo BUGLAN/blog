@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-12 main">
+                <div class="am-u-sm-12 am-article">
+
+                    <h1>{{ current_user.username }}的网盘</h1>
+                    <ul id="chapters">
+                        <h1>当前目录: {{ parent_dir | relative_path }}</h1>
+                        {% for file in files %}
+                            {% if file | isdir %}
+                                <li>
+                                    <a href="{{ url_for('cloud_hub.cloud_hub_folders', path=files[file]['abspath']) }}">{{ file }}</a>
+                                </li>
+
+                            {% else %}
+                                <li>
+                                    <a href="{{ url_for('cloud_hub.cloud_hub_download', abspath=files[file]['abspath']) }}">{{ file }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+
+                            <input type="file" id="file">
+                        <button value="上传文件" id="upload_file">上传</button>
+
+                        <form action="{{ url_for('cloud_hub.cloud_hub_add_folder', parent_dir=parent_dir) }}"
+                              method="post">
+                            <input type="text" placeholder="输入目录名" name="dir_name">
+                            <input type="submit" value="新建">
+                        </form>
+                        <hr>
+                    </ul>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function getQueryString(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+        var abspath = getQueryString('path');
+        $('#upload_file').click(function () {
+            var formData = new FormData();
+            formData.append('file', $('#file')[0].files[0]);
+            formData.append('path', abspath);
+            console.log(formData);
+           $.ajax({
+                type: 'post',
+                url: '/cloud_hub/uploads',
+                data: formData,
+                processData:false,
+                contentType:false,
+                success: function (response, status, xhr) {
+                    alert(response);
+                    console.log(response);
+                    },
+               fail: function (response, status, xhr) {
+                   alert(response);
+               }
+            });
+            window.location.reload();
+        });
+    </script>
+{% endblock %}

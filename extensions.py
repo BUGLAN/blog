@@ -1,5 +1,7 @@
+import os
+
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_oauthlib.client import OAuth
 from datetime import datetime
 from flask import current_app
@@ -55,6 +57,10 @@ def isdir(name):
         if len(name.split('.')) == 1:
             return True
     return False
+
+
+def relative_path(abspath):
+    return abspath.replace(os.path.join(current_app.config['UPLOAD_FOLDER'], current_user.username), '.')
 
 
 @login_manager.user_loader

@@ -183,12 +183,6 @@ class Tag(db.Model):
         return '<Tag {}>'.format(self.name)
 
 
-# User -> Post 一对多
-# Category -> Post 一对多
-# Post -> Tag 多对多
-# User -> Tag 一对一
-
-
 class Book(db.Model):
     __tablename__ = 'book'
 
@@ -214,20 +208,7 @@ class Book(db.Model):
         return "<Book %r>" % self.name
 
 
-class File(db.Model):
-    __tablename__ = 'file'
-
-    id = db.Column(db.Integer, primary_key=True)
-    # filename or dir_name
-    name = db.Column(db.String(50))
-    path = db.Column(db.String(255), unique=True)
-    publish_date = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    users = db.relationship('User', backref='files')
-
-    def __init__(self):
-        super(File, self).__init__()
-        self.publish_date = datetime.now()
-
-    def __repr__(self):
-        return "<CloudHub %r>" % self.name
+# User -> Post 一对多
+# Category -> Post 一对多
+# Post -> Tag 多对多
+# User -> Tag 一对一

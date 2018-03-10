@@ -7,10 +7,16 @@
             <li><a href="{{ url_for('cloud_hub.cloud_hub_folders', path=files[file]['abspath']) }}">{{ file }}</a></li>
 
         {% else %}
-    <li><a href="{{ url_for('cloud_hub.cloud_hub_download', abspath=files[file]['abspath']) }}">{{ file }}</a></li>
+            <li><a href="{{ url_for('cloud_hub.cloud_hub_download', abspath=files[file]['abspath']) }}">{{ file }}</a>
+            </li>
         {% endif %}
     {% endfor %}
-    <button id="addFile">增加文件</button>
+    <br>
+    {#    需要使用jquery #}
+    <form action="{{ url_for('cloud_hub.cloud_hub_add_folder', parent_dir=parent_dir) }}" method="post">
+        <input type="text" placeholder="输入目录名" name="dir_name">
+        <input type="submit" value="新建">
+    </form>
     <hr>
     <h1>上传文件</h1>
     <form action="{{ url_for('cloud_hub.cloud_hub_uploads') }}" enctype="multipart/form-data" method="post">

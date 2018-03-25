@@ -1,58 +1,74 @@
 import re
+import os
 
-from .download import *
+from blog.novel.download import *
 
 
-class Spider:
+class Novel:
+    search_url = "http://www.biquge5200.com/modules/article/search.php"
 
-    def __init__(self):
-        super(Spider, self).__init__()
-
-    @staticmethod
-    def search(keyword):
-        """
-        搜索笔趣阁关键字前50条
-        # http://www.biquge5200.com/modules/article/search.php?searchkey=keyword
-        # get method
-        """
-
-        page = DownLoad.download_page("http://www.biquge5200.com/modules/article/search.php",
-                                      params={"searchkey": keyword}, timeout=1.5)
+    def search(self, keyword):
+        # biquge 搜索功能
+        page = DownLoad.download_page(self.search_url, params={"searchkey": keyword}, timeout=1.5)
         book_message = re.compile('<td class="odd"><a href="(.*?)">(.*?)</a></td>.*?'
                                   '<td class="even"><a href="(.*?)" target="_blank"> (.*?)</a></td>.*?'
                                   '<td class="odd">(.*?)</td>.*?'
                                   '<td class="even">(.*?)</td>.*?'
                                   '<td class="odd" align="center">(.*?)</td>.*?'
                                   '<td class="even" align="center">(.*?)</td>', re.S)
-        # 使用正则匹配相应字符串 re.DOTALL / re.S 使 '.' 匹配任意字符，包括换行符
+        # 使用正则匹配相应字符串 re.DOTALL / re.S 使'.' 匹配任意字符，包括换行符
         items = book_message.findall(page)
         if items:
-            # 异常处理
             return items
         return None
 
-    @staticmethod
-    def get_lists(url):
-        html = DownLoad.download_page(url)
+
+class BookSpider:
+    """
+    @:param url: 书籍详情页 如 http://www.biquge5200.com/85_85278/
+    """
+    chapters = []
+
+    def __init__(self, url):
+        self.url = url
+
+    def get_chapters_and_introduce(self):
+        # 获取章节目录和介绍
+        html = DownLoad.download_page(self.url)
         pattern = re.compile('<div id="intro">.*?<p>(.*?)</p>.*?</div>', re.S)
-        intro = "<p>" + pattern.findall(html)[0] + "</p>"
-        # 获取简介
+        introduce = "<p>" + pattern.findall(html)[0] + "</p>"
+
         pattern = re.compile('<dd><a href="(.*?)">(.*?)</a></dd>')
         chapters = pattern.findall(html)
+
         title = re.search('<h1>(.*?)</h1>', html).group()
-        return chapters, intro, title
+
+        self.chapters = chapters
+        return self.chapters, introduce, title
+
+    def previous_and_next_chapters(self, kurl):
+        if not self.chapters:
+            BookSpider.get_chapters_and_introduce(self)
+        k_index = None
+        for url, title in self.chapters:
+            if kurl == url:
+                k_index = self.chapters.index((url, title))
+        if k_index == 0:
+            return (os.path.dirname(self.chapters[k_index][0]), '目录'), self.chapters[k_index + 1]
+        elif k_index == len(self.chapters) - 1:
+            return self.chapters[k_index - 1], (os.path.dirname(self.chapters[k_index][0]), '书籍目录')
+        return self.chapters[k_index - 1], self.chapters[k_index + 1]
 
     @staticmethod
-    def get_page(url):
-        # http://www.biquge5200.com/85_85278/150792869.html
-        html = DownLoad.download_page(url)
-        pattern = re.compile('<div id="content">(.*?)</div>', re.S)
-        title = re.search('<h1>(.*?)</h1>', html).group()
+    def get_page(page_url):
+        html = DownLoad.download_page(page_url)
         try:
-            content = pattern.findall(html)[0]
+            title = re.search('<h1>(.*?)</h1>', html).group()
+            content = re.compile('<div id="content">　　(.*?)</div>', re.S).findall(html)[0]
         except IndexError as e:
-            # content = re.compile('<div id="content".*?>    (.*?)</div>', re.S).findall(html)
+            # content = re.compile('<div id="content">    (.*?)</div>', re.S).findall(html)
             # if content:
+            #     print(content)
             #     return content[0]
             return "%s 未获取到内容请联系管理员" % e
         return content, title
@@ -68,3 +84,11 @@ class Spider:
         status = re.findall(r'<meta property="og:novel:status" content="(.*?)"/>', html)[0]
         latest_chapter = re.findall(r"<dd><a href='.*?' >(.*?)</a></dd>", html)[0]
         return image, author, modified_date, status, latest_chapter
+
+
+if __name__ == '__main__':
+    # book = Book("http://www.biquge5200.com/85_85278/")
+    # print(book.get_chapters_and_introduce())
+    # print(book.previous_and_next_chapters("http://www.biquge5200.com/85_85278/153057121.html"))
+    items = Novel().search(keyword="变身")
+    print(items)

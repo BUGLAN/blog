@@ -1,12 +1,13 @@
 import sqlalchemy
+import os
 
 from . import novel_blueprint
 from flask import render_template, request, redirect, url_for, abort
-from .spider import Spider
 from blog.main.models import Book
 from extensions import db
 from functools import wraps
 from flask_login import current_user
+from .spider import Novel, BookSpider
 
 
 def poster_required(f):
@@ -37,20 +38,21 @@ def admin_required(f):
 @admin_required
 def search():
     keyword = request.args.get('keyword')
-    items = Spider.search(keyword)
+    items = Novel().search(keyword=keyword)
     if items:
         return render_template('novel/search.html', items=items)
     elif items == "连接错误":
         return "连接错误"
     return render_template('novel/search.html')
+    # items = Spider.search(keyword)
 
 
 @novel_blueprint.route('/novel/<key_url>/')
 @admin_required
 def novel_chapters(key_url):
     full_url = "http://www.biquge5200.com/" + key_url + '/'
-    spider = Spider()
-    chapters, introduce, title = spider.get_lists(full_url)
+    book = BookSpider(url=full_url)
+    chapters, introduce, title = book.get_chapters_and_introduce()
     return render_template('novel/novel_chapters.html', introduce=introduce, chapters=chapters, title=title)
 
 
@@ -59,13 +61,29 @@ def novel_chapters(key_url):
 def novel_page(key_url, key_page):
     full_url = "http://www.biquge5200.com/" + key_url + '/' + key_page
     try:
-        spider = Spider()
-        page, title = spider.get_page(full_url)
+        page, title = BookSpider.get_page(full_url)
     except ValueError:
         return redirect(url_for('novel.novel_chapters', key_url=key_url))
     else:
         key = [key_url, key_page]
         return render_template('novel/novel_page.html', page=page, title=title, key=key)
+
+
+@novel_blueprint.route('/novel/next_page')
+@admin_required
+def next_chapter():
+    key_url = request.args.get("key_url")
+    key_page = request.args.get("key_page")
+    key = request.args.get("key")
+    if key_url and key_page:
+        full_url = "http://www.biquge5200.com/" + key_url
+        book = BookSpider(full_url)
+        last_page, next_page = book.previous_and_next_chapters(full_url + '/' + key_page)
+        if key == "next":
+            return redirect(url_for("novel.novel_page", key_url=key_url, key_page=os.path.basename(next_page[0])))
+        elif key == "last":
+            return redirect(url_for("novel.novel_page", key_url=key_url, key_page=os.path.basename(last_page[0])))
+    abort(404)
 
 
 @novel_blueprint.route('/api/add_novel', methods=['POST'])
@@ -75,7 +93,7 @@ def add_novel():
     book_name = request.values.get('book_name')
     if book_name and book_link:
         # 这里有个爬取 作者 更新日期 创建日期为 自己加入书架的日期 本书状态 最新一章
-        image, author, modified_date, status, latest_chapter = Spider.get_message(book_link)
+        image, author, modified_date, status, latest_chapter = BookSpider.get_message(book_link)
         case = Book()
         case.name = book_name
         case.link = book_link

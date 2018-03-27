@@ -86,9 +86,9 @@ class BookSpider:
         return image, author, modified_date, status, latest_chapter
 
 
-if __name__ == '__main__':
-    # book = Book("http://www.biquge5200.com/85_85278/")
-    # print(book.get_chapters_and_introduce())
-    # print(book.previous_and_next_chapters("http://www.biquge5200.com/85_85278/153057121.html"))
-    items = Novel().search(keyword="变身")
-    print(items)
+# if __name__ == '__main__':
+#     book = BookSpider("http://www.biquge5200.com/85_85278")
+#     result = book.get_chapters_and_introduce()
+#     print(result[0])
+#     index = result[0].index(('https://www.biquge5200.com/85_85278/153219401.html', '第232章 核百万'))
+#     print(index)

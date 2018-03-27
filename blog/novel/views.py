@@ -50,7 +50,7 @@ def search():
 @novel_blueprint.route('/novel/<key_url>/')
 @admin_required
 def novel_chapters(key_url):
-    full_url = "http://www.biquge5200.com/" + key_url + '/'
+    full_url = "https://www.biquge5200.com/" + key_url + '/'
     book = BookSpider(url=full_url)
     chapters, introduce, title = book.get_chapters_and_introduce()
     return render_template('novel/novel_chapters.html', introduce=introduce, chapters=chapters, title=title)
@@ -59,7 +59,7 @@ def novel_chapters(key_url):
 @novel_blueprint.route('/novel/<key_url>/<key_page>')
 @admin_required
 def novel_page(key_url, key_page):
-    full_url = "http://www.biquge5200.com/" + key_url + '/' + key_page
+    full_url = "https://www.biquge5200.com/" + key_url + '/' + key_page
     try:
         page, title = BookSpider.get_page(full_url)
     except ValueError:
@@ -76,8 +76,9 @@ def next_chapter():
     key_page = request.args.get("key_page")
     key = request.args.get("key")
     if key_url and key_page:
-        full_url = "http://www.biquge5200.com/" + key_url
+        full_url = "https://www.biquge5200.com/" + key_url
         book = BookSpider(full_url)
+        print(full_url + '/' + key_page)
         last_page, next_page = book.previous_and_next_chapters(full_url + '/' + key_page)
         if key == "next":
             return redirect(url_for("novel.novel_page", key_url=key_url, key_page=os.path.basename(next_page[0])))

@@ -5,7 +5,7 @@ from blog.admin import admin_blueprint
 from werkzeug.utils import secure_filename
 from blog.main.views import db, login_required, current_user, request, redirect, \
     url_for, render_template, Post, User, Category, Tag, abort, current_app
-from extensions import check_file_type
+from extensions import check_file_type, logger
 
 
 @admin_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
@@ -75,6 +75,7 @@ def post_delete(user_id, post_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     post = Post.query.filter_by(id=post_id).first_or_404()
     if post.user_id == user.id:
+        logger.info('用户"{}"删除"{}"博文'.format(current_user.username, post.title))
         db.session.delete(post)
         db.session.commit()
         return redirect(url_for('my_admin.post_adminter', username=user.username))
@@ -87,6 +88,7 @@ def post_delete(user_id, post_id):
 def category_delete(user_id, category_id):
     if current_user.id == user_id:
         category = Category.query.filter_by(id=category_id).first_or_404()
+        current_app.logger.info('用户"{}"删除"{}"分类'.format(current_user.username, category.name))
         db.session.delete(category)
         db.session.commit()
         return redirect(url_for('my_admin.category_adminter', username=current_user.username))
@@ -99,6 +101,7 @@ def category_delete(user_id, category_id):
 def tag_delete(user_id, tag_id):
     if current_user.id == user_id:
         tag = Tag.query.filter_by(id=tag_id).first_or_404()
+        logger.info('用户"{}"删除"{}"标签'.format(current_user.username, tag.name))
         db.session.delete(tag)
         db.session.commit()
         return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
@@ -118,6 +121,7 @@ def post_edit(user_id, post_id):
     categories = Category.query.filter_by(user_id=current_user.id).all()
     cat = Category.query.filter_by(id=post.category_id).first()
     tags = Tag.query.filter_by(user_id=current_user.id).all()
+    title = post.title
     if request.method == 'POST':
         if post.user_id == user.id:
             post.title = request.values.get('title')
@@ -135,6 +139,7 @@ def post_edit(user_id, post_id):
                 db.session.commit()
             else:
                 post.category_id = request.values.get('category')
+                logger.info('用户"{}"修改了"{}"博文'.format(current_user.username, title))
                 db.session.add(post)
                 db.session.commit()
             return redirect(url_for('my_admin.post_adminter', username=user.username))
@@ -147,12 +152,14 @@ def post_edit(user_id, post_id):
 def category_edit(user_id, category_id):
     if current_user.id == user_id:
         category = Category.query.filter_by(id=category_id).first_or_404()
+        b_category_name = category.name
         if request.method == 'POST':
             category.name = request.values.get('category_name')
             category.modified_date = datetime.datetime.now()
             category.user_id = current_user.id
             db.session.add(category)
             db.session.commit()
+            logger.info('用户"{}"将分类"{}"修改为"{}"'.format(current_user.username, b_category_name, category.name))
             return redirect(url_for('my_admin.category_adminter', username=current_user.username))
         return render_template('blog/category_edit.html', category=category)
 
@@ -165,12 +172,14 @@ def category_edit(user_id, category_id):
 def tag_edit(user_id, tag_id):
     if current_user.id == user_id:
         tag = Tag.query.filter_by(id=tag_id).first_or_404()
+        b_tag_name = tag.name
         if request.method == 'POST':
             tag.name = request.values.get('tag_name')
             tag.modified_date = datetime.datetime.now()
             tag.user_id = current_user.id
             db.session.add(tag)
             db.session.commit()
+            logger.info('用户"{}"将标签"{}"修改为"{}"'.format(current_user.username, b_tag_name, tag.name))
             return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
         return render_template('blog/tag_edit.html', tag=tag)
     else:
@@ -188,7 +197,6 @@ def new_post():
         categories = Category.query.all()
         tags = Tag.query.all()
         if request.method == 'POST':
-            print(request.values.get('title'))
             post = Post(
                 title=request.values.get('title'),
                 text=request.values.get('context'),
@@ -204,6 +212,7 @@ def new_post():
                     post.tags.append(tag)
             db.session.add(post)
             db.session.commit()
+            logger.info('用户"{}"新增了"{}"博文'.format(current_user.username, post.title))
             return redirect(url_for('my_admin.post_adminter', username=current_user.username))
         return render_template('blog/new_post.html', categories=categories, tags=tags)
     else:
@@ -222,6 +231,7 @@ def new_category():
             category.user_id = current_user.id
             db.session.add(category)
             db.session.commit()
+            logger.info('用户"{}"新增了"{}"分类'.format(current_user.username, category.name))
             return redirect(url_for('my_admin.category_adminter', username=current_user.username))
         return render_template('blog/new_category.html')
     else:
@@ -240,6 +250,7 @@ def new_tag():
             tag.user_id = current_user.id
             db.session.add(tag)
             db.session.commit()
+            logger.info('用户"{}"新增了"{}"标签'.format(current_user.username, tag.name))
             return redirect(url_for('my_admin.tag_adminter', username=current_user.username))
         return render_template('blog/new_tag.html')
     else:
@@ -265,6 +276,7 @@ def upload_portrait():
                 db.session.add(user)
                 db.session.commit()
                 file.save(os.path.join(path, filename))
+                logger.info('用户"{}"修改头像为"{}"'.format(current_user.username, filename))
                 return redirect(url_for('my_admin.user_detail', username=current_user.username))
             return '文件不存在'
         else:

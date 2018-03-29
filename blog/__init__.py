@@ -1,7 +1,8 @@
 from flask import Flask
 # from blog.main.admin import admin
 from config import BaseConfig
-from extensions import db, login_manager, oauth, date_filter, null_filter, url_filter, page_filter, isdir, relative_path
+from extensions import db, login_manager, oauth, date_filter, null_filter, url_filter, page_filter, isdir,\
+    relative_path
 
 
 def create_app():

@@ -5,6 +5,8 @@ from flask_login import LoginManager, current_user
 from flask_oauthlib.client import OAuth
 from datetime import datetime
 from flask import current_app
+from logging.handlers import RotatingFileHandler
+import logging
 
 db = SQLAlchemy()
 oauth = OAuth()
@@ -27,6 +29,16 @@ github = oauth.remote_app(
     access_token_url='https://github.com/login/oauth/access_token',
     authorize_url='https://github.com/login/oauth/authorize'
 )
+
+
+# 日志配置
+logger = logging.getLogger("blog_info")
+logger.setLevel(logging.INFO)
+handler = RotatingFileHandler('blog.log', encoding='utf8', maxBytes=10000, backupCount=1)
+logging_format = logging.Formatter(
+    '[%(asctime)s] [%(levelname)s] [%(filename)s: %(funcName)s: %(lineno)s] -> "%(message)s"')
+handler.setFormatter(logging_format)
+logger.addHandler(handler)
 
 
 # '2017-12-13 16:40:48.873676'

@@ -4,7 +4,7 @@ import os
 from . import novel_blueprint
 from flask import render_template, request, redirect, url_for, abort
 from blog.main.models import Book
-from extensions import db
+from extensions import db, logger
 from functools import wraps
 from flask_login import current_user
 from .spider import Novel, BookSpider
@@ -106,6 +106,7 @@ def add_novel():
             db.session.commit()
         except sqlalchemy.exc.IntegrityError:
             return "无法再次添加书籍"
+        logger.info('用户"{}"将"{}"加入了书架'.format(current_user.username, book_name))
         return '添加成功', 200
     else:
         return 'fail', 402

@@ -5,7 +5,7 @@ import sqlalchemy
 from blog.main import main_blueprint
 from flask import render_template, request, redirect, url_for, session, abort, current_app
 from blog.main.models import User, Post, Category, Tag
-from extensions import db, github
+from extensions import db, github, logger
 from flask_login import login_user, logout_user, login_required, current_user
 
 
@@ -65,9 +65,11 @@ def register():
             db.session.add(user)
             db.session.commit()
         except sqlalchemy.exc.IntegrityError:
+            logger.error("注册失败-> 密码或用户名已被他人所占用")
             return "密码或用户名已被他人所占用"
         else:
             login_user(user)
+            logger.info('用户 "{}" 注册成功'.format(user.username))
             return redirect(url_for('main.index'))
     return render_template('blog/register.html')
 
@@ -79,10 +81,12 @@ def login():
         user2 = User.query.filter_by(email=request.values.get('username')).first()
         if user is not None and user.verify_password(request.values.get('password')):
             login_user(user, remember=request.values.get('remember-me'))
+            logger.info('用户 "{}" 登陆成功'.format(user.username))
             return redirect(url_for('main.index'))
 
         if user2 is not None and user2.verify_password(request.values.get('password')):
             login_user(user2, remember=request.values.get('remember-me'))
+            logger.info('用户"{}"登陆成功'.format(user.username))
             return redirect(url_for('main.index'))
         else:
             abort(404)
@@ -92,6 +96,7 @@ def login():
 @main_blueprint.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
+    logger.info('用户"{}"注销成功'.format(current_user.username))
     logout_user()
     return redirect(url_for('main.index'))
 
@@ -168,8 +173,10 @@ def authorized():
         db.session.add(user)
         db.session.commit()
         login_user(user)
+        logger.info('GITHUB 用户"{}"注册并登录成功'.format(current_user.username))
     else:
         login_user(user)
+        logger.info('GITHUB 用户"{}"登陆成功'.format(current_user.username))
     return redirect(url_for('main.index'))
 
 

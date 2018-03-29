@@ -4,7 +4,7 @@ import os
 from . import cloud_hub_blueprint
 from flask import request, render_template, current_app, make_response, send_from_directory, abort, redirect, url_for
 from flask_login import current_user, login_required
-from extensions import check_file_type
+from extensions import check_file_type, logger
 
 
 def foreach(root_dir):
@@ -58,6 +58,7 @@ def cloud_hub_uploads():
             if not os.path.exists(path):
                 os.makedirs(path)  # 如果不存在这样的路径那么直接创键这样的目录
             file.save(os.path.join(path, file.filename))
+            logger.info('用户"{}"上传了"{}"文件'.format(current_user.username, file.filename))
             return "upload success"
         return '文件不存在', 404
     return render_template('cloud_hub/cloud_hub_index.html')
@@ -77,6 +78,7 @@ def download_file(abspath):
     if os.path.exists(abspath):
         res = make_response(
             send_from_directory(os.path.dirname(abspath), os.path.basename(abspath), as_attachment=True), 200)
+        logger.info('用户"{}"下载了"{}"文件'.format(current_user.username, os.path.basename(abspath)))
         # 中文的话 先编码再解码为latin-1
         res.headers["Content-Disposition"] = "attachment; filename={}".format(
             os.path.basename(abspath).encode().decode('latin-1'))
@@ -96,10 +98,10 @@ def cloud_hub_download():
 @login_required
 def cloud_hub_add_folder():
     parent_dir, dir_name = request.values.get('parent_dir'), request.values.get('dir_name')
-    print(parent_dir, dir_name)
     if os.path.exists(parent_dir) and not os.path.exists(dir_name):
         if not os.path.exists(os.path.join(parent_dir, dir_name)):
             os.mkdir(os.path.join(parent_dir, dir_name))
+            logger.info('用户"{}"在"{}"新建了"{}"文件夹'.format(current_user.username, parent_dir,dir_name))
             return redirect(url_for('cloud_hub.cloud_hub_folders', path=parent_dir))
         else:
             return '文件已存在'

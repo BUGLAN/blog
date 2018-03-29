@@ -187,7 +187,7 @@ class Book(db.Model):
     __tablename__ = 'book'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25), unique=True)
+    name = db.Column(db.String(25))
     link = db.Column(db.String(128))
     latest_chapter = db.Column(db.String(128))
     status = db.Column(db.String(25))
@@ -197,8 +197,9 @@ class Book(db.Model):
     publish_date = db.Column(db.DateTime)
     # 创建日期
     modified_date = db.Column(db.DateTime)
-
     # 最后更新日期
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    users = db.relationship('User', backref='books')
 
     def __init__(self):
         super(Book, self).__init__()

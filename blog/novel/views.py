@@ -78,7 +78,6 @@ def next_chapter():
     if key_url and key_page:
         full_url = "https://www.biquge5200.com/" + key_url
         book = BookSpider(full_url)
-        print(full_url + '/' + key_page)
         last_page, next_page = book.previous_and_next_chapters(full_url + '/' + key_page)
         if key == "next":
             return redirect(url_for("novel.novel_page", key_url=key_url, key_page=os.path.basename(next_page[0])))
@@ -101,14 +100,17 @@ def add_novel():
         case.author = author
         case.modified_date = modified_date
         case.latest_chapter = latest_chapter
+        case.users = current_user
         try:
             db.session.add(case)
             db.session.commit()
         except sqlalchemy.exc.IntegrityError:
+            logger.info('用户"{}"无法再次添加书籍'.format(current_user.username))
             return "无法再次添加书籍"
         logger.info('用户"{}"将"{}"加入了书架'.format(current_user.username, book_name))
         return '添加成功', 200
     else:
+        logger.info("请求格式正确, 但由于语法错误, 无法响应")
         return 'fail', 402
         # 请求格式正确, 但由于语法错误, 无法响应
 
@@ -116,7 +118,7 @@ def add_novel():
 @novel_blueprint.route('/novel/case')
 @admin_required
 def novel_cases():
-    cases = Book.query.order_by(Book.publish_date.desc())
+    cases = Book.query.filter_by(user_id=current_user.id).order_by(Book.publish_date.desc())
     return render_template('novel/novel_cases.html', cases=cases)
 
 
@@ -128,6 +130,7 @@ def delete_novel():
     try:
         db.session.delete(book)
         db.session.commit()
-    except sqlalchemy.orm.exc.UnmappedInstanceError:
+    except sqlalchemy.orm.exc.UnmappedInstanceError as e:
+        logger.error(e)
         return "移除失败"
     return redirect(url_for('novel.novel_cases'))

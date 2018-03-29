@@ -20,8 +20,8 @@ login_manager.login_message_category = 'info'
 # github第三方登录
 github = oauth.remote_app(
     'github',
-    consumer_key="a31b4764b4142a744dda",
-    consumer_secret="1d75c970999542f122fc36d86db7e31b2a8a0b25",
+    consumer_key="541cf3be6df01cbe7a87",
+    consumer_secret="0130a4662802a1e7467d1964d2c88022b9d7e5e2",
     request_token_params={'scope': 'user:email'},
     base_url="https://api.github.com/",
     request_token_url=None,

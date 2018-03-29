@@ -1,3 +1,4 @@
+from extensions import logger
 import requests
 
 headers = {
@@ -19,7 +20,7 @@ class DownLoad:
                 else:
                     r = requests.get(url, headers=headers, timeout=1.5)
             except requests.exceptions.ConnectionError as e:
-                print(e)
+                logger.error(e)
             else:
                 r.encoding = r.apparent_encoding
                 return r.text

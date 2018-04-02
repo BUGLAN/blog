@@ -64,7 +64,8 @@ class BookSpider:
         html = DownLoad.download_page(page_url)
         try:
             title = re.search('<h1>(.*?)</h1>', html).group()
-            content = re.compile('<div id="content">　　(.*?)</div>', re.S).findall(html)[0]
+            content = re.compile('<div id="content">(.*?)</div>', re.S).findall(html)[0]
+            content = re.sub(r'想看好看的小说，请使用微信关注公众号“得牛看书”。', '', content)
         except IndexError as e:
             # content = re.compile('<div id="content">    (.*?)</div>', re.S).findall(html)
             # if content:
@@ -84,7 +85,6 @@ class BookSpider:
         status = re.findall(r'<meta property="og:novel:status" content="(.*?)"/>', html)[0]
         latest_chapter = re.findall(r"<dd><a href='.*?' >(.*?)</a></dd>", html)[0]
         return image, author, modified_date, status, latest_chapter
-
 
 # if __name__ == '__main__':
 #     book = BookSpider("http://www.biquge5200.com/85_85278")

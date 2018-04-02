@@ -1,0 +1,126 @@
+{% extends 'admin.html' %}
+
+{% block title %}文章管理{% endblock %}
+
+{% block adminter %}
+    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-admin">
+{% endblock %}
+
+{% block body %}
+    <div class="admin-content">
+        <div class="admin-content-body">
+            <div class="am-cf am-padding am-padding-bottom-0">
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">权限</strong> /
+                    <small>管理</small>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="am-btn-toolbar">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <a href="" class="am-btn am-btn-default"><span
+                                    class="am-icon-plus"></span> 新增</a>
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存
+                            </button>
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核
+                            </button>
+                            <button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-form-group">
+                        <select data-am-selected="{btnSize: 'sm'}">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-input-group am-input-group-sm">
+                        <input type="text" class="am-form-field">
+                        <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button">搜索</button>
+          </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <div class="am-form">
+                        <table class="am-table am-table-striped am-table-hover table-main">
+                            <thead>
+                            <tr>
+                                <th class="table-check"><input type="checkbox"/></th>
+                                <th class="table-id">ID</th>
+                                <th class="table-title">用户名</th>
+                                <th class="table-type">邮箱</th>
+                                <th class="table-author am-hide-sm-only">权限</th>
+                                <th class="table-date am-hide-sm-only">注册日期</th>
+                                <th class="table-set">权限</th>
+                                <th class="table-set">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <form action="{{ url_for('my_admin.distribution_permission') }}" method="post">
+                                        <td><input type="checkbox"/></td>
+                                        <td>{{ user.id }}</td>
+                                        <td><a href="#">{{ user.username }}</a></td>
+                                        <td>{{ user.email }}</td>
+                                        <td class="am-hide-sm-only">{{ user.role }}</td>
+                                        <td class="am-hide-sm-only">{{ user.publish_date }}</td>
+                                        <td>
+                                            <select name="permission" id="" style="width: 50%">
+                                                <option value="User">
+                                                    User权限
+                                                </option>
+                                                <option value="Admin">
+                                                    Admin权限
+                                                </option>
+                                                <option value="ADMINISTRATOR">
+                                                    ADMINISTRATOR权限
+                                                </option>
+                                            </select>
+                                            <input type="text" style="display:none" value="{{ user.id }}"
+                                                   name="user_id">
+                                            </select>
+                                        </td>
+                                        <th><input type="submit" value="分配权限" class="am-btn am-btn-default"></th>
+                                        </th>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="am-cf">
+                            共0位用户
+                            <div class="am-fr">
+                                <ul class="am-pagination">
+                                    <li class="am-disabled"><a href="#">«</a></li>
+                                    <li class="am-active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

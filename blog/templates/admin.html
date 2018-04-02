@@ -27,7 +27,7 @@
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-            <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span
+            <li><a href="javascript:"><span class="am-icon-envelope-o"></span> 收件箱 <span
                     class="am-badge am-badge-warning">5</span></a></li>
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
@@ -67,7 +67,9 @@
                             class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
                     <li><a href=""><span class="am-icon-th"></span> 个人相册<span
                             class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-                    <li><a href=""><span class="am-icon-puzzle-piece"></span> 个人简介</a></li>
+                {% if current_user.role.permissions == 255 %}
+                    <li><a href="{{ url_for('my_admin.permission_manager') }}"><span class="am-icon-puzzle-piece"></span> 权限管理</a></li>
+                {% endif %}
                     <li><a href=""><span class="am-icon-calendar"></span> 系统日志</a></li>
                     <li><a href=""><span class="am-icon-bug"></span> 404</a></li>
                     </ul>

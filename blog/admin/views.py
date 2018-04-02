@@ -5,7 +5,10 @@ from blog.admin import admin_blueprint
 from werkzeug.utils import secure_filename
 from blog.main.views import db, login_required, current_user, request, redirect, \
     url_for, render_template, Post, User, Category, Tag, abort, current_app
+from blog.main.models import Role
 from extensions import check_file_type, logger
+from blog.novel.views import admin_required
+from sqlalchemy import or_
 
 
 @admin_blueprint.route('/user/<username>/user_detail', methods=['GET', 'POST'])
@@ -283,3 +286,30 @@ def upload_portrait():
             return {"error": "the way is not post or get"}
     else:
         return '您没有权限访问'
+
+
+@admin_blueprint.route('/admin/permissions')
+@admin_required
+def permission_manager():
+    user_role = Role.query.filter_by(name='User').first()
+    admin_role = Role.query.filter_by(name='Admin').first()
+    users = User.query.filter(or_(User.role == user_role, User.role == admin_role)).order_by(User.publish_date.desc())
+    return render_template('blog/permissions_manager.html', users=users)
+
+
+@admin_blueprint.route('/distribution/permissions', methods=['POST'])
+@admin_required
+def distribution_permission():
+    permission_name = request.form.get('permission')
+    user_id = request.form.get('user_id')
+    user = User.query.get(int(user_id))
+    if user:
+        role = Role.query.filter_by(name=permission_name).first()
+        if role:
+            b_permission = user.role.name
+            user.role = role
+            db.session.add(user)
+            db.session.commit()
+            logger.info('管理员{}将{}的权限从<{}>改为<{}>'.format(current_user.username, user.username, b_permission, user.role.name))
+            return redirect(url_for('my_admin.permission_manager'))
+    abort(404)

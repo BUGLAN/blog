@@ -24,10 +24,17 @@ def filter_markdown(posts):
     return posts
 
 
+@main_blueprint.route('/posts')
 @main_blueprint.route('/')
-@main_blueprint.route('/post/<int:page>')
-def index(page=1):
-    pagination = Post.query.order_by(Post.publish_date.desc()).paginate(page, 5, error_out=False)
+def index():
+    page = request.args.get('page')
+    if not page:
+        page = 1
+    if current_user.is_active:
+        pagination = Post.query.filter(Post.user_id == current_user.id).\
+            order_by(Post.publish_date.desc()).paginate(int(page), 5, error_out=False)
+    else:
+        pagination = Post.query.order_by(Post.publish_date.desc()).paginate(int(page), 5, error_out=False)
     posts = pagination.items
     categories, tags = sidebar_date()
     posts = filter_markdown(posts)

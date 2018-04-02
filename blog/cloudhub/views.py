@@ -2,7 +2,7 @@
 import os
 
 from . import cloud_hub_blueprint
-from flask import request, render_template, current_app, make_response, send_from_directory, abort, redirect, url_for
+from flask import request, render_template, current_app, make_response, send_from_directory, redirect, url_for
 from flask_login import current_user, login_required
 from extensions import check_file_type, logger
 
@@ -25,6 +25,8 @@ def foreach(root_dir):
 @login_required
 def cloud_hub_index():
     root_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], current_user.username)
+    if not os.path.exists(root_dir):
+        os.makedirs(root_dir)
     file_dirs = foreach(root_dir)
     return render_template('cloud_hub/cloud_index.html', files=file_dirs, parent_dir=root_dir)
 

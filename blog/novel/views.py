@@ -6,17 +6,17 @@ from flask import render_template, request, redirect, url_for, abort
 from blog.main.models import Book
 from extensions import db, logger
 from functools import wraps
-from flask_login import current_user
+from flask_login import current_user, login_required
 from .spider import Novel, BookSpider
 
 
 def poster_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
-        if current_user:
+        if current_user.is_active:
             if current_user.is_poster() or current_user.is_admin():
                 return f(*args, **kwargs)
-        abort(403)
+        return redirect(url_for('main.login'))
         # 403 服务器理解客户的请求，但拒绝处理它，通常由于服务器上文件或目录的权限设置导致的WEB访问错误
 
     return decorator
@@ -28,14 +28,13 @@ def admin_required(f):
         if current_user.is_active:
             if current_user.is_admin():
                 return f(*args, **kwargs)
-        abort(403)
+        return redirect(url_for('main.login'))
         # 403 服务器理解客户的请求，但拒绝处理它，通常由于服务器上文件或目录的权限设置导致的WEB访问错误
 
     return decorator
 
 
 @novel_blueprint.route('/novel/search')
-@admin_required
 def search():
     keyword = request.args.get('keyword')
     items = Novel().search(keyword=keyword)
@@ -48,7 +47,6 @@ def search():
 
 
 @novel_blueprint.route('/novel/<key_url>/')
-@admin_required
 def novel_chapters(key_url):
     full_url = "https://www.biquge5200.com/" + key_url + '/'
     book = BookSpider(url=full_url)
@@ -57,7 +55,6 @@ def novel_chapters(key_url):
 
 
 @novel_blueprint.route('/novel/<key_url>/<key_page>')
-@admin_required
 def novel_page(key_url, key_page):
     full_url = "https://www.biquge5200.com/" + key_url + '/' + key_page
     try:
@@ -70,7 +67,6 @@ def novel_page(key_url, key_page):
 
 
 @novel_blueprint.route('/novel/next_page')
-@admin_required
 def next_chapter():
     key_url = request.args.get("key_url")
     key_page = request.args.get("key_page")
@@ -87,7 +83,7 @@ def next_chapter():
 
 
 @novel_blueprint.route('/api/add_novel', methods=['POST'])
-@admin_required
+@login_required
 def add_novel():
     book_link = request.values.get('link')
     book_name = request.values.get('book_name')
@@ -116,14 +112,14 @@ def add_novel():
 
 
 @novel_blueprint.route('/novel/case')
-@admin_required
+@poster_required
 def novel_cases():
     cases = Book.query.filter_by(user_id=current_user.id).order_by(Book.publish_date.desc())
     return render_template('novel/novel_cases.html', cases=cases)
 
 
 @novel_blueprint.route('/api/delete_novel', methods=['POST'])
-@admin_required
+@poster_required
 def delete_novel():
     name = request.values.get('book_name')
     book = Book.query.filter_by(name=name).first()

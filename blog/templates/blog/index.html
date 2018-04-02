@@ -8,19 +8,23 @@
         <div class="am-g">
             <div class="am-u-md-8 main">
 
-                    <ul class="am-list am-list-static am-list-border">
-                        {% for post in posts %}
-                            <li>
-                                <span class="am-badge am-badge-success am-text-default">{{ post.publish_date }}</span>
-                                <a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                <ul class="am-list am-list-static am-list-border">
+                    {% for post in posts %}
+                        <li>
+                            <span class="am-badge am-badge-success am-text-default">{{ post.publish_date }}</span>
+                            <a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
 
                 <hr class="am-article-divider">
                 <ul class="am-pagination blog-pagination">
-                    <li class="am-pagination-prev"><a href="">&laquo; 上一页</a></li>
-                    <li class="am-pagination-next"><a href="">下一页 &raquo;</a></li>
+                    {% if pagination.has_prev %}
+                        <li class="am-pagination-prev"><a href="{{ url_for('main.index', page=pagination.prev_num) }}">&laquo; 上一页</a></li>
+                    {% endif %}
+                    {% if pagination.has_next %}
+                        <li class="am-pagination-next"><a href="{{ url_for('main.index', page=pagination.next_num) }}">下一页 &raquo;</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="am-u-md-4 main">
@@ -42,7 +46,7 @@
 
                 <div class="am-panel am-panel-success">
                     <div class="am-panel-hd">
-                        <h3 class="am-panel-title">最近文章</h3>
+                        <h3 class="am-panel-title">火爆文章</h3>
                     </div>
                     <div class="am-panel-bd">
                         <ul class="am-list  am-list-border">

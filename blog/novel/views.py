@@ -2,12 +2,26 @@ import sqlalchemy
 import os
 
 from . import novel_blueprint
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, current_app
 from blog.main.models import Book
 from extensions import db, logger
 from functools import wraps
 from flask_login import current_user, login_required
 from .spider import Novel, BookSpider
+
+"""
+@wraps(func)
+    def decorated_view(*args, **kwargs):
+        if request.method in EXEMPT_METHODS:
+            return func(*args, **kwargs)
+        elif current_app.login_manager._login_disabled:
+            return func(*args, **kwargs)
+        elif not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
+        return func(*args, **kwargs)
+    return decorated_view
+
+"""
 
 
 def poster_required(f):
@@ -16,7 +30,7 @@ def poster_required(f):
         if current_user.is_active:
             if current_user.is_poster() or current_user.is_admin():
                 return f(*args, **kwargs)
-        return redirect(url_for('main.login'))
+        return current_app.login_manager.unauthorized()
         # 403 服务器理解客户的请求，但拒绝处理它，通常由于服务器上文件或目录的权限设置导致的WEB访问错误
 
     return decorator
@@ -28,7 +42,7 @@ def admin_required(f):
         if current_user.is_active:
             if current_user.is_admin():
                 return f(*args, **kwargs)
-        return redirect(url_for('main.login'))
+        return current_app.login_manager.unauthorized()
         # 403 服务器理解客户的请求，但拒绝处理它，通常由于服务器上文件或目录的权限设置导致的WEB访问错误
 
     return decorator

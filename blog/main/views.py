@@ -89,15 +89,15 @@ def login():
         if user is not None and user.verify_password(request.values.get('password')):
             login_user(user, remember=request.values.get('remember-me'))
             logger.info('用户 "{}" 登陆成功'.format(user.username))
-            return redirect(url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('main.index'))
 
         if user2 is not None and user2.verify_password(request.values.get('password')):
             login_user(user2, remember=request.values.get('remember-me'))
             logger.info('用户"{}"登陆成功'.format(user.username))
-            return redirect(url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('main.index'))
         else:
             abort(404)
-    return render_template('blog/login.html')
+    return render_template('blog/login.html', next=request.args.get('next'))
 
 
 @main_blueprint.route('/logout', methods=['GET', 'POST'])

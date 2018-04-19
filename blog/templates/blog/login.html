@@ -17,7 +17,7 @@
             <br>
             <br>
 
-            <form method="post" class="am-form" action="{{ url_for('main.login') }}">
+            <form method="post" class="am-form" action="{{ url_for('main.login', next=next) }}">
                 <label for="">用户名</label>
                 <input type="text" name="username" id="email">
                 <br>

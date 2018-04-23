@@ -209,6 +209,25 @@ class Book(db.Model):
         return "<Book %r>" % self.name
 
 
+class Comment(db.Model):
+    __tablename__ = 'comment'
+
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text)
+    comment_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 回复评论的用户
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    publish_date = db.Column(db.DateTime)
+    modified_date = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __init__(self):
+        super(Comment, self).__init__()
+        self.publish_date = datetime.now()
+        self.modified_date = datetime.now()
+
+    def __repr__(self):
+        return '<Comment %r>' % self.content[:50]
+
 # User -> Post 一对多
 # Category -> Post 一对多
 # Post -> Tag 多对多

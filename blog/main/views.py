@@ -4,7 +4,7 @@ import sqlalchemy
 
 from blog.main import main_blueprint
 from flask import render_template, request, redirect, url_for, session, abort, current_app
-from blog.main.models import User, Post, Category, Tag
+from blog.main.models import User, Post, Category, Tag, Comment
 from extensions import db, github, logger
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -108,8 +108,21 @@ def logout():
     return redirect(url_for('main.index'))
 
 
-@main_blueprint.route('/post/<int:page>/detail')
+@main_blueprint.route('/post/<int:page>/detail', methods=['GET', 'POST'])
 def detail(page):
+    if request.method == 'POST':
+        if current_user.is_active:
+            content = request.form.get('comment')
+            if content:
+                comment = Comment()
+                comment.content = content
+                comment.user_id = current_user.id
+                db.session.add(comment)
+                db.session.commit()
+            return redirect(url_for('main.detail', page=page))
+        else:
+            return abort(400)
+
     post = Post.query.get(page)
     categories, tags = sidebar_date()
     post.text = markdown.markdown(post.text,
@@ -118,7 +131,8 @@ def detail(page):
                                       'markdown.extensions.codehilite',
                                       'markdown.extensions.toc',
                                   ])
-    return render_template('blog/detail.html', post=post, categories=categories, tags=tags)
+    comments = Comment.query.all()
+    return render_template('blog/detail.html', post=post, categories=categories, tags=tags, page=page, comments=comments)
 
 
 @main_blueprint.route('/category/<string:categories>/<int:page>')
@@ -170,9 +184,10 @@ def authorized():
     me = github.get('user')
     user = User.query.filter_by(username=me.data.get('login')).first()
     if not user:
+        from random import randint
         user = User(
             username=me.data.get('login'),
-            password="123456",
+            password=str(randint(100000, 10000000)),
             publish_date=datetime.datetime.now()
         )
         # 这里的password下次使用随机的密码

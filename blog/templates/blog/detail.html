@@ -14,6 +14,15 @@
                     <br>
                     {{ post.text | safe }}
                     <hr class="am-article-divider">
+                    <ul>
+                    {% for comment in comments %}
+                        <li>{{ comment.content }} -- {{ comment.publish_date }}</li>
+                    {% endfor %}
+                    </ul>
+                    <form action="{{ url_for('main.detail', page=page) }}" method="post">
+                        <input type="text" name="comment">
+                        <input type="submit" value="评论">
+                    </form>
                 </div>
             </div>
 

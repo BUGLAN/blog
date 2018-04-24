@@ -62,7 +62,7 @@ class User(db.Model):
     publish_date = db.Column(db.DateTime)
     modified_date = db.Column(db.DateTime)
     head_portrait = db.Column(db.String(256), default='user/BUGLAN/L3.png')
-    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    posts = db.relationship('Post', backref='users', lazy='dynamic')
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), default=Permission.USER)
 
     # ---- 权限控制 ----
@@ -214,10 +214,12 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
-    comment_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 回复评论的用户
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     publish_date = db.Column(db.DateTime)
     modified_date = db.Column(db.DateTime)
+    users = db.relationship('User', backref='comments')
+    posts = db.relationship('Post', backref='comments')
+    replies = db.relationship('Reply', backref='comments')
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self):
@@ -227,6 +229,28 @@ class Comment(db.Model):
 
     def __repr__(self):
         return '<Comment %r>' % self.content[:50]
+
+
+class Reply(db.Model):
+    __tablename__ = 'reply'
+
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text)
+    publish_date = db.Column(db.DateTime)
+    modified_date = db.Column(db.DateTime)
+    users = db.relationship('User', backref='replies')
+    posts = db.relationship('Post', backref='replies')
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+
+    def __init__(self):
+        super(Reply, self).__init__()
+        self.publish_date = datetime.now()
+        self.modified_date = datetime.now()
+
+    def __repr__(self):
+        return '<Reply %r to Comment %r>' % (self.content[:10], Comment.query.get(self.comment_id).content[:10])
 
 # User -> Post 一对多
 # Category -> Post 一对多

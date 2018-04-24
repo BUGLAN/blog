@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}BUGLAN的个人小站{% endblock %}
+
+
+{% block body %}
+    <div class="am-container">
+        <div class="am-g">
+            <div class="am-u-md-8 main">
+
+                <ul class="am-list am-list-static am-list-border">
+                    {% for post in posts %}
+                        <li>
+                            <span class="am-badge am-badge-success am-text-default">{{ post.publish_date }}</span>
+                            <a href="{{ url_for('main.detail', page=post.id) }}">{{ post.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <hr class="am-article-divider">
+                <ul class="am-pagination blog-pagination">
+                    {% if pagination.has_prev %}
+                        <li class="am-pagination-prev"><a href="{{ url_for('main.my_posts', page=pagination.prev_num) }}">&laquo; 上一页</a></li>
+                    {% endif %}
+                    {% if pagination.has_next %}
+                        <li class="am-pagination-next"><a href="{{ url_for('main.my_posts', page=pagination.next_num) }}">下一页 &raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="am-u-md-4 main">
+                <div class="am-panel am-panel-success">
+                    <div class="am-panel-hd">
+                        <h3 class="am-panel-title">标签云</h3>
+                    </div>
+                    <div class="am-panel-bd">
+                        {% if tags == [] %}
+                            <h1>还没有标签呢,快来创建吧!</h1>
+                        {% else %}
+                            {% for tag in tags %}
+                                <a href="{{ url_for('main.show_tag', tags=tag.name, page=1) }}"><span
+                                        class="am-badge am-text-lg tag">{{ tag.name }}</span></a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="am-panel am-panel-success">
+                    <div class="am-panel-hd">
+                        <h3 class="am-panel-title">火爆文章</h3>
+                    </div>
+                    <div class="am-panel-bd">
+                        <ul class="am-list  am-list-border">
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                            <li>
+                                <a href="">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

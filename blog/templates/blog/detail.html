@@ -8,17 +8,122 @@
             <div class="am-u-md-8 main">
                 <div class="am-u-sm-12 am-article">
                     <h1 class="am-article-title am-text-center"><strong>{{ post.title }}</strong></h1>
-                    <p class="am-article-meta am-text-center">作者 | {{ post.publish_date }}</p>
+                    <p class="am-article-meta am-text-center">{{ post.users.username }} | {{ post.publish_date }}</p>
                 </div>
                 <div class="blog-main">
                     <br>
                     {{ post.text | safe }}
                     <hr class="am-article-divider">
-                    <ul>
-                    {% for comment in comments %}
-                        <li>{{ comment.content }} -- {{ comment.publish_date }}</li>
-                    {% endfor %}
-                    </ul>
+                    {% set comments = post.comments %}
+                    {% if comments %}
+                        {% for comment in comments %}
+                            <article class="am-comment">
+                                <a href="#link-to-user-home">
+                                    <img src="{{ url_for('static', filename=comment.users.head_portrait) }}" alt=""
+                                         class="am-comment-avatar" width="48" height="48"/>
+                                </a>
+
+                                <div class="am-comment-main">
+                                    <header class="am-comment-hd">
+                                        <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                        <div class="am-comment-meta">
+                                            <a href="#link-to-user"
+                                               class="am-comment-author">{{ comment.users.username }}</a>
+                                            评论于
+                                            <time>
+                                                {{ comment.publish_date }}
+                                            </time>
+                                        </div>
+                                    </header>
+
+                                    <div class="am-comment-bd">
+                                        {{ comment.content }}
+                                    </div>
+                                    <footer class="am-comment-footer">
+                                        <div class="am-comment-actions"><a href=""><i class="am-icon-thumbs-up"></i></a>
+                                            <a
+                                                    href=""><i class="am-icon-thumbs-down"></i></a> <a href="#"
+                                                                                                       onclick="showForm('comment-{{ comment.id }}')"><i
+                                                    class="am-icon-comment-o"></i></a></div>
+                                    </footer>
+                                    <form class="am-form-inline center-block" role="form"
+                                          action="{{ url_for('main.reply_comment', page=page) }}"
+                                          id="comment-{{ comment.id }}" style="display: none;" method="post">
+                                        <div class="am-form-group">
+                                            <input type="text" name="post_id" value="{{ post.id }}"
+                                                   style="display: none;">
+                                        </div>
+                                        <div class="am-form-group">
+                                            <input type="text" name="comment_id" value="{{ comment.id }}"
+                                                   style="display: none;">
+                                        </div>
+                                        <div class="am-form-group">
+                                            <input type="text " name="content" class="am-form-field">
+                                        </div>
+                                        <input type="submit" value="回复" class="am-btn am-btn-default am-form-group">
+                                    </form>
+                                    {% if comment.replies %}
+                                        <br>
+                                        {% for reply in comment.replies %}
+                                            <article class="am-comment">
+                                                <a href="#link-to-user-home">
+                                                    <img src="{{ url_for('static', filename=reply.users.head_portrait) }}"
+                                                         alt=""
+                                                         class="am-comment-avatar" width="48" height="48"/>
+                                                </a>
+
+                                                <div class="am-comment-main">
+                                                    <header class="am-comment-hd">
+                                                        <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                                        <div class="am-comment-meta">
+                                                            <a href="#link-to-user"
+                                                               class="am-comment-author">{{ reply.users.username }}</a>
+                                                            回复 <a href="#link-to-user"
+                                                                  class="am-comment-author">{{ reply.comments.users.username }}</a>
+                                                            <time>
+                                                                {{ reply.publish_date }}
+                                                            </time>
+                                                        </div>
+                                                    </header>
+
+                                                    <div class="am-comment-bd">
+                                                        {{ reply.content }}
+                                                    </div>
+                                                    <footer class="am-comment-footer">
+                                                        <div class="am-comment-actions"><a href=""><i
+                                                                class="am-icon-thumbs-up"></i></a>
+                                                            <a href=""><i class="am-icon-thumbs-down"></i></a> <a
+                                                                    onclick="showForm('reply-{{ reply.id }}')"><i
+                                                                    class="am-icon-comment-o"></i></a></div>
+                                                    </footer>
+                                                </div>
+                                            </article>
+                                            <form class="am-form-inline center-block" role="form"
+                                                  action="{{ url_for('main.reply_comment', page=page) }}"
+                                                  id="reply-{{ reply.id }}" style="display: none;" method="post">
+                                                <div class="am-form-group">
+                                                    <input type="text" name="post_id" value="{{ post.id }}"
+                                                           style="display: none;">
+                                                </div>
+                                                <div class="am-form-group">
+                                                    <input type="text" name="comment_id" value="{{ comment.id }}"
+                                                           style="display: none;">
+                                                </div>
+                                                <div class="am-form-group">
+                                                    <input type="text " name="content" class="am-form-field">
+                                                </div>
+                                                <input type="submit" value="回复"
+                                                       class="am-btn am-btn-default am-form-group">
+                                            </form>
+                                            <br>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                </div>
+                            </article>
+                            <br>
+                        {% endfor %}
+                    {% endif %}
                     <form action="{{ url_for('main.detail', page=page) }}" method="post">
                         <input type="text" name="comment">
                         <input type="submit" value="评论">
@@ -64,6 +169,14 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        function showForm(form_id) {
+            $('#' + form_id).toggle()
+        }
+    </script>
 {% endblock %}
 
 

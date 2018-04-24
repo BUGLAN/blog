@@ -28,7 +28,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav">
                 <li class="#"><a href="{{ url_for('main.index') }}">首页</a></li>
                 <li><a href="{{ url_for('main.archive') }}">分类</a></li>
-                <li><a href="">我的文章</a></li>
+                <li><a href="{{ url_for('main.my_posts') }}">我的文章</a></li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:">
                         其他 <span class="am-icon-caret-down"></span>
@@ -95,6 +95,7 @@
 
 
 
+
                     {% if pagination.has_prev %}{{ url_for(endpoint, page=pagination.prev_num, **kwargs) }}{% else %}#{% endif %}">
                 «
             </a>
@@ -116,6 +117,7 @@
         {% endfor %}
         <li{% if not pagination.has_next %} class="disabled"{% endif %}>
             <a href="
+
 
 
 

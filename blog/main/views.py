@@ -4,7 +4,7 @@ import sqlalchemy
 
 from blog.main import main_blueprint
 from flask import render_template, request, redirect, url_for, session, abort, current_app
-from blog.main.models import User, Post, Category, Tag, Comment
+from blog.main.models import User, Post, Category, Tag, Comment, Reply
 from extensions import db, github, logger
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -30,15 +30,28 @@ def index():
     page = request.args.get('page')
     if not page:
         page = 1
-    if current_user.is_active:
-        pagination = Post.query.filter(Post.user_id == current_user.id).\
-            order_by(Post.publish_date.desc()).paginate(int(page), 5, error_out=False)
-    else:
-        pagination = Post.query.order_by(Post.publish_date.desc()).paginate(int(page), 5, error_out=False)
+
+    pagination = Post.query.order_by(Post.publish_date.desc()).paginate(int(page), 5, error_out=False)
     posts = pagination.items
     categories, tags = sidebar_date()
     posts = filter_markdown(posts)
     return render_template('blog/index.html', posts=posts, pagination=pagination, categories=categories, tags=tags)
+
+
+@main_blueprint.route('/my_posts')
+def my_posts():
+    page = request.args.get('page')
+    if not page:
+        page = 1
+    if current_user.is_active:
+        pagination = Post.query.filter_by(user_id=current_user.id).order_by(Post.publish_date.desc()).paginate(
+            int(page), 5, error_out=False)
+        posts = pagination.items
+        categories, tags = sidebar_date()
+        posts = filter_markdown(posts)
+        return render_template('blog/my_posts.html', posts=posts, pagination=pagination, categories=categories, tags=tags)
+    else:
+        return redirect(url_for('main.login'))
 
 
 def register_filter(username, email, password1, password2):
@@ -116,12 +129,13 @@ def detail(page):
             if content:
                 comment = Comment()
                 comment.content = content
-                comment.user_id = current_user.id
+                comment.users = current_user
+                comment.posts = Post.query.get(page)
                 db.session.add(comment)
                 db.session.commit()
             return redirect(url_for('main.detail', page=page))
         else:
-            return abort(400)
+            return redirect(url_for('main.login'))
 
     post = Post.query.get(page)
     categories, tags = sidebar_date()
@@ -132,7 +146,33 @@ def detail(page):
                                       'markdown.extensions.toc',
                                   ])
     comments = Comment.query.all()
-    return render_template('blog/detail.html', post=post, categories=categories, tags=tags, page=page, comments=comments)
+    return render_template('blog/detail.html', post=post, categories=categories, tags=tags, page=page,
+                           comments=comments)
+
+
+@main_blueprint.route('/post/<int:page>/reply-comment', methods=['POST'])
+def reply_comment(page):
+    if request.method == 'POST':
+        if current_user.is_active:
+            post_id = request.form.get('post_id')
+            content = request.form.get('content')
+            comment_id = request.form.get('comment_id')
+            user_id = current_user.id
+            if content:
+                reply = Reply()
+                reply.comment_id = int(comment_id)
+                reply.post_id = int(post_id)
+                reply.user_id = user_id
+                reply.content = content
+                db.session.add(reply)
+                db.session.commit()
+                return redirect(url_for('main.detail', page=page))
+            else:
+                return abort(400)
+        else:
+            return redirect(url_for('main.login'))
+    else:
+        return abort(409)
 
 
 @main_blueprint.route('/category/<string:categories>/<int:page>')
@@ -145,7 +185,7 @@ def show_category(categories, page=1):
     posts = filter_markdown(posts)
     return render_template('blog/index.html',
                            posts=posts,
-                           pagination_category=pagination,
+                           pagination=pagination,
                            categories=categories,
                            tags=tags,
                            category_name=category.name)
@@ -160,7 +200,7 @@ def show_tag(tags, page=1):
     posts = filter_markdown(posts)
     return render_template('blog/index.html',
                            posts=posts,
-                           pagination_tag=pagination,
+                           pagination=pagination,
                            categories=categories, tags=tags,
                            tag_name=tag.name)
 

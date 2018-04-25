@@ -2,6 +2,53 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='simplemde/simplemde.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">
+    <link href="https://cdn.bootcss.com/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='simplemde/simplemde.min.js') }}"></script>
+    <style>
+        .hljs {
+            border: 0;
+            font-family: "YaHei Consolas Hybrid", "Courier New", Courier, mono, serif;
+            font-size: 14px;
+            background: #eee !important;
+            display: block;
+            padding: 1px;
+            margin: 0;
+            width: 100%;
+            font-weight: 200;
+            color: #333;
+            white-space: pre-wrap
+        }
+
+        .hljs ul {
+            list-style: decimal;
+            background-color: #fff;
+            margin: 0px 0px 0 40px !important;
+            padding: 0px;
+        }
+
+        .hljs ul li {
+            list-style: decimal-leading-zero;
+            border-left: 1px solid #ddd !important;
+            background: #fff;
+            padding: 5px !important;
+            margin: 0 !important;
+            line-height: 14px;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        .hljs ul li:nth-of-type(even) {
+            background-color: #fcfcfc;
+            color: inherit;
+        }
+
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="am-container">
         <div class="am-g">
@@ -37,12 +84,12 @@
                                     </header>
 
                                     <div class="am-comment-bd">
-                                        {{ comment.content }}
+                                        {{ comment.content | safe }}
                                     </div>
                                     <footer class="am-comment-footer">
                                         <div class="am-comment-actions"><a href=""><i class="am-icon-thumbs-up"></i></a>
                                             <a
-                                                    href=""><i class="am-icon-thumbs-down"></i></a> <a href="#"
+                                                    href=""><i class="am-icon-thumbs-down"></i></a> <a href="#link-me"
                                                                                                        onclick="showForm('comment-{{ comment.id }}')"><i
                                                     class="am-icon-comment-o"></i></a></div>
                                     </footer>
@@ -58,7 +105,7 @@
                                                    style="display: none;">
                                         </div>
                                         <div class="am-form-group">
-                                            <input type="text " name="content" class="am-form-field">
+                                           <input type="text" name="content" class="am-form-field">
                                         </div>
                                         <input type="submit" value="回复" class="am-btn am-btn-default am-form-group">
                                     </form>
@@ -110,7 +157,7 @@
                                                            style="display: none;">
                                                 </div>
                                                 <div class="am-form-group">
-                                                    <input type="text " name="content" class="am-form-field">
+                                                    <input type="text" name="content" class="am-form-field">
                                                 </div>
                                                 <input type="submit" value="回复"
                                                        class="am-btn am-btn-default am-form-group">
@@ -125,8 +172,9 @@
                         {% endfor %}
                     {% endif %}
                     <form action="{{ url_for('main.detail', page=page) }}" method="post">
-                        <input type="text" name="comment">
-                        <input type="submit" value="评论">
+                        <textarea id="text1" name="comment"></textarea>
+                        <br>
+                        <input type="submit" class="am-btn am-btn-primary" value="评论">
                     </form>
                 </div>
             </div>
@@ -176,6 +224,17 @@
         function showForm(form_id) {
             $('#' + form_id).toggle()
         }
+        var simplemde1 = new SimpleMDE({
+            element: document.getElementById("text1"),
+            autoDownloadFontAwesome: false,
+            status: false
+        });
+
+        hljs.initHighlightingOnLoad();
+
+        $("code").each(function () {
+            $(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
+        });
     </script>
 {% endblock %}
 

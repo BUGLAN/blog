@@ -49,7 +49,8 @@ def my_posts():
         posts = pagination.items
         categories, tags = sidebar_date()
         posts = filter_markdown(posts)
-        return render_template('blog/my_posts.html', posts=posts, pagination=pagination, categories=categories, tags=tags)
+        return render_template('blog/my_posts.html', posts=posts, pagination=pagination, categories=categories,
+                               tags=tags)
     else:
         return redirect(url_for('main.login'))
 
@@ -146,8 +147,17 @@ def detail(page):
                                       'markdown.extensions.toc',
                                   ])
     comments = Comment.query.all()
+    cs = []
+    for comment in comments:
+        comment.content = markdown.markdown(comment.content,
+                                            extensions=[
+                                                'markdown.extensions.extra',
+                                                'markdown.extensions.codehilite',
+                                                'markdown.extensions.toc',
+                                            ])
+        cs.append(comment)
     return render_template('blog/detail.html', post=post, categories=categories, tags=tags, page=page,
-                           comments=comments)
+                           comments=cs)
 
 
 @main_blueprint.route('/post/<int:page>/reply-comment', methods=['POST'])

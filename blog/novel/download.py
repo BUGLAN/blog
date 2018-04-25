@@ -22,7 +22,6 @@ class DownLoad:
             except requests.exceptions.ConnectionError as e:
                 logger.error(e)
             else:
-                r.encoding = r.apparent_encoding
                 return r.text
 
     @staticmethod

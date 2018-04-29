@@ -74,3 +74,6 @@
 [2018-04-25 19:26:21,737] [INFO] [run.py: <module>: 6] -> "web service start"
 [2018-04-25 19:26:22,696] [INFO] [run.py: <module>: 6] -> "web service start"
 [2018-04-25 19:53:43,038] [INFO] [run.py: <module>: 6] -> "web service start"
+[2018-04-29 11:02:01,213] [INFO] [run.py: <module>: 8] -> "web service start"
+[2018-04-29 11:02:02,077] [INFO] [run.py: <module>: 8] -> "web service start"
+[2018-04-29 11:02:12,285] [INFO] [views.py: authorized: 251] -> "GITHUB 用户"BUGLAN"登陆成功"

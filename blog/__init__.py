@@ -5,9 +5,9 @@ from extensions import db, login_manager, oauth, date_filter, null_filter, url_f
     relative_path
 
 
-def create_app():
+def create_app(config):
     app = Flask(__name__)
-    app.config.from_object(BaseConfig)
+    app.config.from_object(config)
     db.init_app(app)
     # admin.init_app(app)
     login_manager.init_app(app)
@@ -37,4 +37,3 @@ def create_app():
     return app
 
 
-app = create_app()

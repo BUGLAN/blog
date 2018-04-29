@@ -1,8 +1,12 @@
-from blog import app
-from blog.main.models import User, Category, Post, Tag, post_tag, Role, Book, Permission, Comment, Reply
-from extensions import db
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Server, Manager
+
+from blog import create_app
+from blog.main.models import User, Category, Post, Tag, post_tag, Role, Book, Permission, Comment, Reply
+from config import BaseConfig
+from extensions import db
+
+app = create_app(BaseConfig)
 
 migrate = Migrate(app, db)
 manager = Manager(app)

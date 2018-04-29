@@ -1,14 +1,12 @@
 # unit test
-
 import unittest
+
 import pymysql
-import sys
+from flask import current_app
+
 from blog import create_app
 from config import TestingConfig
-from flask import current_app
 from extensions import db
-
-sys.path.append('..')
 
 
 def create_db():

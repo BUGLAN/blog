@@ -252,7 +252,3 @@ class Reply(db.Model):
     def __repr__(self):
         return '<Reply %r to Comment %r>' % (self.content[:10], Comment.query.get(self.comment_id).content[:10])
 
-# User -> Post 一对多
-# Category -> Post 一对多
-# Post -> Tag 多对多
-# User -> Tag 一对一

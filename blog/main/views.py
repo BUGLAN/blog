@@ -3,7 +3,7 @@ import markdown
 import sqlalchemy
 
 from blog.main import main_blueprint
-from flask import render_template, request, redirect, url_for, session, abort, current_app
+from flask import render_template, request, redirect, url_for, session, abort, current_app, make_response
 from blog.main.models import User, Post, Category, Tag, Comment, Reply
 from extensions import db, github, logger
 from flask_login import login_user, logout_user, login_required, current_user
@@ -39,20 +39,19 @@ def index():
 
 
 @main_blueprint.route('/my_posts')
+@login_required
 def my_posts():
     page = request.args.get('page')
     if not page:
         page = 1
-    if current_user.is_active:
-        pagination = Post.query.filter_by(user_id=current_user.id).order_by(Post.publish_date.desc()).paginate(
-            int(page), 5, error_out=False)
-        posts = pagination.items
-        categories, tags = sidebar_date()
-        posts = filter_markdown(posts)
-        return render_template('blog/my_posts.html', posts=posts, pagination=pagination, categories=categories,
-                               tags=tags)
-    else:
-        return redirect(url_for('main.login'))
+
+    pagination = Post.query.filter_by(user_id=current_user.id).order_by(Post.publish_date.desc()).paginate(
+        int(page), 5, error_out=False)
+    posts = pagination.items
+    categories, tags = sidebar_date()
+    posts = filter_markdown(posts)
+    return render_template('blog/my_posts.html', posts=posts, pagination=pagination, categories=categories,
+                           tags=tags)
 
 
 def register_filter(username, email, password1, password2):
@@ -87,7 +86,7 @@ def register():
             db.session.commit()
         except sqlalchemy.exc.IntegrityError:
             logger.error("注册失败-> 密码或用户名已被他人所占用")
-            return "密码或用户名已被他人所占用"
+            return '密码或用户名已被他人所占用', 400
         else:
             login_user(user)
             logger.info('用户 "{}" 注册成功'.format(user.username))
@@ -107,14 +106,14 @@ def login():
 
         if user2 is not None and user2.verify_password(request.values.get('password')):
             login_user(user2, remember=request.values.get('remember-me'))
-            logger.info('用户"{}"登陆成功'.format(user.username))
+            logger.info('用户"{}"登陆成功'.format(user2.username))
             return redirect(request.args.get('next') or url_for('main.index'))
         else:
             abort(404)
     return render_template('blog/login.html', next=request.args.get('next'))
 
 
-@main_blueprint.route('/logout', methods=['GET', 'POST'])
+@main_blueprint.route('/logout')
 @login_required
 def logout():
     logger.info('用户"{}"注销成功'.format(current_user.username))
@@ -134,9 +133,11 @@ def detail(page):
                 comment.posts = Post.query.get(page)
                 db.session.add(comment)
                 db.session.commit()
-            return redirect(url_for('main.detail', page=page))
-        else:
-            return redirect(url_for('main.login'))
+                return redirect(url_for('main.detail', page=page))
+            else:
+                return '评论不能为空', 403
+
+        return redirect(url_for('main.login'))
 
     post = Post.query.get(page)
     categories, tags = sidebar_date()

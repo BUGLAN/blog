@@ -86,9 +86,11 @@ class BookSpider:
         latest_chapter = re.findall(r"<dd><a href='.*?' >(.*?)</a></dd>", html)[0]
         return image, author, modified_date, status, latest_chapter
 
-# if __name__ == '__main__':
-#     book = BookSpider("http://www.biquge5200.com/85_85278")
-#     result = book.get_chapters_and_introduce()
-#     print(result[0])
-#     index = result[0].index(('https://www.biquge5200.com/85_85278/153219401.html', '第232章 核百万'))
-#     print(index)
+
+if __name__ == '__main__':
+    book = BookSpider("http://www.biquge5200.com/85_85278")
+    result = book.get_chapters_and_introduce()
+    print(result)
+    # print(result[0])
+    # index = result[0].index(('https://www.biquge5200.com/85_85278/153219401.html', '第232章 核百万'))
+    # print(index)

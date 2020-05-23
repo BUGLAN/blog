@@ -1,4 +1,3 @@
-import re
 import unittest
 
 from blog.main.models import Role, Post, User, Category, Tag
